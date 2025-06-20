@@ -20,5 +20,40 @@ body {
   --neutral-900: #111;
 }
 
+/* Typography */
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: var(--neutral-900);
+}
 
+p {
+  margin-bottom: 1em;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary-600);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5em 1em;
+  border: none;
+  cursor: pointer;
+  background-color: var(--primary-600);
+  color: #fff;
+}
+
+button:hover {
+  background-color: var(--neutral-900);
+}
 
