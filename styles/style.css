@@ -227,9 +227,11 @@ header {
 }
 
 .logo-icon {
-    font-size: 2rem;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-}
+    width: 90px;
+    height: auto;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
 
 nav ul {
     display: flex;
@@ -341,4 +343,192 @@ footer::before {
 
 .footer-bottom a:hover {
     color: var(--primary-300);
+}
+
+
+/*    HOME PAGE COMPONENTS   */
+
+/* Hero Section */
+
+
+.hero {
+    background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.4)),
+                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+    padding: var(--space-5xl) 0 var(--space-4xl);
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(15, 23, 42, 0.3) 100%);
+}
+
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    color: white;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: var(--space-xl);
+    background: linear-gradient(135deg, #ffffff, #e2e8f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    font-size: 1.375rem;
+    margin: var(--space-xl) auto var(--space-2xl);
+    max-width: 700px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: var(--font-weight-normal);
+}
+
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-xl);
+    margin: var(--space-3xl) auto var(--space-2xl);
+    max-width: 600px;
+}
+
+.hero-stat {
+    text-align: center;
+}
+
+.hero-stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: var(--font-weight-black);
+    color: var(--primary-400);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-stat-label {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/*.  PAGE HEADERS (About, Hikes, etc.).  */
+
+   .page-header {
+    color: white;
+    text-align: center;
+    padding: var(--space-4xl) 0;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.6));
+}
+
+.page-header .container {
+    position: relative;
+    z-index: 2;
+}
+
+.page-header h1 {
+    color: white;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.page-header p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/*    BUTTON COMPONENTS     */
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--gradient-accent);
+    color: white;
+    padding: var(--space-lg) var(--space-2xl);
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    font-weight: var(--font-weight-semibold);
+    font-size: 1.125rem;
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-xl);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent-500), var(--accent-400));
+    opacity: 0;
+    transition: var(--transition-normal);
+}
+
+.cta-button:hover::before,
+.cta-button:focus::before {
+    opacity: 1;
+}
+
+.cta-button:hover,
+.cta-button:focus {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-2xl);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cta-button span {
+    position: relative;
+    z-index: 1;
+}
+
+.submit-button {
+    background: var(--gradient-primary);
+    color: white;
+    padding: var(--space-lg) var(--space-2xl);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: var(--transition-normal);
+    width: 100%;
+    box-shadow: var(--shadow-lg);
+}
+
+.submit-button:hover,
+.submit-button:focus {
+    background: linear-gradient(135deg, var(--primary-700), var(--primary-600));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
 }
