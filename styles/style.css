@@ -57,3 +57,28 @@ button:hover {
   background-color: var(--neutral-900);
 }
 
+/* Layout & Containers */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.card-grid,
+.testimonial-grid,
+.gallery-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.testimonial-grid {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.gallery-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
