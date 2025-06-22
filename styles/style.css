@@ -1,4 +1,4 @@
-/*    GLOBAL RESET & BASE.  */
+/* global base */
 
 *,
 *::before,
@@ -20,35 +20,36 @@ body {
   color: #1a202c;
   background-color: #ffffff;
   overflow-x: hidden;
+  scroll-padding-top: 100px;
 }
 
-/*    CSS VARIABLES - DESIGN SYSTEM */
-
+/* css variables */
 :root {
-  /* Primary Colors */
-  --primary-900: #0a4d3a;
-  --primary-800: #0c5f47;
-  --primary-700: #0e7254;
-  --primary-600: #10845d;
-  --primary-500: #16a34a;
-  --primary-400: #4ade80;
-  --primary-300: #86efac;
-  --primary-200: #bbf7d0;
-  --primary-100: #dcfce7;
-  --primary-50: #f0fdf4;
+  /* Primary */
+  --primary-900: #9a3412;
+  --primary-800: #c2410c;
+  --primary-700: #ea580c;
+  --primary-600: #f97316;
+  --primary-500: #fb923c;
+  --primary-400: #fdba74;
+  --primary-300: #fed7aa;
+  --primary-200: #fef3e2;
+  --primary-100: #fff7ed;
+  --primary-50: #fffbf5;
 
-  /* Accent Colors */
-  --accent-900: #9a3412;
-  --accent-800: #c2410c;
-  --accent-700: #ea580c;
-  --accent-600: #f97316;
-  --accent-500: #fb923c;
-  --accent-400: #fdba74;
-  --accent-300: #fed7aa;
-  --accent-200: #fef3e2;
-  --accent-100: #fff7ed;
+  /* Accent */
+  --accent-900: #0a4d3a;
+  --accent-800: #0c5f47;
+  --accent-700: #0e7254;
+  --accent-600: #10845d;
+  --accent-500: #16a34a;
+  --accent-400: #4ade80;
+  --accent-300: #86efac;
+  --accent-200: #bbf7d0;
+  --accent-100: #dcfce7;
+  --accent-50: #f0fdf4;
 
-  /* Neutral Colors */
+  /* Neutral */
   --neutral-900: #0f172a;
   --neutral-800: #1e293b;
   --neutral-700: #334155;
@@ -72,6 +73,11 @@ body {
     var(--accent-500)
   );
   --gradient-card: linear-gradient(145deg, #ffffff, #f8fafc);
+  --gradient-hero: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.8),
+    rgba(16, 132, 93, 0.6)
+  );
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -80,7 +86,7 @@ body {
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
-  /* Spacing Scale */
+  /* Spacing */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
@@ -91,7 +97,7 @@ body {
   --space-4xl: 6rem;
   --space-5xl: 8rem;
 
-  /* Border Radius */
+  /* Radius */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
@@ -99,7 +105,7 @@ body {
   --radius-2xl: 1.5rem;
   --radius-full: 9999px;
 
-  /* Typography */
+  /* Font Weights */
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -112,7 +118,17 @@ body {
   --transition-fast: 150ms ease-in-out;
   --transition-normal: 300ms ease-in-out;
   --transition-slow: 500ms ease-in-out;
+
+  /* Z-index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal: 1040;
+  --z-popover: 1050;
+  --z-tooltip: 1060;
 }
+
+
 
 /*     TYPOGRAPHY SYSTEM   */
 
