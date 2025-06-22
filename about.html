@@ -11,16 +11,35 @@
     <link rel="stylesheet" href="./styles/style.css" />
   </head>
   <body>
+  
+    <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle" />
+
     <header>
       <div class="header-container">
         <a href="index.html" class="logo">
-          <img src="images/logo.svg" alt="Adventure Trails logo" class="logo-icon" />
+          <img
+            src="images/logo.svg"
+            alt="Adventure Trails logo"
+            class="logo-icon"
+          />
           <span>Adventure Trails</span>
         </a>
+
+        
+        <label
+          for="mobile-menu-toggle"
+          class="mobile-menu-btn"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </label>
+
         <nav>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="about.html" class="active">About</a></li>
             <li><a href="hikes.html">Hikes</a></li>
             <li><a href="sustainability.html">Sustainability</a></li>
             <li><a href="gallery.html">Gallery</a></li>
@@ -33,7 +52,7 @@
     <main>
       <section
         class="page-header"
-        style="background-image: url('images/hero-home.jpg')"
+        style="background-image: url('images/about.jpg')"
       >
         <div class="container">
           <h1>Where Culture Meets Wilderness</h1>
@@ -43,10 +62,17 @@
 
       <section class="content-section">
         <div class="container">
-          <h2>Our Mission</h2>
+          <div class="section-header">
+            <h2>Our Mission</h2>
+            <p class="section-subtitle">
+              Creating transformative experiences that bridge cultures and
+              protect our planet
+            </p>
+          </div>
+
           <p>
             We believe the most meaningful travel happens when challenge meets
-            connection. Our mission is to guide hikers through the world’s most
+            connection. Our mission is to guide hikers through the world's most
             breathtaking trails while fostering deep relationships with the
             people and cultures who inhabit them.
           </p>
@@ -54,7 +80,8 @@
           <p>
             From day hikes to multi-week treks, we focus on cultural respect,
             sustainability, and unforgettable experiences rooted in the local
-            way of life.
+            way of life. Every journey with us supports local communities and
+            conservation efforts.
           </p>
 
           <h2>What Makes Us Different</h2>
@@ -63,29 +90,139 @@
               <h3>Community Partnerships</h3>
               <p>
                 We work directly with local communities, ensuring your trip
-                benefits the people who make it possible.
+                benefits the people who make it possible. 75% of our revenue
+                stays local.
               </p>
             </div>
             <div class="feature">
               <h3>Eco-First Approach</h3>
               <p>
                 From carbon offsets to low-impact gear, we lead the way in
-                responsible hiking practices.
+                responsible hiking practices. Every trip is carbon negative.
               </p>
             </div>
             <div class="feature">
               <h3>Safety & Certification</h3>
               <p>
                 Our guides are certified, experienced, and culturally sensitive,
-                providing peace of mind and genuine insight.
+                providing peace of mind and genuine insight into local
+                traditions.
               </p>
             </div>
             <div class="feature">
               <h3>Learning Through Travel</h3>
               <p>
                 We integrate education into every trip—on ecology, tradition,
-                and sustainability—so hikers return changed.
+                and sustainability—so hikers return changed and inspired.
               </p>
+            </div>
+          </div>
+
+          <!-- Company Timeline -->
+          <h2>Our Journey</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <div class="timeline-year">2015</div>
+                <h3 class="timeline-title">The Beginning</h3>
+                <p class="timeline-description">
+                  Founded by Maria and David after a life-changing trek in
+                  Nepal. Started with just 3 local guides and a dream to
+                  revolutionize adventure travel.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <div class="timeline-year">2017</div>
+                <h3 class="timeline-title">First International Expansion</h3>
+                <p class="timeline-description">
+                  Launched our Peru and Morocco programs. Established
+                  partnerships with indigenous communities and achieved B-Corp
+                  certification.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <div class="timeline-year">2019</div>
+                <h3 class="timeline-title">Sustainability Leadership</h3>
+                <p class="timeline-description">
+                  Became the first hiking company to achieve carbon-negative
+                  status. Launched our community water project initiative.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <div class="timeline-year">2021</div>
+                <h3 class="timeline-title">Digital Innovation</h3>
+                <p class="timeline-description">
+                  Developed virtual cultural workshops and launched our online
+                  learning platform to connect hikers with local communities
+                  year-round.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <div class="timeline-year">2023</div>
+                <h3 class="timeline-title">Global Recognition</h3>
+                <p class="timeline-description">
+                  Awarded "Best Sustainable Tour Operator" by National
+                  Geographic. Expanded to 25 countries with 200+ local guide
+                  partners.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Achievements Section -->
+          <h2>Our Impact</h2>
+          <div class="achievements-grid">
+            <div class="achievement">
+              <div class="achievement-icon">🌱</div>
+              <span class="achievement-number">50,000+</span>
+              <p class="achievement-label">Trees Planted</p>
+            </div>
+            <div class="achievement">
+              <div class="achievement-icon">💧</div>
+              <span class="achievement-number">25</span>
+              <p class="achievement-label">Water Projects</p>
+            </div>
+            <div class="achievement">
+              <div class="achievement-icon">👥</div>
+              <span class="achievement-number">200+</span>
+              <p class="achievement-label">Local Guides</p>
+            </div>
+            <div class="achievement">
+              <div class="achievement-icon">💰</div>
+              <span class="achievement-number">$2.1M</span>
+              <p class="achievement-label">Invested Locally</p>
+            </div>
+            <div class="achievement">
+              <div class="achievement-icon">🏆</div>
+              <span class="achievement-number">15</span>
+              <p class="achievement-label">Awards Won</p>
+            </div>
+            <div class="achievement">
+              <div class="achievement-icon">🌍</div>
+              <span class="achievement-number">25</span>
+              <p class="achievement-label">Countries</p>
+            </div>
+            <div class="achievement">
+              <div class="achievement-icon">⭐</div>
+              <span class="achievement-number">98%</span>
+              <p class="achievement-label">Satisfaction Rate</p>
+            </div>
+            <div class="achievement">
+              <div class="achievement-icon">📚</div>
+              <span class="achievement-number">500+</span>
+              <p class="achievement-label">Cultural Workshops</p>
             </div>
           </div>
 
@@ -94,8 +231,61 @@
             Our global team of expert guides and cultural coordinators has led
             thousands of hikers across six continents. Fluent in local languages
             and certified in wilderness medicine, they are more than trip
-            leaders—they’re facilitators of transformation.
+            leaders—they're facilitators of transformation.
           </p>
+
+          <div class="card-grid" style="margin-top: 2rem">
+            <article class="card">
+              <div
+                class="card-image"
+                style="background-image: url('images/maria_ro.jpg')"
+              >
+                <span>Maria Rodriguez</span>
+              </div>
+              <div class="card-content">
+                <h3>Co-Founder & CEO</h3>
+                <p>
+                  Former environmental scientist turned adventure entrepreneur.
+                  Passionate about connecting people with nature and culture.
+                </p>
+                <span class="badge">Wilderness Medicine</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div
+                class="card-image"
+                style="background-image: url('images/david_chen.jpg')"
+              >
+                <span>David Chen</span>
+              </div>
+              <div class="card-content">
+                <h3>Co-Founder & CTO</h3>
+                <p>
+                  Technology expert and sustainability advocate. Leads our
+                  digital innovation and carbon tracking initiatives.
+                </p>
+                <span class="badge">Tech Innovation</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div
+                class="card-image"
+                style="background-image: url('images/aisha_pa.jpg')"
+              >
+                <span>Aisha Patel</span>
+              </div>
+              <div class="card-content">
+                <h3>Cultural Programs Director</h3>
+                <p>
+                  Anthropologist and cultural liaison with 15 years experience
+                  in community-based tourism across Asia and Africa.
+                </p>
+                <span class="badge">Cultural Expert</span>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
     </main>
@@ -108,9 +298,47 @@
             Transformative hikes in nature with cultural immersion and
             sustainable values.
           </p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.596-3.205-1.539l.643-.643c.588.735 1.48 1.206 2.562 1.206c1.789 0 3.24-1.451 3.24-3.24s-1.451-3.24-3.24-3.24c-1.082 0-1.974.471-2.562 1.206l-.643-.643c.757-.943 1.908-1.539 3.205-1.539c2.297 0 4.157 1.86 4.157 4.157s-1.86 4.157-4.157 4.157z"
+                />
+              </svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
         <div class="footer-section">
-          <h3>Links</h3>
+          <h3>Quick Links</h3>
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
           <a href="hikes.html">Hikes</a>
@@ -119,9 +347,19 @@
           <a href="contact.html">Contact</a>
         </div>
         <div class="footer-section">
-          <h3>Contact</h3>
+          <h3>Contact Info</h3>
           <p>Email: hello@adventuretrails.com</p>
           <p>Phone: +1 (555) ADVENTURE</p>
+          <p>Address: 123 Mountain View Blvd<br />Boulder, CO 80301</p>
+        </div>
+        <div class="footer-section">
+          <h3>Certifications</h3>
+          <div class="certification-badges">
+            <span class="cert-badge">B-Corp</span>
+            <span class="cert-badge">UIAGM</span>
+            <span class="cert-badge">Leave No Trace</span>
+            <span class="cert-badge">Fair Trade</span>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
