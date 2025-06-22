@@ -613,85 +613,7 @@ nav a.active {
   font-weight: var(--font-weight-medium);
 }
 
-
-
-/*      FOOTER     */
-
-footer {
-  background: linear-gradient(135deg, var(--neutral-900), var(--neutral-800));
-  color: white;
-  padding: var(--space-4xl) 0 var(--space-xl);
-  margin-top: var(--space-5xl);
-  position: relative;
-}
-
-footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--primary-500),
-    transparent
-  );
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-2xl);
-  margin-bottom: var(--space-2xl);
-}
-
-.footer-section h3 {
-  color: var(--primary-400);
-  margin-bottom: var(--space-lg);
-  font-weight: var(--font-weight-bold);
-}
-
-.footer-section p {
-  color: var(--neutral-300);
-  font-size: 1rem;
-}
-
-.footer-section a {
-  color: var(--neutral-300);
-  text-decoration: none;
-  display: block;
-  margin-bottom: var(--space-sm);
-  transition: var(--transition-fast);
-  font-size: 0.95rem;
-}
-
-.footer-section a:hover,
-.footer-section a:focus {
-  color: var(--primary-400);
-  transform: translateX(4px);
-}
-
-.footer-bottom {
-  text-align: center;
-  padding-top: var(--space-xl);
-  border-top: 1px solid var(--neutral-700);
-  color: var(--neutral-400);
-  font-size: 0.9rem;
-}
-
-.footer-bottom a {
-  color: var(--primary-400);
-  text-decoration: none;
-  transition: var(--transition-fast);
-}
-
-.footer-bottom a:hover {
-  color: var(--primary-300);
-}
-
-/*    BUTTON COMPONENTS     */
+/* buttons */
 .cta-button {
   display: inline-flex;
   align-items: center;
@@ -710,6 +632,16 @@ footer::before {
   overflow: hidden;
 }
 
+.cta-button.primary {
+  background: var(--gradient-accent);
+}
+
+.cta-button.secondary {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
 .cta-button::before {
   content: "";
   position: absolute;
@@ -717,6 +649,10 @@ footer::before {
   background: linear-gradient(135deg, var(--accent-500), var(--accent-400));
   opacity: 0;
   transition: var(--transition-normal);
+}
+
+.cta-button.secondary::before {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .cta-button:hover::before,
@@ -757,8 +693,7 @@ footer::before {
   box-shadow: var(--shadow-xl);
 }
 
-/*    CARD SYSTEM    */
-
+/* cards */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -774,17 +709,14 @@ footer::before {
   transition: var(--transition-normal);
   position: relative;
   border: 1px solid var(--neutral-200);
+  animation: fadeInUp 0.6s ease-out both;
 }
 
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0)
-  );
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
   opacity: 0;
   transition: var(--transition-normal);
   pointer-events: none;
@@ -798,6 +730,26 @@ footer::before {
   transform: translateY(-8px);
   box-shadow: var(--shadow-2xl);
   border-color: var(--primary-200);
+}
+
+.feature-card {
+  text-align: center;
+}
+
+.card-icon {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-600);
+  z-index: 3;
+  box-shadow: var(--shadow-md);
 }
 
 .card-image {
@@ -883,6 +835,94 @@ footer::before {
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/*      FOOTER     */
+
+footer {
+  background: linear-gradient(135deg, var(--neutral-900), var(--neutral-800));
+  color: white;
+  padding: var(--space-4xl) 0 var(--space-xl);
+  margin-top: var(--space-5xl);
+  position: relative;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary-500),
+    transparent
+  );
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.footer-section h3 {
+  color: var(--primary-400);
+  margin-bottom: var(--space-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.footer-section p {
+  color: var(--neutral-300);
+  font-size: 1rem;
+}
+
+.footer-section a {
+  color: var(--neutral-300);
+  text-decoration: none;
+  display: block;
+  margin-bottom: var(--space-sm);
+  transition: var(--transition-fast);
+  font-size: 0.95rem;
+}
+
+.footer-section a:hover,
+.footer-section a:focus {
+  color: var(--primary-400);
+  transform: translateX(4px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--neutral-700);
+  color: var(--neutral-400);
+  font-size: 0.9rem;
+}
+
+.footer-bottom a {
+  color: var(--primary-400);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.footer-bottom a:hover {
+  color: var(--primary-300);
+}
+
 
 /*    FILTER SYSTEM (CSS-Only for Hikes Page) */
 
