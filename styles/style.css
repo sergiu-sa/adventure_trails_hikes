@@ -129,9 +129,7 @@ body {
 }
 
 
-
-/*     TYPOGRAPHY SYSTEM   */
-
+/* typography styles */
 h1 {
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: var(--font-weight-black);
@@ -170,8 +168,7 @@ p {
   font-weight: var(--font-weight-normal);
 }
 
-/*.     LAYOUT & CONTAINERS     */
-
+/* layout & containers */
 main {
   min-height: 100vh;
   padding-top: 80px;
@@ -185,6 +182,7 @@ main {
 
 .section {
   padding: var(--space-5xl) 0;
+  position: relative;
 }
 
 .section:nth-child(even) {
@@ -193,6 +191,21 @@ main {
 
 .content-section {
   padding: var(--space-4xl) 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-4xl);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: var(--neutral-500);
+  margin: 0;
+  font-weight: var(--font-weight-normal);
 }
 
 .content-section h2 {
@@ -211,6 +224,8 @@ main {
   background: var(--gradient-primary);
   border-radius: var(--radius-full);
 }
+
+
 
 /*      HEADER & NAVIGATION   */
 
