@@ -1018,6 +1018,61 @@ nav a.active {
 }
 
 
+/* achievements */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-xl);
+  margin: var(--space-3xl) 0;
+}
+
+.achievement {
+  text-align: center;
+  padding: var(--space-xl);
+  background: var(--neutral-50);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 2px 8px 0 rgba(16, 132, 93, 0.07);
+  border: none;
+  position: relative;
+  transition: var(--transition-normal);
+}
+
+.achievement::before {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 48px;
+  background: var(--gradient-accent);
+  border-radius: 2px;
+  margin: 0 auto var(--space-lg) auto;
+}
+
+.achievement-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--space-lg);
+  background: var(--gradient-accent);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  box-shadow: 0 1px 4px 0 rgba(16, 132, 93, 0.1);
+}
+
+.achievement-number {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--accent-800);
+  margin-bottom: var(--space-xs);
+}
+
+.achievement-label {
+  color: var(--neutral-600);
+  font-weight: var(--font-weight-medium);
+  margin: 0;
+}
 
 
 
