@@ -1075,6 +1075,59 @@ nav a.active {
 }
 
 
+/* filter system */
+.filter-container {
+  margin: var(--space-2xl) 0;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-2xl);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-input {
+  display: none;
+}
+
+.filter-tab {
+  padding: var(--space-md) var(--space-xl);
+  background: white;
+  border: 2px solid var(--neutral-200);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition-normal);
+  font-weight: var(--font-weight-medium);
+  color: var(--neutral-600);
+  font-size: 0.95rem;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+}
+
+.filter-tab:hover {
+  border-color: var(--primary-300);
+  background: var(--primary-50);
+  color: var(--primary-700);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.filter-input:checked + .filter-tab {
+  background: var(--gradient-primary);
+  color: white;
+  border-color: var(--primary-600);
+  box-shadow: var(--shadow-lg);
+}
+
+.filter-item,
+.gallery-filter-item {
+  display: block;
+  animation: fadeInUp 0.5s ease-out;
+}
 
 
 
@@ -1155,59 +1208,4 @@ footer::before {
 
 .footer-bottom a:hover {
   color: var(--primary-300);
-}
-
-
-/*    FILTER SYSTEM (CSS-Only for Hikes Page) */
-
-.filter-container {
-  margin: var(--space-2xl) 0;
-}
-
-.filter-tabs {
-  display: flex;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-2xl);
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.filter-input {
-  display: none;
-}
-
-.filter-tab {
-  padding: var(--space-md) var(--space-xl);
-  background: white;
-  border: 2px solid var(--neutral-200);
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: var(--transition-normal);
-  font-weight: var(--font-weight-medium);
-  color: var(--neutral-600);
-  font-size: 0.95rem;
-  box-shadow: var(--shadow-sm);
-  text-decoration: none;
-  display: inline-block;
-  position: relative;
-}
-
-.filter-tab:hover {
-  border-color: var(--primary-300);
-  background: var(--primary-50);
-  color: var(--primary-700);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-.filter-input:checked + .filter-tab {
-  background: var(--gradient-primary);
-  color: white;
-  border-color: var(--primary-600);
-  box-shadow: var(--shadow-lg);
-}
-
-.filter-item {
-  display: block;
-  animation: fadeInUp 0.5s ease-out;
 }
