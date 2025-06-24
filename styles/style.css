@@ -854,7 +854,7 @@ nav a.active {
   padding: var(--space-2xl);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
-  border-left: 4px solid var(--accent-500);
+  border-left: 4px solid var(--primary-400);
   transition: var(--transition-normal);
   position: relative;
   animation: slideInUp 0.6s ease-out both;
@@ -866,7 +866,7 @@ nav a.active {
   top: -10px;
   left: var(--space-xl);
   font-size: 4rem;
-  color: var(--accent-200);
+  color: var(--accent-500);
   font-weight: var(--font-weight-bold);
   line-height: 1;
 }
@@ -879,7 +879,7 @@ nav a.active {
 
 .testimonial-rating {
   margin-bottom: var(--space-md);
-  color: var(--accent-500);
+  color: var(--primary-600);
   font-size: 1.2rem;
 }
 
@@ -1130,12 +1130,7 @@ nav a.active {
 }
 
 
-
-
-
-
-/*      FOOTER     */
-
+/* footer */
 footer {
   background: linear-gradient(135deg, var(--neutral-900), var(--neutral-800));
   color: white;
@@ -1151,12 +1146,7 @@ footer::before {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--primary-500),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, var(--primary-500), transparent);
 }
 
 .footer-content {
@@ -1192,6 +1182,50 @@ footer::before {
   transform: translateX(4px);
 }
 
+/* social links */
+.social-links {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.social-links a {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-normal);
+  margin-bottom: 0;
+}
+
+.social-links a:hover {
+  background: var(--primary-500);
+  transform: translateY(-2px);
+  color: white;
+}
+
+/* certification badges */
+.certification-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.cert-badge {
+  background: var(--primary-100);
+  color: var(--primary-800);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .footer-bottom {
   text-align: center;
   padding-top: var(--space-xl);
@@ -1200,12 +1234,6 @@ footer::before {
   font-size: 0.9rem;
 }
 
-.footer-bottom a {
-  color: var(--primary-400);
-  text-decoration: none;
-  transition: var(--transition-fast);
-}
 
-.footer-bottom a:hover {
-  color: var(--primary-300);
-}
+
+
