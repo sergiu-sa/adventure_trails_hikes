@@ -265,11 +265,18 @@ header {
 
 .logo:hover { transform: translateY(-1px); }
 
-.logo-icon {
+
+
+.logo-icon-mask {
   width: 80px;
-  filter: brightness(0) saturate(100%) invert(55%) sepia(96%)
-          saturate(2067%) hue-rotate(16deg) brightness(101%) contrast(98%);
+  height: 80px;
+  background-color: var(--primary-400);
+  mask: url("/images/logo.svg") no-repeat center;
+  mask-size: contain;
+  -webkit-mask: url("/images/logo.svg") no-repeat center;
+  -webkit-mask-size: contain;
 }
+
 
 /* desktop navigation */
 nav ul {
