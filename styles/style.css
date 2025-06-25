@@ -1242,5 +1242,56 @@ footer::before {
 }
 
 
+/* newsletter  */
+.newsletter-section {
+  background: var(--gradient-accent);
+  color: white;
+  padding: var(--space-4xl) 0;
+  text-align: center;
+}
 
+.newsletter-section.primary-bg {
+  background: var(--gradient-primary);
+}
+
+.newsletter-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.newsletter-section h2 {
+  color: white;
+  margin-bottom: var(--space-lg);
+}
+
+.newsletter-section p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--space-2xl);
+}
+
+.newsletter-form {
+  display: flex;
+  gap: var(--space-md);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: var(--space-lg);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+}
+
+.newsletter-form .cta-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+}
+
+.newsletter-form .cta-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
 
