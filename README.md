@@ -1,10 +1,14 @@
 # Adventure Trails Hikes
 
-A responsive, accessible, and visually rich website for a fictional hiking company offering extreme adventures with cultural immersion. Built using only HTML and CSS.
+A responsive, accessible HTML/CSS website for a fictional hiking company, built as a semester exam.
 
 ## Project Overview
 
-This project was built as a semester exam and reflects modern front-end development practices using semantic HTML, a design system in CSS, accessibility, and performance best practices.
+This project was created for a Noroff Front-End Development semester exam. It demonstrates semantic HTML, modern CSS practices, accessibility, responsive layouts, and performance optimization — all without using frameworks.
+
+## Timeline Note
+
+I was sick from June 11–18, so I had to pause the project during that time. Because of this, I adjusted the timeline and reorganized tasks in GitHub. I designed 4 pages in Figma (which was the minimum required), and I still built all 6 pages in code. Everything is now back on track for the June 29 deadline. You can see the updated plan in the Issues tab.
 
 ## Folder Structure
 
