@@ -202,6 +202,73 @@
             </form>
           </div>
 
+
+          <!-- Interactive Map Section -->
+          <section aria-labelledby="map-heading">
+            <h2 id="map-heading" style="margin-top: 4rem">Find Our Office</h2>
+            <div class="map-container">
+              <div class="css-map" role="img" aria-labelledby="map-description">
+                <div id="map-description" class="sr-only">
+                  Interactive map showing Adventure Trails Hikes office location at 123 Mountain View Blvd, Boulder, CO 80301
+                </div>
+                <!-- Map Background with Terrain -->
+                <div class="map-terrain">
+                  <!-- Mountains -->
+                  <div class="mountain mountain-1" aria-hidden="true"></div>
+                  <div class="mountain mountain-2" aria-hidden="true"></div>
+                  <div class="mountain mountain-3" aria-hidden="true"></div>
+                  
+                  <!-- Roads -->
+                  <div class="road road-main" aria-hidden="true"></div>
+                  <div class="road road-secondary" aria-hidden="true"></div>
+                  
+                  <!-- Our Location Marker -->
+                  <div class="location-marker" role="button" tabindex="0" aria-label="Adventure Trails Hikes office location">
+                    <div class="marker-pin">
+                      <div class="marker-icon" aria-hidden="true">🏔️</div>
+                    </div>
+                    <div class="marker-label">Adventure Trails Hikes</div>
+                  </div>
+                  
+                  <!-- Compass -->
+                  <div class="compass" aria-label="Map compass indicating north direction">
+                    <div class="compass-needle">N</div>
+                  </div>
+                  
+                  <!-- Scale -->
+                  <div class="map-scale" aria-label="Map scale: 1 mile">
+                    <div class="scale-line" aria-hidden="true"></div>
+                    <span>1 mile</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="map-info">
+                <div class="map-info-content">
+                  <div class="location-details">
+                    <h3>Visit Our Boulder Office</h3>
+                    <address>
+                      123 Mountain View Blvd<br>
+                      Boulder, CO 80301
+                    </address>
+                    <p>Mon-Sat: 10AM-6PM</p>
+                  </div>
+                  <div class="map-actions">
+                    <a href="https://maps.google.com/?q=Boulder,CO" target="_blank" class="cta-button secondary" aria-describedby="directions-desc">
+                      Get Directions
+                    </a>
+                    <div id="directions-desc" class="sr-only">Opens Google Maps in a new window</div>
+                    <button class="cta-button secondary zoom-button" aria-describedby="zoom-desc">
+                      View Area
+                    </button>
+                    <div id="zoom-desc" class="sr-only">Zoom in on the map area</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
           <!-- FAQ Section -->
           <h2 style="margin-top: 4rem;">Frequently Asked Questions</h2>
           <div class="faq-container">
