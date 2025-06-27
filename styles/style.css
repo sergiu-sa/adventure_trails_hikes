@@ -1575,3 +1575,132 @@ textarea {
 .achievement:nth-child(4) {
   animation-delay: 0.4s;
 }
+
+
+
+/*responsive styles */
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 var(--space-lg);
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .timeline::before {
+    left: 30px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    left: 70px !important;
+    padding-left: var(--space-xl) !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+  }
+
+  .timeline-item::before {
+    left: -9px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: var(--space-lg);
+  }
+
+  .hero {
+    padding: var(--space-3xl) 0;
+    background-attachment: scroll;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .filter-tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sustainability-features {
+    grid-template-columns: 1fr;
+  }
+
+  .achievements-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .page-header {
+    background-attachment: scroll;
+    min-height: 40vh;
+  }
+
+  main {
+    padding-top: 100px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form {
+    padding: var(--space-xl);
+  }
+
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline {
+    margin-left: var(--space-lg);
+  }
+
+  .timeline::before {
+    left: 0;
+  }
+
+  .timeline-item {
+    left: var(--space-xl) !important;
+  }
+
+  .timeline-item::before {
+    left: -9px !important;
+  }
+}
