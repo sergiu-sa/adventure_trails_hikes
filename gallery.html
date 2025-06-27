@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Browse inspiring photos from Adventure Trails Hikes. See landscapes, culture, and the people behind each trek."
+    />
+    <title>Gallery | Adventure Trails Hikes</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+  </head>
+  <body>
+    
+    <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle" />
+
+    <header>
+      <div class="header-container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon-mask" aria-label="Adventure Trails logo"></div>
+          <span>Adventure Trails</span>
+        </a>
+
+        
+        <label
+          for="mobile-menu-toggle"
+          class="mobile-menu-btn"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </label>
+
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="hikes.html">Hikes</a></li>
+            <li><a href="sustainability.html">Sustainability</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section
+        class="page-header"
+        style="background-image: url('images/boots.jpg')"
+      >
+        <div class="container">
+          <h1>The World Through Our Boots</h1>
+          <p>Real moments from real adventures</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Adventure Highlights</h2>
+            <p class="section-subtitle">
+              Capturing the beauty of nature and the richness of cultural
+              encounters
+            </p>
+          </div>
+
+          
+          <div class="filter-container">
+            <div class="filter-tabs">
+              <input
+                type="radio"
+                id="gallery-all"
+                name="gallery-filter"
+                class="filter-input"
+                checked
+              />
+              <label for="gallery-all" class="filter-tab">All Photos</label>
+
+              <input
+                type="radio"
+                id="gallery-landscapes"
+                name="gallery-filter"
+                class="filter-input"
+              />
+              <label for="gallery-landscapes" class="filter-tab"
+                >Landscapes</label
+              >
+
+              <input
+                type="radio"
+                id="gallery-culture"
+                name="gallery-filter"
+                class="filter-input"
+              />
+              <label for="gallery-culture" class="filter-tab">Culture</label>
+
+              <input
+                type="radio"
+                id="gallery-people"
+                name="gallery-filter"
+                class="filter-input"
+              />
+              <label for="gallery-people" class="filter-tab">People</label>
+
+              <input
+                type="radio"
+                id="gallery-wildlife"
+                name="gallery-filter"
+                class="filter-input"
+              />
+              <label for="gallery-wildlife" class="filter-tab">Wildlife</label>
+            </div>
+
+           
+            <div class="gallery-grid">
+              <div
+                class="gallery-item"
+                style="background-image: url('images/gallery-epic-trail.jpg')"
+              >
+                <div class="gallery-caption">Nepal – Himalayan Trail View</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/peru_sunrise.jpg')"
+              >
+                <div class="gallery-caption">Peru – Sunrise Over Andes</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/frace_alpine.avif')"
+              >
+                <div class="gallery-caption">France – Alpine Meadows</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/patagonia.jpg')"
+              >
+                <div class="gallery-caption">Patagonia – Glacier Valley</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/mont-blanc.jpg')"
+              >
+                <div class="gallery-caption">Mont Blanc – Alpine Peak</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/canadian_rockies.jpg')"
+              >
+                <div class="gallery-caption">Canada – Rocky Mountain High</div>
+              </div>
+
+              
+              <div
+                class="gallery-item"
+                style="background-image: url('images/gallery-portrait.jpg')"
+              >
+                <div class="gallery-caption">Morocco – Berber Traditions</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/about.jpg')"
+              >
+                <div class="gallery-caption">Nepal – Prayer Ceremony</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/peru_andes_heritage.jpg')"
+              >
+                <div class="gallery-caption">Peru – Quechua Weaving</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/tradition.jpg')"
+              >
+                <div class="gallery-caption">Traditional Cooking</div>
+              </div>
+
+              <!-- People Photos -->
+              <div
+                class="gallery-item"
+                style="background-image: url('images/guidance.jpg')"
+              >
+                <div class="gallery-caption">Our Expert Guides</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/card-guides.jpg')"
+              >
+                <div class="gallery-caption">Around the Campfire</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/hikes_1.jpg')"
+              >
+                <div class="gallery-caption">Cultural Exchange</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/gallery-portrait.jpg')"
+              >
+                <div class="gallery-caption">Local Community Leaders</div>
+              </div>
+
+              
+              <div
+                class="gallery-item"
+                style="background-image: url('images/wildlife.jpg')"
+              >
+                <div class="gallery-caption">Patagonian Wildlife</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/canadian_rockies.jpg')"
+              >
+                <div class="gallery-caption">Mountain Wildlife</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/frace_alpine.avif')"
+              >
+                <div class="gallery-caption">Alpine Flora</div>
+              </div>
+              <div
+                class="gallery-item"
+                style="background-image: url('images/card-sustainability.jpg')"
+              >
+                <div class="gallery-caption">Conservation Efforts</div>
+              </div>
+            </div>
+          </div>
+
+          
+          <h2>Hiker Reflections</h2>
+          <div class="testimonial-grid">
+            <div class="testimonial">
+              <div class="testimonial-rating">
+                <span>★★★★★</span>
+              </div>
+              <p class="testimonial-content">
+                "Everest Base Camp was intense—but learning to cook with Sherpa
+                families made it unforgettable. The photos don't capture the
+                warmth of the people."
+              </p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">SM</div>
+                <div>
+                  <h4>Sarah Martinez</h4>
+                  <p>Software Engineer</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial">
+              <div class="testimonial-rating">
+                <span>★★★★★</span>
+              </div>
+              <p class="testimonial-content">
+                "Cultural immersion and sustainability done right. An inspiring
+                model for travel. Every photo tells a story of connection."
+              </p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">JC</div>
+                <div>
+                  <h4>James Chen</h4>
+                  <p>Environmental Consultant</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial">
+              <div class="testimonial-rating">
+                <span>★★★★★</span>
+              </div>
+              <p class="testimonial-content">
+                "From mountain peaks to village fires, every moment felt real
+                and shared. These images bring back incredible memories."
+              </p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">ER</div>
+                <div>
+                  <h4>Elena Rodriguez</h4>
+                  <p>Marketing Director</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial">
+              <div class="testimonial-rating">
+                <span>★★★★★</span>
+              </div>
+              <p class="testimonial-content">
+                "The diversity of landscapes and cultures we experienced was
+                amazing. Each destination offered something completely unique."
+              </p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">MK</div>
+                <div>
+                  <h4>Michael Kim</h4>
+                  <p>Photographer</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial">
+              <div class="testimonial-rating">
+                <span>★★★★★</span>
+              </div>
+              <p class="testimonial-content">
+                "Adventure Trails doesn't just show you places, they connect you
+                with them. The cultural exchanges were life-changing."
+              </p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">LT</div>
+                <div>
+                  <h4>Lisa Thompson</h4>
+                  <p>Teacher</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial">
+              <div class="testimonial-rating">
+                <span>★★★★★</span>
+              </div>
+              <p class="testimonial-content">
+                "The sustainable approach made me feel good about traveling.
+                Knowing our trip supported local communities was incredible."
+              </p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">RB</div>
+                <div>
+                  <h4>Robert Brown</h4>
+                  <p>Engineer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          
+          <div
+            class="newsletter-section"
+            style="margin-top: 4rem; border-radius: 2rem"
+          >
+            <div class="container">
+              <div class="newsletter-content">
+                <h2>Create Your Own Gallery</h2>
+                <p>
+                  Join us for an adventure and capture memories that will last a
+                  lifetime
+                </p>
+                <div
+                  style="
+                    display: flex;
+                    gap: 1rem;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                  "
+                >
+                  <a href="hikes.html" class="cta-button primary"
+                    >Book Your Adventure</a
+                  >
+                  <a href="contact.html" class="cta-button secondary"
+                    >Ask Questions</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-content">
+        <div class="footer-section">
+          <h3>Adventure Trails Hikes</h3>
+          <p>
+            Transformative hikes in nature with cultural immersion and
+            sustainable values.
+          </p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.596-3.205-1.539l.643-.643c.588.735 1.48 1.206 2.562 1.206c1.789 0 3.24-1.451 3.24-3.24s-1.451-3.24-3.24-3.24c-1.082 0-1.974.471-2.562 1.206l-.643-.643c.757-.943 1.908-1.539 3.205-1.539c2.297 0 4.157 1.86 4.157 4.157s-1.86 4.157-4.157 4.157z"
+                />
+              </svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="hikes.html">Hikes</a>
+          <a href="sustainability.html">Sustainability</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Info</h3>
+          <p>Email: hello@adventuretrails.com</p>
+          <p>Phone: +1 (555) ADVENTURE</p>
+          <p>Address: 123 Mountain View Blvd<br />Boulder, CO 80301</p>
+        </div>
+        <div class="footer-section">
+          <h3>Certifications</h3>
+          <div class="certification-badges">
+            <span class="cert-badge">B-Corp</span>
+            <span class="cert-badge">UIAGM</span>
+            <span class="cert-badge">Leave No Trace</span>
+            <span class="cert-badge">Fair Trade</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Adventure Trails Hikes. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
