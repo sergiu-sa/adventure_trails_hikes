@@ -7,36 +7,49 @@
       name="description"
       content="Explore our epic hiking adventures around the world. From the Himalayas to the Andes, each trail offers cultural immersion and breathtaking nature."
     />
+    <!--  SEO -->
+    <meta property="og:title" content="Hikes | Adventure Trails Hikes" />
+    <meta property="og:description" content="Discover epic hiking adventures from Everest Base Camp to Patagonia. Each expedition combines extreme hiking with authentic cultural experiences." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://adventuretrails.com/hikes.html" />
+    <meta property="og:image" content="https://adventuretrails.com/images/hikes_1.jpg" />
+    
     <title>Hikes | Adventure Trails Hikes</title>
-    <link rel="stylesheet" href="/styles/style.css" />
+    
+    <!--  CSS modular structure -->
+    <link rel="stylesheet" href="./styles/main.css" />
   </head>
   <body>
-  
-    <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle" />
-
-    <header>
+    
+    <a href="#main" class="skip-link">Skip to main content</a>
+    
+    <header role="banner">
+      <input
+        type="checkbox"
+        id="mobile-menu-toggle"
+        class="mobile-menu-toggle"
+      />
       <div class="header-container">
-        <a href="index.html" class="logo">
-          <div class="logo-icon-mask" aria-label="Adventure Trails logo"></div>
+        <a href="index.html" class="logo" aria-label="Adventure Trails Hikes - Return to homepage">
+          <div class="logo-icon-mask" aria-hidden="true"></div>
           <span>Adventure Trails</span>
         </a>
 
-       
         <label
           for="mobile-menu-toggle"
           class="mobile-menu-btn"
           aria-label="Toggle navigation menu"
         >
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
+          <span class="hamburger-line" aria-hidden="true"></span>
+          <span class="hamburger-line" aria-hidden="true"></span>
+          <span class="hamburger-line" aria-hidden="true"></span>
         </label>
 
-        <nav>
+        <nav role="navigation" aria-label="Main navigation">
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="hikes.html" class="active">Hikes</a></li>
+            <li><a href="hikes.html" class="active" aria-current="page">Hikes</a></li>
             <li><a href="sustainability.html">Sustainability</a></li>
             <li><a href="gallery.html">Gallery</a></li>
             <li><a href="contact.html">Contact</a></li>
@@ -45,13 +58,14 @@
       </div>
     </header>
 
-    <main>
+    <main id="main" role="main">
       <section
         class="page-header"
-        style="background-image: url('images/hikes_1.jpg')"
+        style="background-image: url('./images/hikes_1.jpg')"
+        aria-labelledby="page-heading"
       >
         <div class="container">
-          <h1>Choose Your Next Adventure</h1>
+          <h1 id="page-heading">Choose Your Next Adventure</h1>
           <p>
             Alpine peaks, sacred trails, desert dunes. Find your perfect hike
             below.
@@ -59,10 +73,10 @@
         </div>
       </section>
 
-      <section class="content-section">
+      <section class="content-section" aria-labelledby="adventures-heading">
         <div class="container">
           <div class="section-header">
-            <h2>Our Adventures</h2>
+            <h2 id="adventures-heading">Our Adventures</h2>
             <p class="section-subtitle">
               Discover trails that combine breathtaking nature with authentic
               cultural experiences
@@ -70,71 +84,93 @@
           </div>
 
           <div class="filter-container">
-            <div class="filter-tabs">
-              <input
-                type="radio"
-                id="filter-all"
-                name="filter"
-                class="filter-input"
-                checked
-              />
-              <label for="filter-all" class="filter-tab">All Regions</label>
+            <!-- Filter System -->
+            <form role="search" aria-labelledby="filter-heading">
+              <fieldset>
+                <legend id="filter-heading" class="sr-only">Filter hiking adventures by region</legend>
+                <div class="filter-tabs" role="tablist" aria-label="Adventure regions filter">
+                  <input
+                    type="radio"
+                    id="filter-all"
+                    name="filter"
+                    class="filter-input"
+                    checked
+                    aria-describedby="filter-all-desc"
+                  />
+                  <label for="filter-all" class="filter-tab" role="tab" aria-selected="true" aria-controls="adventures-grid">All Regions</label>
+                  <span id="filter-all-desc" class="sr-only">Show all hiking adventures from every region</span>
 
-              <input
-                type="radio"
-                id="filter-himalayas"
-                name="filter"
-                class="filter-input"
-              />
-              <label for="filter-himalayas" class="filter-tab">Himalayas</label>
+                  <input
+                    type="radio"
+                    id="filter-himalayas"
+                    name="filter"
+                    class="filter-input"
+                    aria-describedby="filter-himalayas-desc"
+                  />
+                  <label for="filter-himalayas" class="filter-tab" role="tab" aria-selected="false" aria-controls="adventures-grid">Himalayas</label>
+                  <span id="filter-himalayas-desc" class="sr-only">Show hiking adventures in the Himalayas region</span>
 
-              <input
-                type="radio"
-                id="filter-andes"
-                name="filter"
-                class="filter-input"
-              />
-              <label for="filter-andes" class="filter-tab">Andes</label>
+                  <input
+                    type="radio"
+                    id="filter-andes"
+                    name="filter"
+                    class="filter-input"
+                    aria-describedby="filter-andes-desc"
+                  />
+                  <label for="filter-andes" class="filter-tab" role="tab" aria-selected="false" aria-controls="adventures-grid">Andes</label>
+                  <span id="filter-andes-desc" class="sr-only">Show hiking adventures in the Andes mountains</span>
 
-              <input
-                type="radio"
-                id="filter-alps"
-                name="filter"
-                class="filter-input"
-              />
-              <label for="filter-alps" class="filter-tab">Alps</label>
+                  <input
+                    type="radio"
+                    id="filter-alps"
+                    name="filter"
+                    class="filter-input"
+                    aria-describedby="filter-alps-desc"
+                  />
+                  <label for="filter-alps" class="filter-tab" role="tab" aria-selected="false" aria-controls="adventures-grid">Alps</label>
+                  <span id="filter-alps-desc" class="sr-only">Show hiking adventures in the Alps region</span>
 
-              <input
-                type="radio"
-                id="filter-rockies"
-                name="filter"
-                class="filter-input"
-              />
-              <label for="filter-rockies" class="filter-tab">Rockies</label>
+                  <input
+                    type="radio"
+                    id="filter-rockies"
+                    name="filter"
+                    class="filter-input"
+                    aria-describedby="filter-rockies-desc"
+                  />
+                  <label for="filter-rockies" class="filter-tab" role="tab" aria-selected="false" aria-controls="adventures-grid">Rockies</label>
+                  <span id="filter-rockies-desc" class="sr-only">Show hiking adventures in the Rocky Mountains</span>
 
-              <input
-                type="radio"
-                id="filter-africa"
-                name="filter"
-                class="filter-input"
-              />
-              <label for="filter-africa" class="filter-tab">Africa</label>
-            </div>
+                  <input
+                    type="radio"
+                    id="filter-africa"
+                    name="filter"
+                    class="filter-input"
+                    aria-describedby="filter-africa-desc"
+                  />
+                  <label for="filter-africa" class="filter-tab" role="tab" aria-selected="false" aria-controls="adventures-grid">Africa</label>
+                  <span id="filter-africa-desc" class="sr-only">Show hiking adventures in Africa</span>
+                </div>
+              </fieldset>
+            </form>
 
-            <div class="card-grid">
-              <article class="card filter-item">
+            <div class="card-grid" id="adventures-grid" role="region" aria-live="polite" aria-label="Filtered hiking adventures">
+              <article class="card filter-item" data-region="himalayas">
                 <div
                   class="card-image"
-                  style="background-image: url('images/gallery-epic-trail.jpg')"
+                  style="background-image: url('./images/gallery-epic-trail.jpg')"
+                  role="img"
+                  aria-label="Everest Base Camp, Nepal. Himalayan mountain trail with prayer flags and stunning peaks."
                 >
                   <span>Everest Base Camp</span>
                 </div>
                 <div class="card-content">
                   <h3>Nepal: Everest Immersion</h3>
-                  <p>
-                    <strong>Duration:</strong> 14 days |
-                    <strong>Difficulty:</strong> Extreme
-                  </p>
+                  <div class="trip-details">
+                    <p>
+                      <strong>Duration:</strong> 14 days |
+                      <strong>Difficulty:</strong> Extreme
+                    </p>
+                  </div>
                   <p>
                     Prayer flags, Sherpa hospitality, mountain monasteries.
                     Includes traditional meals and culture workshops.
@@ -143,21 +179,23 @@
                 </div>
               </article>
 
-              <article class="card filter-item">
+              <article class="card filter-item" data-region="andes">
                 <div
                   class="card-image"
-                  style="
-                    background-image: url('images/peru_andes_heritage.jpg');
-                  "
+                  style="background-image: url('./images/peru_andes_heritage.jpg')"
+                  role="img"
+                  aria-label="Inca Trail, Peru. Ancient stone pathways through the Andes mountains."
                 >
                   <span>Inca Trail</span>
                 </div>
                 <div class="card-content">
                   <h3>Peru: Andes Heritage</h3>
-                  <p>
-                    <strong>Duration:</strong> 8 days |
-                    <strong>Difficulty:</strong> High
-                  </p>
+                  <div class="trip-details">
+                    <p>
+                      <strong>Duration:</strong> 8 days |
+                      <strong>Difficulty:</strong> High
+                    </p>
+                  </div>
                   <p>
                     Ancient trails and Quechua encounters. Includes weaving,
                     food, and family stays.
@@ -166,19 +204,23 @@
                 </div>
               </article>
 
-              <article class="card filter-item">
+              <article class="card filter-item" data-region="alps">
                 <div
                   class="card-image"
-                  style="background-image: url('images/mont-blanc.jpg')"
+                  style="background-image: url('./images/mont-blanc.jpg')"
+                  role="img"
+                  aria-label="Tour du Mont Blanc. Snow-capped peaks and alpine meadows across France, Italy, and Switzerland."
                 >
                   <span>Tour du Mont Blanc</span>
                 </div>
                 <div class="card-content">
                   <h3>France–Italy–Switzerland</h3>
-                  <p>
-                    <strong>Duration:</strong> 10 days |
-                    <strong>Difficulty:</strong> Moderate
-                  </p>
+                  <div class="trip-details">
+                    <p>
+                      <strong>Duration:</strong> 10 days |
+                      <strong>Difficulty:</strong> Moderate
+                    </p>
+                  </div>
                   <p>
                     Cross borders and cultures. Enjoy cheese farms, folk music,
                     and Alpine inns.
@@ -187,19 +229,23 @@
                 </div>
               </article>
 
-              <article class="card filter-item">
+              <article class="card filter-item" data-region="andes">
                 <div
                   class="card-image"
-                  style="background-image: url('images/patagonia.jpg')"
+                  style="background-image: url('./images/patagonia.jpg')"
+                  role="img"
+                  aria-label="Patagonia, Chile. Dramatic granite peaks and pristine wilderness landscape."
                 >
                   <span>Patagonia</span>
                 </div>
                 <div class="card-content">
                   <h3>Chile: W Trek & Gauchos</h3>
-                  <p>
-                    <strong>Duration:</strong> 6 days |
-                    <strong>Difficulty:</strong> High
-                  </p>
+                  <div class="trip-details">
+                    <p>
+                      <strong>Duration:</strong> 6 days |
+                      <strong>Difficulty:</strong> High
+                    </p>
+                  </div>
                   <p>
                     Granite peaks, horseback rides, and fire-cooked lamb with
                     gaucho families.
@@ -208,19 +254,23 @@
                 </div>
               </article>
 
-              <article class="card filter-item">
+              <article class="card filter-item" data-region="rockies">
                 <div
                   class="card-image"
-                  style="background-image: url('images/canadian_rockies.jpg')"
+                  style="background-image: url('./images/canadian_rockies.jpg')"
+                  role="img"
+                  aria-label="Canadian Rockies. Pristine mountain wilderness with indigenous cultural experiences."
                 >
                   <span>Canadian Rockies</span>
                 </div>
                 <div class="card-content">
                   <h3>Canada: Indigenous Trek</h3>
-                  <p>
-                    <strong>Duration:</strong> 7 days |
-                    <strong>Difficulty:</strong> Moderate
-                  </p>
+                  <div class="trip-details">
+                    <p>
+                      <strong>Duration:</strong> 7 days |
+                      <strong>Difficulty:</strong> Moderate
+                    </p>
+                  </div>
                   <p>
                     Wilderness, wildlife, and First Nations culture. Traditional
                     bread, smudging, tracking.
@@ -229,19 +279,23 @@
                 </div>
               </article>
 
-              <article class="card filter-item">
+              <article class="card filter-item" data-region="africa">
                 <div
                   class="card-image"
-                  style="background-image: url('images/gallery-portrait.jpg')"
+                  style="background-image: url('./images/gallery-portrait.jpg')"
+                  role="img"
+                  aria-label="Atlas Mountains, Morocco. Traditional Berber villages and mountain landscapes."
                 >
                   <span>Atlas Mountains</span>
                 </div>
                 <div class="card-content">
                   <h3>Morocco: Berber Trail</h3>
-                  <p>
-                    <strong>Duration:</strong> 5 days |
-                    <strong>Difficulty:</strong> Moderate
-                  </p>
+                  <div class="trip-details">
+                    <p>
+                      <strong>Duration:</strong> 5 days |
+                      <strong>Difficulty:</strong> Moderate
+                    </p>
+                  </div>
                   <p>
                     High passes and Berber homes. Includes tagine cooking, craft
                     demos, and music.
@@ -250,19 +304,23 @@
                 </div>
               </article>
 
-              <article class="card filter-item">
+              <article class="card filter-item" data-region="andes">
                 <div
                   class="card-image"
-                  style="background-image: url('images/peru_sunrise.jpg')"
+                  style="background-image: url('./images/peru_sunrise.jpg')"
+                  role="img"
+                  aria-label="Sacred Valley, Peru. Sunrise over ancient Incan terraces and valley landscapes."
                 >
                   <span>Sacred Valley</span>
                 </div>
                 <div class="card-content">
                   <h3>Peru: Sacred Valley Explorer</h3>
-                  <p>
-                    <strong>Duration:</strong> 5 days |
-                    <strong>Difficulty:</strong> Easy
-                  </p>
+                  <div class="trip-details">
+                    <p>
+                      <strong>Duration:</strong> 5 days |
+                      <strong>Difficulty:</strong> Easy
+                    </p>
+                  </div>
                   <p>
                     Perfect introduction to Andean culture. Visit ancient ruins,
                     local markets, and traditional communities.
@@ -271,19 +329,23 @@
                 </div>
               </article>
 
-              <article class="card filter-item">
+              <article class="card filter-item" data-region="alps">
                 <div
                   class="card-image"
-                  style="background-image: url('images/frace_alpine.avif')"
+                  style="background-image: url('./images/frace_alpine.avif')"
+                  role="img"
+                  aria-label="Alpine Discovery, France. Pristine mountain meadows with wildflowers and traditional villages."
                 >
                   <span>Alpine Discovery</span>
                 </div>
                 <div class="card-content">
                   <h3>France: Alpine Discovery</h3>
-                  <p>
-                    <strong>Duration:</strong> 6 days |
-                    <strong>Difficulty:</strong> Moderate
-                  </p>
+                  <div class="trip-details">
+                    <p>
+                      <strong>Duration:</strong> 6 days |
+                      <strong>Difficulty:</strong> Moderate
+                    </p>
+                  </div>
                   <p>
                     Explore pristine mountain meadows, historic villages, and
                     enjoy French alpine cuisine.
@@ -292,19 +354,23 @@
                 </div>
               </article>
 
-              <article class="card filter-item">
+              <article class="card filter-item" data-region="himalayas">
                 <div
                   class="card-image"
-                  style="background-image: url('images/boots.jpg')"
+                  style="background-image: url('./images/boots.jpg')"
+                  role="img"
+                  aria-label="Annapurna Circuit, Nepal. Classic Himalayan trekking route with diverse landscapes."
                 >
                   <span>Annapurna Circuit</span>
                 </div>
                 <div class="card-content">
                   <h3>Nepal: Annapurna Adventure</h3>
-                  <p>
-                    <strong>Duration:</strong> 12 days |
-                    <strong>Difficulty:</strong> High
-                  </p>
+                  <div class="trip-details">
+                    <p>
+                      <strong>Duration:</strong> 12 days |
+                      <strong>Difficulty:</strong> High
+                    </p>
+                  </div>
                   <p>
                     Classic Himalayan circuit with diverse landscapes, from
                     subtropical forests to high mountain passes.
@@ -315,28 +381,26 @@
             </div>
           </div>
 
-          <div
-            class="newsletter-section"
-            style="margin-top: 4rem; border-radius: 2rem"
-          >
+          <section class="newsletter-section" style="margin-top: 4rem; border-radius: 2rem" aria-labelledby="custom-quote-heading">
             <div class="container">
               <div class="newsletter-content">
-                <h2>Can't Find Your Perfect Adventure?</h2>
+                <h2 id="custom-quote-heading">Can't Find Your Perfect Adventure?</h2>
                 <p>
                   Contact us to create a custom hiking experience tailored to
                   your interests and skill level
                 </p>
-                <a href="contact.html" class="cta-button secondary"
-                  >Get Custom Quote</a
-                >
+                <a href="contact.html" class="cta-button secondary" aria-describedby="custom-quote-desc">
+                  Get Custom Quote
+                </a>
+                <span id="custom-quote-desc" class="sr-only">Contact our team to design a personalized hiking adventure</span>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
       <div class="container footer-content">
         <div class="footer-section">
           <h3>Adventure Trails Hikes</h3>
@@ -345,36 +409,39 @@
             sustainable values.
           </p>
           <div class="social-links">
-            <a href="#" aria-label="Facebook">
+            <a href="#" aria-label="Follow us on Facebook">
               <svg
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
                 fill="currentColor"
+                aria-hidden="true"
               >
                 <path
                   d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
                 />
               </svg>
             </a>
-            <a href="#" aria-label="Instagram">
+            <a href="#" aria-label="Follow us on Instagram">
               <svg
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
                 fill="currentColor"
+                aria-hidden="true"
               >
                 <path
                   d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.596-3.205-1.539l.643-.643c.588.735 1.48 1.206 2.562 1.206c1.789 0 3.24-1.451 3.24-3.24s-1.451-3.24-3.24-3.24c-1.082 0-1.974.471-2.562 1.206l-.643-.643c.757-.943 1.908-1.539 3.205-1.539c2.297 0 4.157 1.86 4.157 4.157s-1.86 4.157-4.157 4.157z"
                 />
               </svg>
             </a>
-            <a href="#" aria-label="Twitter">
+            <a href="#" aria-label="Follow us on Twitter">
               <svg
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
                 fill="currentColor"
+                aria-hidden="true"
               >
                 <path
                   d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
@@ -385,18 +452,22 @@
         </div>
         <div class="footer-section">
           <h3>Quick Links</h3>
-          <a href="index.html">Home</a>
-          <a href="about.html">About</a>
-          <a href="hikes.html">Hikes</a>
-          <a href="sustainability.html">Sustainability</a>
-          <a href="gallery.html">Gallery</a>
-          <a href="contact.html">Contact</a>
+          <nav aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="hikes.html">Hikes</a>
+            <a href="sustainability.html">Sustainability</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+          </nav>
         </div>
         <div class="footer-section">
           <h3>Contact Info</h3>
-          <p>Email: hello@adventuretrails.com</p>
-          <p>Phone: +1 (555) ADVENTURE</p>
-          <p>Address: 123 Mountain View Blvd<br />Boulder, CO 80301</p>
+          <address>
+            <p>Email: <a href="mailto:hello@adventuretrails.com">hello@adventuretrails.com</a></p>
+            <p>Phone: <a href="tel:+1555ADVENTURE">+1 (555) ADVENTURE</a></p>
+            <p>Address: 123 Mountain View Blvd<br />Boulder, CO 80301</p>
+          </address>
         </div>
         <div class="footer-section">
           <h3>Certifications</h3>
