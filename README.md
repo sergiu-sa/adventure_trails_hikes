@@ -60,7 +60,7 @@ Figma: [Adventure Trails Hikes – Final Design](https://www.figma.com/design/tu
 ## Deployment (via Netlify)
 
 1. Push this folder to a GitHub repo
-2. Go to [https://netlify.com](https://netlify.com) →
+2. Go to [https://netlify.com](https://netlify.com) → https://adventuretrailshikes.netlify.app/
 3. Choose your GitHub repo
 4. Publish directory: `/`
 5. Click **Deploy**
