@@ -1,59 +1,71 @@
 # Adventure Trails Hikes
 
-A responsive, accessible HTML/CSS website for a fictional hiking company, built as a semester exam.
+A responsive, accessible HTML/CSS website for a fictional hiking company, built as a semester exam project at Noroff.
 
 ## Project Overview
 
-This project was created for a Noroff Front-End Development semester exam. It demonstrates semantic HTML, modern CSS practices, accessibility, responsive layouts, and performance optimization — all without using frameworks.
+This project demonstrates semantic HTML, modular CSS architecture, accessibility best practices, SEO enhancements, and responsive layouts. It was built without any JavaScript or frameworks — just clean HTML and CSS.
 
-## Timeline Note
+> Note: Due to illness from **June 11–18**, the original project plan was reorganized. Despite this, all 6 required HTML pages were built and 4 pages were fully prototyped in Figma. The project remains on track for the final **June 29** deadline.
 
-I was sick from June 11–18, so I had to pause the project during that time. Because of this, I adjusted the timeline and reorganized tasks in GitHub. I designed 4 pages in Figma (which was the minimum required), and I still built all 6 pages in code. Everything is now back on track for the June 29 deadline. You can see the updated plan in the Issues tab.
-
-## Folder Structure
+## Final Folder Structure
 
 ```plaintext
-adventure_trails_hikes/
+/
 ├── index.html
 ├── about.html
 ├── hikes.html
 ├── sustainability.html
 ├── gallery.html
 ├── contact.html
-├── styles/
-│   └── style.css
+├── README.md
 ├── images/
-│   └── [optimized renamed assets]
-└── README.md
+└── styles/
+    ├── variables.css
+    ├── base.css
+    ├── layout.css
+    ├── components.css
+    ├── utilities.css
+    └── main.css
+
 ```
-
-## Tech Stack
-
-- Semantic HTML5
-- Custom CSS (no frameworks)
-- Fully responsive layout
-- Accessibility (WCAG-friendly, skip links, proper headings)
-- SEO-ready (meta tags, alt text)
 
 ## Features
 
-- Fully responsive on mobile & desktop
-- Clean navigation and footer on every page
-- Hero sections with local image backgrounds
-- Custom cards, filters, form, and stat blocks
-- Image gallery with hover captions
-- Contact form with all relevant fields
+- Fully responsive (mobile, tablet, desktop)
+- Modular CSS with separate utility and layout files
+- Clean, semantic HTML5 structure
+- SEO: Open Graph meta, `alt` attributes, proper headings
+- Accessibility: skip link, color contrast, readable hierarchy
+- Optimized images under 200KB
+- Gallery with hover states
+- Contact form layout and embedded map section
 
-## How to Use
+## Tech Stack
 
-1. Clone this repo
-2. Open `index.html` in any browser
-3. Or deploy to GitHub/Netlify using the included structure
+- HTML5
+- Custom CSS with CSS variables
+- Responsive design
+- Manual GitHub project board for tracking sprints
+
+## Design
+
+- Designed for 18–35-year-old adventure seekers
+- Visual identity based on earthy oranges, greens, and neutral tones
+- Typography: **Inter** font family throughout
+- Figma prototype includes both desktop and mobile versions
+
+Figma: [Adventure Trails Hikes – Final Design](https://www.figma.com/design/tuXJ9V1wYPZnhxHQpLw7wh/Adventure-Trails-Hikes)
+
+## Deployment (via Netlify)
+
+1. Push this folder to a GitHub repo
+2. Go to [https://netlify.com](https://netlify.com) →
+3. Choose your GitHub repo
+4. Publish directory: `/`
+5. Click **Deploy**
 
 ## Author
 
-Designed and coded by Sergiu Sarbu as part of a Noroff Front-End Development semester project.
-
----
-
-Feel free to use and customize this project for learning, portfolio, or practice purposes.
+Created by **Sergiu Sarbu**  
+First-year student, Noroff Front-End Development
