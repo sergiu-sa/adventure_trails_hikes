@@ -21,6 +21,7 @@ body {
   background-color: #ffffff;
   overflow-x: hidden;
   scroll-padding-top: 100px;
+  margin: 0;
 }
 
 /* Headings */
