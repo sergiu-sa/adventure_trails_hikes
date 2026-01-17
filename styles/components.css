@@ -1185,3 +1185,242 @@ select.invalid {
   display: none;
   font-weight: var(--font-weight-medium);
 }
+
+.page-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
+  width: 0%;
+  z-index: calc(var(--z-fixed) + 1);
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+}
+
+/* ===================================
+   READING TIME INDICATOR
+   =================================== */
+.reading-time {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.reading-time svg {
+  opacity: 0.8;
+}
+
+/* ===================================
+   TOOLTIP SYSTEM
+   =================================== */
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: var(--neutral-900);
+  color: white;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: var(--z-tooltip);
+  pointer-events: none;
+  box-shadow: var(--shadow-lg);
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--neutral-900);
+}
+
+.tooltip.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-12px);
+}
+
+/* ===================================
+   TOAST NOTIFICATIONS
+   =================================== */
+.toast {
+  position: fixed;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--neutral-900);
+  color: white;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-lg);
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-medium);
+  box-shadow: var(--shadow-xl);
+  z-index: var(--z-modal);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast-success {
+  background: linear-gradient(135deg, var(--accent-600), var(--accent-700));
+}
+
+.toast-success::before {
+  content: "✓";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+}
+
+.toast-error {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.toast-info {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+/* ===================================
+   PAGE TRANSITIONS
+   =================================== */
+body {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+body.page-loaded {
+  opacity: 1;
+}
+
+body.page-transitioning {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* ===================================
+   COPY TO CLIPBOARD FEEDBACK
+   =================================== */
+[data-copy] {
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+[data-copy]:hover {
+  color: var(--primary-500);
+}
+
+[data-copy].copied {
+  color: var(--accent-500);
+}
+
+[data-copy].copied::after {
+  content: "Copied!";
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-600);
+  color: white;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  animation: fadeInUp 0.3s ease;
+}
+
+/* ===================================
+   KEYBOARD SHORTCUTS HINT
+   =================================== */
+.keyboard-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 0.75rem;
+  color: var(--neutral-500);
+}
+
+.kbd {
+  display: inline-block;
+  padding: 2px 6px;
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-sm);
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: var(--neutral-700);
+  box-shadow: 0 1px 0 var(--neutral-300);
+}
+
+/* ===================================
+   SECTION NAVIGATION ACTIVE STATE
+   =================================== */
+nav a.section-active {
+  background: var(--primary-600);
+  color: white;
+}
+
+/* ===================================
+   LAZY LOAD IMAGE STATES
+   =================================== */
+img[data-src] {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+img[data-src].loaded {
+  opacity: 1;
+}
+
+/* ===================================
+   PRINT STYLES
+   =================================== */
+@media print {
+  .page-progress,
+  .back-to-top,
+  .toast,
+  header,
+  footer,
+  .scroll-indicator {
+    display: none !important;
+  }
+
+  body {
+    opacity: 1 !important;
+  }
+
+  .card,
+  .gallery-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
