@@ -6,8 +6,6 @@ A responsive, accessible HTML/CSS website for a fictional hiking company, built 
 
 This project demonstrates semantic HTML, modular CSS architecture, accessibility best practices, SEO enhancements, and responsive layouts. It was built without any JavaScript or frameworks — just clean HTML and CSS.
 
-> Note: Due to illness from **June 11–18**, the original project plan was reorganized. Despite this, all 6 required HTML pages were built and 4 pages were fully prototyped in Figma. The project remains on track for the final **June 29** deadline.
-
 ## Final Folder Structure
 
 ```plaintext
@@ -64,8 +62,3 @@ Figma: [Adventure Trails Hikes – Final Design](https://www.figma.com/design/tu
 3. Choose your GitHub repo
 4. Publish directory: `/`
 5. Click **Deploy**
-
-## Author
-
-Created by **Sergiu Sarbu**  
-First-year student, Noroff Front-End Development

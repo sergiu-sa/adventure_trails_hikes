@@ -574,6 +574,39 @@
     .css-map {
       height: 300px;
     }
+
+    /* Mobile lightbox adjustments */
+    .lightbox-prev,
+    .lightbox-next {
+      width: 40px;
+      height: 40px;
+    }
+
+    .lightbox-prev {
+      left: var(--space-sm);
+    }
+
+    .lightbox-next {
+      right: var(--space-sm);
+    }
+
+    .lightbox-close {
+      top: var(--space-sm);
+      right: var(--space-sm);
+    }
+
+    .lightbox-caption {
+      font-size: 1rem;
+      padding: 0 var(--space-lg);
+    }
+
+    /* Mobile back-to-top */
+    .back-to-top {
+      bottom: var(--space-lg);
+      right: var(--space-lg);
+      width: 44px;
+      height: 44px;
+    }
   
     .map-info-content {
       flex-direction: column;
