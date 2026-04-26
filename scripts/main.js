@@ -438,78 +438,41 @@
   }
 
   function initPageTransitions() {
-    document.body.classList.add('page-loaded');
+    // Loader is visible by default (CSS). Wait for window.load so all
+    // images + fonts have actually arrived, then add a small min-delay
+    // so the loader is briefly visible even on cached fast loads.
+    const MIN_LOADER_MS = 400;
+    const startedAt = performance.now();
 
+    function dismissLoader() {
+      const elapsed = performance.now() - startedAt;
+      const remaining = Math.max(0, MIN_LOADER_MS - elapsed);
+      setTimeout(function () {
+        document.body.classList.add('page-loaded');
+      }, remaining);
+    }
+
+    if (document.readyState === 'complete') {
+      dismissLoader();
+    } else {
+      window.addEventListener('load', dismissLoader);
+    }
+
+    // Internal-link transitions — re-show the loader, then navigate
     const internalLinks = document.querySelectorAll('a[href$=".html"]:not([target="_blank"])');
-
     internalLinks.forEach(function(link) {
       link.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         if (e.ctrlKey || e.metaKey || e.shiftKey) return;
 
         e.preventDefault();
+        document.body.classList.remove('page-loaded');
         document.body.classList.add('page-transitioning');
 
         setTimeout(function() {
           window.location.href = href;
-        }, 300);
+        }, 350);
       });
-    });
-  }
-
-  function initTooltips() {
-    const tooltipElements = document.querySelectorAll('[data-tooltip]');
-
-    tooltipElements.forEach(function(el) {
-      const tooltipText = el.getAttribute('data-tooltip');
-
-      const tooltip = document.createElement('span');
-      tooltip.className = 'tooltip';
-      tooltip.textContent = tooltipText;
-      tooltip.setAttribute('role', 'tooltip');
-      el.style.position = 'relative';
-      el.appendChild(tooltip);
-
-      el.addEventListener('mouseenter', function() {
-        tooltip.classList.add('visible');
-      });
-
-      el.addEventListener('mouseleave', function() {
-        tooltip.classList.remove('visible');
-      });
-
-      el.addEventListener('focus', function() {
-        tooltip.classList.add('visible');
-      });
-
-      el.addEventListener('blur', function() {
-        tooltip.classList.remove('visible');
-      });
-    });
-  }
-
-  function initSectionHighlight() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav a[href^="#"]');
-
-    if (sections.length === 0 || navLinks.length === 0) return;
-
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach(function(link) {
-            link.classList.remove('section-active');
-            if (link.getAttribute('href') === '#' + id) {
-              link.classList.add('section-active');
-            }
-          });
-        }
-      });
-    }, { threshold: 0.3, rootMargin: '-100px 0px -50% 0px' });
-
-    sections.forEach(function(section) {
-      observer.observe(section);
     });
   }
 
@@ -527,31 +490,6 @@
         });
       }
     });
-  }
-
-  function initLazyLoad() {
-    const lazyImages = document.querySelectorAll('img[data-src]');
-
-    if ('IntersectionObserver' in window) {
-      const imageObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src;
-            img.classList.add('loaded');
-            imageObserver.unobserve(img);
-          }
-        });
-      }, { rootMargin: '50px 0px' });
-
-      lazyImages.forEach(function(img) {
-        imageObserver.observe(img);
-      });
-    } else {
-      lazyImages.forEach(function(img) {
-        img.src = img.dataset.src;
-      });
-    }
   }
 
   function initKeyboardShortcuts() {
@@ -576,59 +514,6 @@
     });
   }
 
-  function initCopyToClipboard() {
-    const copyTargets = document.querySelectorAll('[data-copy]');
-
-    copyTargets.forEach(function(el) {
-      el.style.cursor = 'pointer';
-      el.setAttribute('title', 'Click to copy');
-
-      el.addEventListener('click', function() {
-        const textToCopy = this.getAttribute('data-copy') || this.textContent;
-
-        navigator.clipboard.writeText(textToCopy).then(function() {
-          el.classList.add('copied');
-          showToast('Copied to clipboard!');
-
-          setTimeout(function() {
-            el.classList.remove('copied');
-          }, 2000);
-        });
-      });
-    });
-  }
-
-  function showToast(message, type) {
-    type = type || 'success';
-    const toast = document.createElement('div');
-    toast.className = 'toast toast-' + type;
-    toast.textContent = message;
-    toast.setAttribute('role', 'alert');
-
-    document.body.appendChild(toast);
-
-    setTimeout(function() {
-      toast.classList.add('visible');
-    }, 10);
-
-    setTimeout(function() {
-      toast.classList.remove('visible');
-      setTimeout(function() {
-        toast.remove();
-      }, 300);
-    }, 3000);
-  }
-
-  function initPrintFriendly() {
-    window.addEventListener('beforeprint', function() {
-      document.body.classList.add('printing');
-    });
-
-    window.addEventListener('afterprint', function() {
-      document.body.classList.remove('printing');
-    });
-  }
-
   function init() {
     initScrollIndicator();
     initBackToTop();
@@ -642,13 +527,8 @@
     initProgressIndicator();
     initReadingTime();
     initPageTransitions();
-    initTooltips();
-    initSectionHighlight();
     initCardActions();
-    initLazyLoad();
     initKeyboardShortcuts();
-    initCopyToClipboard();
-    initPrintFriendly();
   }
 
   if (document.readyState === 'loading') {

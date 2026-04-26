@@ -1,8 +1,9 @@
 /* ===================================
-   BASE STYLES - Resets, Typography & Accessibility
+   BASE — Reset, typography, accessibility
+   Aesthetic: Expedition Brutalism
    =================================== */
 
-/*  Css Reset  */
+/* Reset */
 *,
 *::before,
 *::after {
@@ -14,73 +15,81 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  background: var(--color-bone);
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  line-height: 1.7;
-  color: var(--neutral-800);
-  background-color: #ffffff;
+  font-family: var(--font-body);
+  line-height: 1.55;
+  color: var(--color-ink);
+  background-color: var(--color-bone);
   overflow-x: hidden;
   scroll-padding-top: 100px;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "ss02";
 }
 
-/* Headings */
-h1 {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: var(--font-weight-black);
-  line-height: 1.1;
+/* Headings — Archivo Black, uppercase, tight tracking, no-nonsense */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400; /* Archivo Black is single-weight */
+  color: var(--color-ink);
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
   margin-bottom: var(--space-lg);
+}
+
+h1 {
+  font-size: clamp(2.75rem, 9vw, 8rem);
+  /* eased letter-spacing — less hammered, more readable at scale */
   letter-spacing: -0.025em;
-  color: var(--neutral-900);
+  line-height: 0.92;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: var(--font-weight-bold);
-  line-height: 1.2;
-  margin-bottom: var(--space-xl);
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
   letter-spacing: -0.02em;
-  color: var(--neutral-900);
+  margin-bottom: var(--space-xl);
 }
 
 h3 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.3;
-  margin-bottom: var(--space-lg);
-  letter-spacing: -0.01em;
-  color: var(--neutral-900);
+  font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-md);
 }
 
 h4 {
-  font-size: 1.25rem;
-  font-weight: var(--font-weight-semibold);
-  margin-bottom: var(--space-md);
-  color: var(--neutral-900);
+  font-size: 1.125rem;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-sm);
 }
 
-/* Body Text */
+/* Body */
 p {
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   margin-bottom: var(--space-lg);
-  max-width: 70ch;
-  color: var(--neutral-600);
+  max-width: 64ch;
+  color: var(--color-ink);
   font-weight: var(--font-weight-normal);
 }
 
-/* Links */
+/* Links — underline, no candy color */
 a {
-  color: var(--primary-600);
-  text-decoration: none;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
   transition: var(--transition-fast);
 }
 
 a:hover,
 a:focus {
-  color: var(--primary-700);
-  text-decoration: underline;
+  /* Forest is the new action color — link hover lands on the same earth-tone */
+  color: var(--color-forest);
+  text-decoration-thickness: 2px;
 }
 
 /* Lists */
@@ -90,66 +99,79 @@ ul, ol {
 }
 
 li {
-  margin-bottom: var(--space-sm);
-  color: var(--neutral-600);
+  margin-bottom: var(--space-xs);
+  color: var(--color-ink);
 }
 
-
-/* Main Layout */
+/* Main */
 main {
   min-height: 100vh;
-  padding-top: 80px;
+  padding-top: 0; /* hero is full-bleed; secondary pages get explicit spacing */
 }
 
-/* Images */
+/* Images — sharp corners */
 img {
   max-width: 100%;
   height: auto;
-  border-radius: var(--radius-md);
+  border-radius: 0;
+  display: block;
 }
 
-/* Address Styling */
+/* Address */
 address {
   font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
   line-height: 1.6;
+  letter-spacing: 0.02em;
 }
 
 address a {
   color: inherit;
   text-decoration: none;
+  border-bottom: 1px solid currentColor;
 }
 
 address a:hover,
 address a:focus {
-  color: var(--primary-600);
-  text-decoration: underline;
+  color: var(--color-hazard);
 }
 
-/* Accesibillity  */
+/* Mono utility — anywhere we mark technical data */
+.mono,
+.meta {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 
-
+/* Accessibility */
 .skip-link {
   position: absolute;
   top: -40px;
   left: 6px;
-  background: var(--primary-600);
-  color: white;
-  padding: 8px 12px;
+  background: var(--color-ink);
+  color: var(--color-bone);
+  padding: 10px 14px;
   text-decoration: none;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   z-index: 10000;
-  font-weight: var(--font-weight-semibold);
-  font-size: 0.875rem;
+  font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   transition: var(--transition-fast);
 }
 
 .skip-link:focus {
   top: 6px;
-  outline: 3px solid var(--accent-400);
+  /* Pin reserved for max-signal a11y indicators */
+  outline: 2px solid var(--color-pin);
   outline-offset: 2px;
 }
 
-/* Screen Reader Only */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -162,14 +184,11 @@ address a:focus {
   border: 0;
 }
 
-
-/* Focus States - Only show for keyboard navigation */
-*:focus {
-  outline: none;
-}
+/* Focus — Pin reserved for a11y signal regardless of theme rebalance */
+*:focus { outline: none; }
 
 *:focus-visible {
-  outline: 3px solid var(--accent-400);
+  outline: 2px solid var(--color-pin);
   outline-offset: 2px;
 }
 
@@ -177,37 +196,38 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-400) 25%, transparent);
+  outline: 2px solid var(--color-pin);
+  outline-offset: 2px;
+  box-shadow: none;
 }
 
-/* Interactive element base transitions */
+/* Base transitions on interactive elements */
 a, button, input, select, textarea, .card, .filter-tab, .faq-question {
   transition: var(--transition-normal);
 }
 
-/* Selection styling */
+/* Selection — Forest on Snow (calm earth tone for text interaction) */
 ::selection {
-  background: color-mix(in srgb, var(--primary-400) 30%, transparent);
-  color: var(--neutral-900);
+  background: var(--color-forest);
+  color: var(--color-snow);
 }
 
-/* Scrollbar styling */
+/* Scrollbar — slim, monochrome */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--neutral-100);
+  background: var(--color-bone);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--neutral-300);
-  border-radius: var(--radius-full);
-  border: 2px solid var(--neutral-100);
+  background: var(--color-ink);
+  border: 2px solid var(--color-bone);
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--neutral-400);
+  background: var(--color-hazard);
 }

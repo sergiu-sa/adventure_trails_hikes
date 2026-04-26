@@ -5,68 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Adventure Trails Hikes offers extreme hiking experiences blended with cultural immersion. Discover our sustainable treks across the globe."
+      content="Adventure Trails Hikes — extreme expeditions blended with cultural immersion. Six continents, twenty-five countries, two hundred local guides."
     />
     <meta
       name="keywords"
-      content="hiking, trekking, adventure, cultural travel, sustainable tourism"
+      content="hiking, trekking, expedition, cultural travel, sustainable tourism"
     />
     <meta name="author" content="Adventure Trails Hikes" />
-    
+
     <!-- SEO -->
-    <meta
-      property="og:title"
-      content="Adventure Trails Hikes | Extreme Hiking & Cultural Adventures"
-    />
-    <meta
-      property="og:description"
-      content="Join Adventure Trails Hikes for extreme hikes through breathtaking regions. Discover nature, local traditions, and sustainability in one journey."
-    />
+    <meta property="og:title" content="Adventure Trails Hikes | Extreme Expeditions, Cultural Immersion" />
+    <meta property="og:description" content="Extreme expeditions blended with cultural immersion. Discover nature, traditions, and sustainability in one journey." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://adventuretrails.com" />
-    <meta
-      property="og:image"
-      content="https://adventuretrails.com/images/hero-home.jpg"
-    />
+    <meta property="og:image" content="https://adventuretrails.com/images/hero-home.jpg" />
 
-    <title>Adventure Trails Hikes | Extreme Hiking & Cultural Adventures</title>
-    
-    <!-- CSS modular structure -->
+    <title>Adventure Trails Hikes | Extreme Expeditions, Cultural Immersion</title>
+
     <link rel="stylesheet" href="./styles/main.css" />
+      <!-- No-JS fallback: loader stays hidden so content is visible -->
+    <noscript><style>.page-loader{display:none!important}</style></noscript>
   </head>
   <body>
-    
+    <!-- ============================================
+         PAGE LOADER — cartographic radar pulse
+         ============================================ -->
+    <div class="page-loader" aria-hidden="true">
+      <div class="page-loader-content">
+        <svg class="loader-svg" viewBox="0 0 200 200" aria-hidden="true">
+          <ellipse class="loader-ring loader-ring-1" cx="100" cy="100" rx="80" ry="68" />
+          <ellipse class="loader-ring loader-ring-2" cx="100" cy="100" rx="60" ry="51" />
+          <ellipse class="loader-ring loader-ring-3" cx="100" cy="100" rx="40" ry="34" />
+          <ellipse class="loader-ring loader-ring-4" cx="100" cy="100" rx="20" ry="17" />
+          <circle class="loader-pin-ring" cx="100" cy="100" r="14" />
+          <circle class="loader-pin-core" cx="100" cy="100" r="6"  />
+          <circle class="loader-pin-dot"  cx="100" cy="100" r="2"  />
+        </svg>
+        <p class="loader-brand">Adventure Trails</p>
+        <p class="loader-status">Plotting route<span class="loader-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></p>
+      </div>
+    </div>
     <a href="#main" class="skip-link">Skip to main content</a>
 
     <header role="banner">
-      <input
-        type="checkbox"
-        id="mobile-menu-toggle"
-        class="mobile-menu-toggle"
-      />
+      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle" />
       <div class="header-container">
-        <a
-          href="index.html"
-          class="logo"
-          aria-label="Adventure Trails Hikes - Return to homepage"
-        >
+        <a href="index.html" class="logo" aria-label="Adventure Trails Hikes — return to homepage">
           <div class="logo-icon-mask" aria-hidden="true"></div>
           <span>Adventure Trails</span>
         </a>
-        <label
-          for="mobile-menu-toggle"
-          class="mobile-menu-btn"
-          aria-label="Toggle navigation menu"
-        >
+        <label for="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle navigation menu">
           <span class="hamburger-line" aria-hidden="true"></span>
           <span class="hamburger-line" aria-hidden="true"></span>
           <span class="hamburger-line" aria-hidden="true"></span>
         </label>
         <nav role="navigation" aria-label="Main navigation">
           <ul>
-            <li>
-              <a href="index.html" class="active" aria-current="page">Home</a>
-            </li>
+            <li><a href="index.html" class="active" aria-current="page">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="hikes.html">Hikes</a></li>
             <li><a href="sustainability.html">Sustainability</a></li>
@@ -78,6 +73,10 @@
     </header>
 
     <main id="main" role="main">
+
+      <!-- ============================================
+           HERO — full-bleed photograph, corner-anchored
+           ============================================ -->
       <section
         class="hero"
         style="background-image: url('./images/hero-home.jpg')"
@@ -85,48 +84,30 @@
       >
         <div class="container">
           <div class="hero-content">
-            <h1 id="hero-heading">Explore the World on Foot</h1>
+            <h1 id="hero-heading"><span class="h-num">01 /</span> Explore the world <em>on foot.</em></h1>
+
             <p>
-              Join Adventure Trails Hikes for extreme hikes through breathtaking
-              regions. Discover nature, local traditions, and sustainability in
-              one journey.
+              Extreme treks blended with cultural immersion. Six continents,
+              twenty-five countries, two hundred local guides — every route led
+              by people who were born on the trail.
             </p>
+
             <div class="hero-actions">
               <a
                 href="hikes.html"
                 class="cta-button primary"
                 aria-describedby="browse-hikes-desc"
               >
-                <span>Browse Hikes</span>
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M5 12H19M19 12L12 5M19 12L12 19"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+                <span>Browse Expeditions</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </a>
-              <span id="browse-hikes-desc" class="sr-only"
-                >View all available hiking adventures</span
-              >
-              <a href="about.html" class="cta-button secondary">Learn More</a>
+              <span id="browse-hikes-desc" class="sr-only">View all available hiking adventures</span>
+              <a href="about.html" class="cta-button secondary">Read Manifesto</a>
             </div>
 
-            <div
-              class="hero-stats sustainability-impact-stats"
-              style="padding: 2rem"
-              role="region"
-              aria-label="Environmental and social impact statistics"
-            >
+            <div class="hero-stats" role="region" aria-label="Impact statistics">
               <div class="hero-stat">
                 <span class="hero-stat-number">50,000+</span>
                 <span class="hero-stat-label">Trees Planted</span>
@@ -157,254 +138,341 @@
         </div>
       </section>
 
-      <section class="section" aria-labelledby="features-heading">
+      <!-- ============================================
+           REGION MARQUEE — region tape strip
+           ============================================ -->
+      <div class="marquee region-marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Patagonia</span><span>Nepal</span><span>Atlas Mountains</span><span>Andes</span><span>Canadian Rockies</span><span>Alps</span><span>Sacred Valley</span><span>Annapurna</span><span>Mont Blanc</span>
+          <span>Patagonia</span><span>Nepal</span><span>Atlas Mountains</span><span>Andes</span><span>Canadian Rockies</span><span>Alps</span><span>Sacred Valley</span><span>Annapurna</span><span>Mont Blanc</span>
+        </div>
+      </div>
+
+      <!-- ============================================
+           MANIFESTO SLAB — single full-bleed declaration
+           ============================================ -->
+      <section class="manifesto-slab" aria-labelledby="manifesto-heading">
+        <h2 id="manifesto-heading" class="sr-only">Manifesto</h2>
         <div class="container">
-          <div class="section-header">
-            <h2 id="features-heading">Why Choose Us?</h2>
-            <p class="section-subtitle">
-              Experience the difference with our expert-led adventures
-            </p>
+          <p class="manifesto-line">
+            We hike with <em>intention.</em> We pay with <em>respect.</em> We leave less than <em>we take.</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================
+           FEATURED EXPEDITION — slab takeover
+           ============================================ -->
+      <section class="featured-expedition" aria-labelledby="featured-heading">
+        <div class="featured-grid">
+          <div
+            class="featured-photo"
+            style="background-image: url('./images/peru_andes_heritage.jpg')"
+            role="img"
+            aria-label="Peru Andes Heritage expedition photograph"
+          >
+            <span class="featured-tag">Featured · Departing March</span>
           </div>
 
-          <div class="card-grid">
-            <article class="card feature-card">
-              <div class="card-icon" aria-hidden="true">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-              <div
-                class="card-image"
-                style="background-image: url('./images/guidance.jpg')"
-                role="img"
-                aria-label="Elite Guides. Photo of a mountain guide leading a group."
-              >
-                <span>Elite Guides</span>
-              </div>
-              <div class="card-content">
-                <h3>Expert Guidance</h3>
-                <p>
-                  Certified guides with deep knowledge of both extreme terrain
-                  and local traditions ensure your safety and cultural
-                  connection.
-                </p>
-                <span class="badge">UIAGM Certified</span>
-              </div>
-            </article>
+          <div class="featured-info">
+            <div>
+              <h2 id="featured-heading" class="featured-headline"><span class="h-num">01 /</span> Sacred Valley <em>Heritage Trek.</em></h2>
+              <p class="featured-blurb">
+                Fourteen days through Quechua-speaking villages, 4,200-meter
+                passes, and pre-Incan trails. Co-led by local heritage guides;
+                100% of guide fees stay in the Sacred Valley.
+              </p>
+            </div>
 
-            <article class="card feature-card">
-              <div class="card-icon" aria-hidden="true">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M8 14S9.5 16 12 16S16 14 16 14"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M9 9H9.01"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+            <dl class="spec-sheet" aria-label="Expedition specifications">
+              <div class="spec-row">
+                <dt class="spec-label">Distance</dt>
+                <dd class="spec-value">142 <small>km</small></dd>
               </div>
-              <div
-                class="card-image"
-                style="background-image: url('./images/tradition.jpg')"
-                role="img"
-                aria-label="Cultural immersion activities showing local traditions"
-              >
-                <span>Cultural Immersion</span>
+              <div class="spec-row">
+                <dt class="spec-label">Max Altitude</dt>
+                <dd class="spec-value">4,800 <small>m</small></dd>
               </div>
-              <div class="card-content">
-                <h3>Authentic Traditions</h3>
-                <p>
-                  Enjoy local food, music, and stories. Our adventures build
-                  bridges between cultures while exploring nature.
-                </p>
-                <span class="badge">Community Verified</span>
+              <div class="spec-row">
+                <dt class="spec-label">Duration</dt>
+                <dd class="spec-value">14 <small>days</small></dd>
               </div>
-            </article>
+              <div class="spec-row">
+                <dt class="spec-label">Grade</dt>
+                <dd class="spec-value">T4 <small>strenuous</small></dd>
+              </div>
+              <div class="spec-row">
+                <dt class="spec-label">Group Size</dt>
+                <dd class="spec-value">8 <small>max</small></dd>
+              </div>
+              <div class="spec-row">
+                <dt class="spec-label">Departures</dt>
+                <dd class="spec-value">Mar–Oct</dd>
+              </div>
+            </dl>
 
-            <article class="card feature-card">
-              <div class="card-icon" aria-hidden="true">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+            <div class="featured-actions">
+              <a href="hikes.html" class="cta-button primary">
+                <span>View Expedition</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-              </div>
-              <div
-                class="card-image"
-                style="background-image: url('./images/card-sustainability.jpg')"
-                role="img"
-                aria-label="Sustainability initiatives and eco-friendly practices"
-              >
-                <span>Sustainability</span>
-              </div>
-              <div class="card-content">
-                <h3>Eco-Friendly Travel</h3>
-                <p>
-                  We actively reduce waste, support conservation, and educate
-                  hikers about responsible tourism practices.
-                </p>
-                <span class="badge">B-Corp Certified</span>
-              </div>
-            </article>
+              </a>
+              <a href="contact.html" class="cta-button secondary">Request Itinerary</a>
+            </div>
           </div>
         </div>
       </section>
 
-      <!--  TESTIMONIALS -->
+      <!-- ============================================
+           METHOD — four numbered steps
+           ============================================ -->
+      <section class="section" aria-labelledby="method-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="method-heading"><span class="h-num">02 /</span> How an expedition <em>runs.</em></h2>
+            <p class="section-subtitle">From first contact to the last campfire — four phases, no improvisation.</p>
+          </div>
+
+          <ol class="method-grid" role="list">
+            <li class="method-step" role="listitem">
+              <span class="method-num">01</span>
+              <h3>Plan</h3>
+              <p>Route briefing, gear list, permits, vaccinations, and a one-on-one fitness audit eight weeks out.</p>
+            </li>
+            <li class="method-step" role="listitem">
+              <span class="method-num">02</span>
+              <h3>Train</h3>
+              <p>Twelve-week conditioning plan, altitude acclimatization protocols, and weighted-pack progression.</p>
+            </li>
+            <li class="method-step" role="listitem">
+              <span class="method-num">03</span>
+              <h3>Hike</h3>
+              <p>Daily distances mapped to your conditioning curve. Local guide, satellite comms, evac insurance.</p>
+            </li>
+            <li class="method-step" role="listitem">
+              <span class="method-num">04</span>
+              <h3>Reflect</h3>
+              <p>Post-expedition debrief, photo deliverable, community impact report, and lifetime alumni access.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============================================
+           WHY US — alternating editorial blocks (70/30)
+           ============================================ -->
+      <section aria-labelledby="why-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="why-heading"><span class="h-num">03 /</span> Built for the people <em>actually walking.</em></h2>
+            <p class="section-subtitle">Three commitments that separate us from the brochure operators.</p>
+          </div>
+        </div>
+
+        <div class="editorial-blocks">
+          <article class="editorial-block">
+            <div class="editorial-text">
+              <h3>Certified guides who were born on the route.</h3>
+              <p>
+                Every expedition is co-led by a UIAGM-certified mountain guide
+                and a local heritage guide. They speak the language, know the
+                terrain in three weather systems, and have hosted thousands of
+                hikers across six continents.
+              </p>
+              <span class="badge">UIAGM Certified · Wilderness Medicine</span>
+            </div>
+            <div
+              class="editorial-image"
+              style="background-image: url('./images/guidance.jpg')"
+              role="img"
+              aria-label="Mountain guide leading a group through alpine terrain"
+            >
+              <span class="photo-tag">Annapurna · 2024</span>
+            </div>
+          </article>
+
+          <article class="editorial-block">
+            <div class="editorial-text">
+              <h3>Cultural immersion isn't <em>a brochure line.</em></h3>
+              <p>
+                Meals are cooked by host families. Stories are told in the
+                language they're meant to be told in. Seventy-five percent of
+                trip revenue stays in the village. We don't visit communities —
+                we're hosted by them.
+              </p>
+              <span class="badge">Community Verified</span>
+            </div>
+            <div
+              class="editorial-image"
+              style="background-image: url('./images/tradition.jpg')"
+              role="img"
+              aria-label="Cultural exchange with local hosts"
+            >
+              <span class="photo-tag">Sacred Valley · 2023</span>
+            </div>
+          </article>
+
+          <article class="editorial-block">
+            <div class="editorial-text">
+              <h3>Carbon negative since 2021.</h3>
+              <p>
+                Every trip is offset 150% via verified reforestation. Zero
+                landfill kit, shared gear library, and direct community
+                investment funded by your booking — not a checkbox at checkout.
+                B-Corp certified, audited annually.
+              </p>
+              <span class="badge">B-Corp · Leave No Trace</span>
+            </div>
+            <div
+              class="editorial-image"
+              style="background-image: url('./images/card-sustainability.jpg')"
+              role="img"
+              aria-label="Sustainability and reforestation field work"
+            >
+              <span class="photo-tag">Patagonia · 2024</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============================================
+           TESTIMONIALS — ink slab
+           ============================================ -->
       <section
         class="section testimonials-section"
         aria-labelledby="testimonials-heading"
       >
         <div class="container">
           <div class="section-header">
-            <h2 id="testimonials-heading">What Our Hikers Say</h2>
-            <p class="section-subtitle">
-              Real experiences from real adventurers
-            </p>
+            <h2 id="testimonials-heading"><span class="h-num">04 /</span> What hikers <em>actually said.</em></h2>
+            <p class="section-subtitle">Unedited debriefs, transcribed at the trailhead.</p>
           </div>
 
           <div class="testimonial-grid">
-            <!-- Testimonial 1 -->
             <article class="testimonial">
               <div class="testimonial-rating" aria-label="5 out of 5 stars">
                 <span aria-hidden="true">★★★★★</span>
               </div>
               <blockquote class="testimonial-content">
-                "A spiritual journey. The Sherpa family we stayed with made this
-                more than just a hike. Life-changing experience."
+                A spiritual journey. The Sherpa family we stayed with made this
+                more than just a hike. Life-changing.
               </blockquote>
               <div class="testimonial-author">
                 <div class="testimonial-avatar" aria-hidden="true">SM</div>
                 <div>
                   <h4>Sarah Martinez</h4>
-                  <p>Software Engineer</p>
+                  <p>Annapurna Circuit · 14 days</p>
                 </div>
               </div>
             </article>
 
-            <!-- Testimonial 2 -->
             <article class="testimonial">
               <div class="testimonial-rating" aria-label="5 out of 5 stars">
                 <span aria-hidden="true">★★★★★</span>
               </div>
               <blockquote class="testimonial-content">
-                "A model for how sustainable tourism should work. Breathtaking
-                landscapes and impactful cultural connections."
+                A model for how sustainable tourism should work. Breathtaking
+                landscapes, impactful cultural connections.
               </blockquote>
               <div class="testimonial-author">
                 <div class="testimonial-avatar" aria-hidden="true">JC</div>
                 <div>
                   <h4>James Chen</h4>
-                  <p>Environmental Consultant</p>
+                  <p>Patagonia W Trek · 9 days</p>
                 </div>
               </div>
             </article>
 
-            <!-- Testimonial 3 -->
             <article class="testimonial">
               <div class="testimonial-rating" aria-label="5 out of 5 stars">
                 <span aria-hidden="true">★★★★★</span>
               </div>
               <blockquote class="testimonial-content">
-                "The cultural experiences were as powerful as the landscapes.
-                Every moment felt authentic and meaningful."
+                The cultural experiences were as powerful as the landscapes.
+                Every moment felt authentic.
               </blockquote>
               <div class="testimonial-author">
                 <div class="testimonial-avatar" aria-hidden="true">ER</div>
                 <div>
                   <h4>Elena Rodriguez</h4>
-                  <p>Marketing Director</p>
+                  <p>Atlas Berber Trail · 11 days</p>
                 </div>
               </div>
             </article>
           </div>
         </div>
       </section>
-      <!--  /TESTIMONIALS -->
 
+      <!-- ============================================
+           DISPATCH — field journal teaser
+           ============================================ -->
+      <section class="section" aria-labelledby="dispatch-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="dispatch-heading"><span class="h-num">05 /</span> Notes from the route.</h2>
+            <p class="section-subtitle">Long-form journals from guides, guests, and the conservation field.</p>
+          </div>
+
+          <div class="dispatch-grid">
+            <a href="#" class="dispatch-card">
+              <div class="dispatch-meta">
+                <span><strong>03 / 2026</strong> · 8 min</span>
+                <span>Field Notes</span>
+              </div>
+              <h3>Acclimatizing at <em>4,200 m</em></h3>
+              <p>What two decades on the Annapurna circuit have taught us about pacing the second day.</p>
+              <span class="dispatch-arrow">Read dispatch →</span>
+            </a>
+
+            <a href="#" class="dispatch-card">
+              <div class="dispatch-meta">
+                <span><strong>02 / 2026</strong> · 12 min</span>
+                <span>Conservation</span>
+              </div>
+              <h3>Counting trees in <em>the Sacred Valley.</em></h3>
+              <p>The 50,000-tree commitment, audited: how reforestation gets measured beyond the press release.</p>
+              <span class="dispatch-arrow">Read dispatch →</span>
+            </a>
+
+            <a href="#" class="dispatch-card">
+              <div class="dispatch-meta">
+                <span><strong>01 / 2026</strong> · 6 min</span>
+                <span>Guide Profile</span>
+              </div>
+              <h3>Pemba, head guide, <em>twenty-two seasons.</em></h3>
+              <p>Why the best mountain guides are the ones still scared, every time, of the second pass.</p>
+              <span class="dispatch-arrow">Read dispatch →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+           NEWSLETTER — ink slab w/ hazard rule
+           ============================================ -->
       <section class="newsletter-section" aria-labelledby="newsletter-heading">
         <div class="container">
           <div class="newsletter-content">
-            <h2 id="newsletter-heading">Ready for Your Next Adventure?</h2>
+            <h2 id="newsletter-heading"><span class="h-num">06 /</span> Field Dispatch — <em>monthly.</em></h2>
             <p>
-              Subscribe to our newsletter for exclusive deals, trail updates,
-              and cultural insights
+              One email a month. New routes, departure windows, conservation
+              updates, and the occasional photo from 4,000 m. No spam. No
+              affiliate links. Unsubscribe instantly.
             </p>
             <form class="newsletter-form" aria-label="Newsletter subscription">
-              <label for="newsletter-email" class="sr-only"
-                >Email address for newsletter</label
-              >
+              <label for="newsletter-email" class="sr-only">Email address for newsletter</label>
               <input
                 type="email"
                 id="newsletter-email"
                 name="email"
-                placeholder="Enter your email address"
+                placeholder="your@email.com"
                 required
                 aria-describedby="newsletter-desc"
               />
-              <span id="newsletter-desc" class="sr-only"
-                >We'll send you updates about new hiking adventures and
-                exclusive offers</span
-              >
+              <span id="newsletter-desc" class="sr-only">We'll send you monthly field dispatches</span>
               <button type="submit" class="cta-button primary">
-                Subscribe
+                <span>Subscribe</span>
               </button>
             </form>
           </div>
@@ -417,47 +485,23 @@
         <div class="footer-section">
           <h3>Adventure Trails Hikes</h3>
           <p>
-            Transformative hikes in nature with cultural immersion and
-            sustainable values. Join us for your next adventure.
+            Extreme expeditions, cultural immersion, sustainable values.
+            Field-tested since 2015.
           </p>
           <div class="social-links">
             <a href="#" aria-label="Follow us on Facebook">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                />
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
               </svg>
             </a>
             <a href="#" aria-label="Follow us on Instagram">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.596-3.205-1.539l.643-.643c.588.735 1.48 1.206 2.562 1.206c1.789 0 3.24-1.451 3.24-3.24s-1.451-3.24-3.24-3.24c-1.082 0-1.974.471-2.562 1.206l-.643-.643c.757-.943 1.908-1.539 3.205-1.539c2.297 0 4.157 1.86 4.157 4.157s-1.86 4.157-4.157 4.157z"
-                />
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.596-3.205-1.539l.643-.643c.588.735 1.48 1.206 2.562 1.206c1.789 0 3.24-1.451 3.24-3.24s-1.451-3.24-3.24-3.24c-1.082 0-1.974.471-2.562 1.206l-.643-.643c.757-.943 1.908-1.539 3.205-1.539c2.297 0 4.157 1.86 4.157 4.157s-1.86 4.157-4.157 4.157z"/>
               </svg>
             </a>
             <a href="#" aria-label="Follow us on Twitter">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
-                />
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
               </svg>
             </a>
           </div>
@@ -476,12 +520,7 @@
         <div class="footer-section">
           <h3>Contact Info</h3>
           <address>
-            <p>
-              Email:
-              <a href="mailto:hello@adventuretrails.com"
-                >hello@adventuretrails.com</a
-              >
-            </p>
+            <p>Email: <a href="mailto:hello@adventuretrails.com">hello@adventuretrails.com</a></p>
             <p>Phone: <a href="tel:+1555ADVENTURE">+1 (555) ADVENTURE</a></p>
             <p>Address: 123 Mountain View Blvd<br />Boulder, CO 80301</p>
           </address>
@@ -496,12 +535,11 @@
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Adventure Trails Hikes. All rights reserved.</p>
+      <div class="footer-bottom container">
+        <p>&copy; 2025 Adventure Trails Hikes — All rights reserved.</p>
       </div>
     </footer>
 
-    <!-- JavaScript for interactivity -->
     <script src="./scripts/main.js" defer></script>
   </body>
 </html>
