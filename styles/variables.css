@@ -1,108 +1,186 @@
-/*  DESIGN SYSTEM  */
+/*  EXPEDITION BRUTALISM × CARTOGRAPHIC PALETTE  */
 
 :root {
-  
-  /* Primary Colors (Orange) */
-  --primary-900: #9a3412;
-  --primary-800: #c2410c;
-  --primary-700: #ea580c;
-  --primary-600: #f97316;
-  --primary-500: #fb923c;
-  --primary-400: #fdba74;
-  --primary-300: #fed7aa;
-  --primary-200: #fef3e2;
-  --primary-100: #fff7ed;
-  --primary-50: #fffbf5;
+  /* ============================================
+     CARTOGRAPHIC PALETTE (canonical tokens)
+     Each color has a semantic job — see component
+     comments for where they earn their placement.
+     ============================================ */
+  --color-snow:   #F0E8CE;  /* primary light surface — paper / parchment */
+  --color-ridge:  #C79C4E;  /* gold accent — contour shading, decorative lines */
+  --color-slope:  #8A6C3A;  /* earth brown — borders, mono labels, mid-grade */
+  --color-forest: #3E5432;  /* deep moss — calm/easy semantic, sustainability */
+  --color-depth:  #1E3A5F;  /* deep navy — water/dusk, featured expedition */
+  --color-pin:    #CC3D23;  /* the singular action color — CTAs, accents */
+  --color-ink:    #14110B;  /* near-black — type, ink slabs, footer */
 
-  /* Accent Colors (Green) */
-  --accent-900: #0a4d3a;
-  --accent-800: #0c5f47;
-  --accent-700: #0e7254;
-  --accent-600: #10845d;
-  --accent-500: #16a34a;
-  --accent-400: #4ade80;
-  --accent-300: #86efac;
-  --accent-200: #bbf7d0;
-  --accent-100: #dcfce7;
-  --accent-50: #f0fdf4;
+  /* Derived working tokens */
+  --color-paper:       #E8DFB8;            /* slightly darker Snow for cards / alt rows */
+  --color-snow-deep:   #DACFA8;            /* deeper paper for borders against Snow */
+  --color-stone:       #B8A87E;            /* light tan-gray on dark surfaces */
+  --color-stone-dark:  var(--color-slope); /* mono-label / secondary text on light */
+  --color-pin-deep:    #A52E18;            /* darker Pin for hover/active (errors only) */
 
-  /* Neutral Colors (Grays) */
-  --neutral-900: #0f172a;
-  --neutral-800: #1e293b;
-  --neutral-700: #334155;
-  --neutral-600: #475569;
-  --neutral-500: #64748b;
-  --neutral-400: #94a3b8;
-  --neutral-300: #cbd5e1;
-  --neutral-200: #e2e8f0;
-  --neutral-100: #f1f5f9;
-  --neutral-50: #f8fafc;
+  /* Semantic action tokens — Forest is the new "primary action" color.
+     Pin is reserved for the literal cartographic pin (markers, stamps,
+     T5 alpine grade, focus rings, error states). */
+  --color-action:        var(--color-forest);  /* CTAs, FAQ active, filter active */
+  --color-action-hover:  var(--color-slope);   /* warmer earth on hover */
+  --color-action-on-dark: var(--color-ridge);  /* gold pop on Ink-takeover hover */
 
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--primary-600), var(--primary-500));
-  --gradient-accent: linear-gradient(135deg, var(--accent-600), var(--accent-500));
-  --gradient-card: linear-gradient(145deg, #ffffff, #f8fafc);
-  --gradient-hero: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(16, 132, 93, 0.6));
+  /* Legacy aliases (kept for backwards-compat) — now resolve to Forest
+     so any unmodified rule using --color-hazard renders the new earth-led design */
+  --color-bone:        var(--color-snow);
+  --color-hazard:      var(--color-action);
+  --color-hazard-deep: var(--color-action-hover);
+
+  /* ============================================
+     LEGACY SCALES — remapped to cartographic
+     Existing classes still resolve cleanly.
+     ============================================ */
+
+  /* Primary scale → Pin (action) */
+  --primary-900: #4D170D;
+  --primary-800: #7A2418;
+  --primary-700: #A52E18;
+  --primary-600: #CC3D23;
+  --primary-500: #DA5A3F;
+  --primary-400: #E37D63;
+  --primary-300: #ECA08A;
+  --primary-200: #F3C2B0;
+  --primary-100: #F8DDD0;
+  --primary-50:  #FCEFE8;
+
+  /* Accent scale → Slope (earth) */
+  --accent-900: #2E2516;
+  --accent-800: #4A3A22;
+  --accent-700: #66502E;
+  --accent-600: #7A5F36;
+  --accent-500: #8A6C3A;
+  --accent-400: #A88E63;
+  --accent-300: #B8A87E;
+  --accent-200: #CCBE99;
+  --accent-100: #DDD3B0;
+  --accent-50:  #ECE4C5;
+
+  /* Neutral scale → Snow ↔ Ink earthy continuum */
+  --neutral-900: #14110B;
+  --neutral-800: #25201A;
+  --neutral-700: #3D362B;
+  --neutral-600: #564D3F;
+  --neutral-500: #7A6F5C;
+  --neutral-400: #A89878;
+  --neutral-300: #C8B998;
+  --neutral-200: #DACFA8;
+  --neutral-100: #E8DFB8;
+  --neutral-50:  #F0E8CE;
+
+  /* Gradients — subtle Depth tint replaces pure ink overlay */
+  --gradient-primary: var(--color-pin);
+  --gradient-accent:  var(--color-ink);
+  --gradient-card:    var(--color-paper);
+  --gradient-hero:    rgba(20, 17, 11, 0.55);
 
   /* Spacing */
-  --space-xs: 0.25rem;    /* 4px */
-  --space-sm: 0.5rem;     /* 8px */
-  --space-md: 1rem;       /* 16px */
-  --space-lg: 1.5rem;     /* 24px */
-  --space-xl: 2rem;       /* 32px */
-  --space-2xl: 3rem;      /* 48px */
-  --space-3xl: 4rem;      /* 64px */
-  --space-4xl: 6rem;      /* 96px */
-  --space-5xl: 8rem;      /* 128px */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
 
-  /* Typography */
-  
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  /* Typography (unchanged) */
+  --font-display: "Archivo Black", "Arial Black", system-ui, sans-serif;
+  --font-body:    "Geist", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Monaco, monospace;
+
+  --font-weight-light:     300;
+  --font-weight-normal:    400;
+  --font-weight-medium:    500;
+  --font-weight-semibold:  600;
+  --font-weight-bold:      700;
   --font-weight-extrabold: 800;
-  --font-weight-black: 900;
+  --font-weight-black:     900;
 
-  /* Component Sizing */
+  /* Component sizing (unchanged) */
   --card-image-height: 240px;
   --icon-size-sm: 16px;
   --icon-size-md: 20px;
   --icon-size-lg: 24px;
   --icon-size-xl: 32px;
-  --card-icon-size: 48px;
-  --avatar-size: 48px;
+  --card-icon-size: 40px;
+  --avatar-size: 40px;
 
-  /* Focus Ring Colors (RGB for alpha support) */
-  --focus-ring-color: var(--accent-400);
-  --focus-ring-alpha: 0.15;
+  /* Borders */
+  --border-hairline: 1px solid var(--color-ink);
+  --border-thick:    2px solid var(--color-ink);
 
-  /* Border Radius */
-  --radius-sm: 0.375rem;   /* 6px */
-  --radius-md: 0.5rem;     /* 8px */
-  --radius-lg: 0.75rem;    /* 12px */
-  --radius-xl: 1rem;       /* 16px */
-  --radius-2xl: 1.5rem;    /* 24px */
-  --radius-full: 9999px;   /* Fully rounded */
+  /* Focus ring — Pin */
+  --focus-ring-color: var(--color-pin);
+  --focus-ring-alpha: 1;
 
-  /* Shadows  */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  /* Softened brutalism — radius tokens bumped further.
+     Architecture stays brutalist (hard borders, sharp typography,
+     no gradient fills); isolated UI primitives and tiled grid
+     containers pick up clearly visible rounding now. */
+  --radius-sm:   3px;   /* badges, kbd, tags, decorative bars */
+  --radius-md:   8px;   /* buttons, cards, filter-tabs, lightbox controls */
+  --radius-lg:   12px;  /* dispatch-card, method-step, timeline-content */
+  --radius-xl:   16px;  /* form wrappers, large cards */
+  --radius-2xl:  20px;  /* pledge document, generous documents */
+  --radius-full: 9999px; /* avatars, status pills */
 
-  /* Transitions  */
-  --transition-fast: 150ms ease-in-out;
-  --transition-normal: 300ms ease-in-out;
-  --transition-slow: 500ms ease-in-out;
+  /* Whisper-soft shadows — used only on hover for ambient lift,
+     not on resting state. Ink-tinted to stay on-palette. */
+  --shadow-sm:  0 1px 2px rgba(20, 17, 11, 0.06);
+  --shadow-md:  0 2px 6px rgba(20, 17, 11, 0.08);
+  --shadow-lg:  0 4px 12px rgba(20, 17, 11, 0.10);
+  --shadow-xl:  0 6px 18px rgba(20, 17, 11, 0.12);
+  --shadow-2xl: 0 8px 24px rgba(20, 17, 11, 0.14);
 
-  /* z-index  */
+  /* Transitions */
+  --transition-fast:   100ms linear;
+  --transition-normal: 180ms linear;
+  --transition-slow:   260ms linear;
+
+  /* z-index */
   --z-dropdown: 1000;
-  --z-sticky: 1020;
-  --z-fixed: 1030;
-  --z-modal: 1040;
-  --z-popover: 1050;
-  --z-tooltip: 1060;
+  --z-sticky:   1020;
+  --z-fixed:    1030;
+  --z-modal:    1040;
+  --z-popover:  1050;
+  --z-tooltip:  1060;
+
+  /* ============================================
+     TOPOGRAPHIC GRADIENT — used by .page-progress
+     A literal palette ascent: water → forest →
+     gold → earth → action. Reads as elevation
+     rising as the user scrolls.
+     ============================================ */
+  --gradient-topo: linear-gradient(
+    90deg,
+    var(--color-depth)  0%,
+    var(--color-forest) 33%,
+    var(--color-ridge)  66%,
+    var(--color-slope)  100%
+  );
+
+  /* 4-color HARD-STOP topo stripe — used as a structural seam
+     replacing every former 4px Pin border (footer top, marquee
+     top/bottom, featured-expedition borders, gallery-mosaic borders).
+     Hard color blocks (no fade) read as a printed colorbar legend. */
+  --gradient-topo-stripe: linear-gradient(
+    to right,
+    var(--color-depth)  0%,
+    var(--color-depth)  25%,
+    var(--color-forest) 25%,
+    var(--color-forest) 50%,
+    var(--color-ridge)  50%,
+    var(--color-ridge)  75%,
+    var(--color-slope)  75%,
+    var(--color-slope)  100%
+  );
 }
