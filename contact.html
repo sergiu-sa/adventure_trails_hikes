@@ -5,46 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Get in touch with Adventure Trails Hikes. Ask questions, plan your next expedition, or join as a volunteer."
+      content="Plan your next expedition. Get in touch with Adventure Trails Hikes — Boulder, Colorado. Replies within 24 hours, 24/7 emergency line for active travellers."
     />
-    <!--  SEO -->
+
+    <!-- SEO -->
     <meta property="og:title" content="Contact | Adventure Trails Hikes" />
-    <meta property="og:description" content="Contact Adventure Trails Hikes to plan your next adventure. Get expert advice and custom trip planning from our experienced team." />
+    <meta property="og:description" content="Field office in Boulder, Colorado. Inquire by form, phone, or email. 24-hour reply window." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://adventuretrails.com/contact.html" />
     <meta property="og:image" content="https://adventuretrails.com/images/contact.jpg" />
-    
+
     <title>Contact | Adventure Trails Hikes</title>
-    
-    <!--   CSS  modular structure -->
+
     <link rel="stylesheet" href="./styles/main.css" />
+      <!-- No-JS fallback: loader stays hidden so content is visible -->
+    <noscript><style>.page-loader{display:none!important}</style></noscript>
   </head>
   <body>
-    
+    <!-- ============================================
+         PAGE LOADER — cartographic radar pulse
+         ============================================ -->
+    <div class="page-loader" aria-hidden="true">
+      <div class="page-loader-content">
+        <svg class="loader-svg" viewBox="0 0 200 200" aria-hidden="true">
+          <ellipse class="loader-ring loader-ring-1" cx="100" cy="100" rx="80" ry="68" />
+          <ellipse class="loader-ring loader-ring-2" cx="100" cy="100" rx="60" ry="51" />
+          <ellipse class="loader-ring loader-ring-3" cx="100" cy="100" rx="40" ry="34" />
+          <ellipse class="loader-ring loader-ring-4" cx="100" cy="100" rx="20" ry="17" />
+          <circle class="loader-pin-ring" cx="100" cy="100" r="14" />
+          <circle class="loader-pin-core" cx="100" cy="100" r="6"  />
+          <circle class="loader-pin-dot"  cx="100" cy="100" r="2"  />
+        </svg>
+        <p class="loader-brand">Adventure Trails</p>
+        <p class="loader-status">Plotting route<span class="loader-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></p>
+      </div>
+    </div>
     <a href="#main" class="skip-link">Skip to main content</a>
-    
+
     <header role="banner">
-      <input
-        type="checkbox"
-        id="mobile-menu-toggle"
-        class="mobile-menu-toggle"
-      />
+      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle" />
       <div class="header-container">
-        <a href="index.html" class="logo" aria-label="Adventure Trails Hikes - Return to homepage">
+        <a href="index.html" class="logo" aria-label="Adventure Trails Hikes — return to homepage">
           <div class="logo-icon-mask" aria-hidden="true"></div>
           <span>Adventure Trails</span>
         </a>
-
-        <label
-          for="mobile-menu-toggle"
-          class="mobile-menu-btn"
-          aria-label="Toggle navigation menu"
-        >
+        <label for="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle navigation menu">
           <span class="hamburger-line" aria-hidden="true"></span>
           <span class="hamburger-line" aria-hidden="true"></span>
           <span class="hamburger-line" aria-hidden="true"></span>
         </label>
-
         <nav role="navigation" aria-label="Main navigation">
           <ul>
             <li><a href="index.html">Home</a></li>
@@ -59,485 +68,346 @@
     </header>
 
     <main id="main" role="main">
+
+      <!-- ============================================
+           PAGE HEADER
+           ============================================ -->
       <section
         class="page-header"
         style="background-image: url('./images/contact.jpg')"
         aria-labelledby="page-heading"
       >
         <div class="container">
-          <h1 id="page-heading">Let's Plan Your Journey</h1>
-          <p>Ask questions, register, or get involved</p>
+          <h1 id="page-heading"><span class="h-num">06 /</span> Plan your <em>next route.</em></h1>
+          <p>Inquire by form, email, phone · Reply within 24h</p>
         </div>
       </section>
 
+      <!-- ============================================
+           CONTACT METHODS
+           ============================================ -->
       <section class="content-section" aria-labelledby="contact-heading">
         <div class="container">
           <div class="section-header">
-            <h2 id="contact-heading">Get in Touch</h2>
-            <p class="section-subtitle">
-              Ready to start your adventure? We're here to help you every step
-              of the way
-            </p>
+            <h2 id="contact-heading"><span class="h-num">01 /</span> Three ways <em>in.</em></h2>
+            <p class="section-subtitle">Email is fastest. Phone is best for active travellers. Office hours apply for in-person visits.</p>
           </div>
 
-          <!-- Contact Options -->
-          <section aria-labelledby="contact-methods-heading">
-            <h3 id="contact-methods-heading" class="sr-only">Contact Methods</h3>
-            <div class="card-grid section-spacing-lg">
-              <article class="card">
-                <div class="card-icon" aria-hidden="true">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <polyline
-                      points="22,6 12,13 2,6"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-                <div class="card-content">
-                  <h3>Email Us</h3>
-                  <p>Get detailed responses to your questions</p>
-                  <p><strong><a href="mailto:hello@adventuretrails.com" data-copy="hello@adventuretrails.com" data-tooltip="Click to copy">hello@adventuretrails.com</a></strong></p>
-                  <p>Response within 24 hours</p>
-                </div>
-              </article>
+          <div class="card-grid section-spacing-lg">
+            <article class="card">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2"/>
+                  <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" fill="none"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <h3>Email Us</h3>
+                <p>For booking inquiries, custom routes, and partnership requests. Replies within 24 hours, including weekends.</p>
+                <address>
+                  <a href="mailto:hello@adventuretrails.com">hello@adventuretrails.com</a>
+                </address>
+              </div>
+            </article>
 
-              <article class="card">
-                <div class="card-icon" aria-hidden="true">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M22 16.92V19.92C22 21.9715 20.2954 23.5194 18.2806 23.3194C15.0952 22.9694 11.9752 21.6294 9.39002 19.3594C7.04402 17.2994 5.22002 14.4794 4.09002 11.3494C1.74002 8.52943 1.75002 4.66943 4.12002 1.86943C5.05002 0.779433 6.54002 0.319433 7.91002 0.689433C8.77002 0.929433 9.48002 1.48943 9.89002 2.24943L11.45 5.48943C11.97 6.48943 11.47 7.70943 10.47 8.22943L9.37002 8.90943C10.28 10.8394 11.64 12.5194 13.37 13.8294L14.21 12.8194C14.86 11.8194 16.25 11.4094 17.26 12.0594L20.42 13.7194C21.38 14.2194 22 15.2694 22 16.42V16.92Z"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-                <div class="card-content">
-                  <h3>Call Us</h3>
-                  <p>Speak directly with our adventure specialists</p>
-                  <p><strong><a href="tel:+1555ADVENTURE" data-copy="+1 (555) ADVENTURE" data-tooltip="Click to copy">+1 (555) ADVENTURE</a></strong></p>
-                  <p>Mon-Fri: 9AM-6PM MST</p>
-                </div>
-              </article>
+            <article class="card">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1469 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77383 17.3147 6.72534 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27097 2.11999 4.17997C2.095 3.90344 2.12787 3.62474 2.21649 3.36172C2.30512 3.09869 2.44756 2.85715 2.63476 2.65223C2.82196 2.4473 3.05005 2.28326 3.30429 2.17064C3.55853 2.05801 3.83346 2.0001 4.10999 2H7.10999C7.59443 1.99523 8.06384 2.16708 8.43106 2.48353C8.79828 2.79999 9.03794 3.23945 9.10999 3.71997C9.23662 4.68004 9.47144 5.62273 9.80999 6.52997C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.63997L8.08999 9.90997C9.51355 12.4135 11.5864 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0554 17.47 14.19C18.3773 14.5285 19.32 14.7634 20.28 14.89C20.7658 14.9626 21.2094 15.2066 21.5265 15.5801C21.8437 15.9537 22.0122 16.4309 22 16.92Z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <h3>Call Us</h3>
+                <p>Mon–Fri / 9 AM – 6 PM Mountain Time. For travellers currently on expeditions, dial the 24-hour emergency line below.</p>
+                <address>
+                  <a href="tel:+1555ADVENTURE">+1 (555) ADVENTURE</a>
+                </address>
+              </div>
+            </article>
 
-              <article class="card">
-                <div class="card-icon" aria-hidden="true">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.3639 3.63604C20.0518 5.32387 21 7.61305 21 10Z"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <circle
-                      cx="12"
-                      cy="10"
-                      r="3"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-                <div class="card-content">
-                  <h3>Visit Our Office</h3>
-                  <p>Drop by for maps, gear advice, and coffee</p>
-                  <address>
-                    <p>
-                      <strong>
-                        123 Mountain View Blvd<br />
-                        Boulder, CO 80301
-                      </strong>
-                    </p>
-                  </address>
-                  <p>Mon-Sat: 10AM-6PM</p>
-                </div>
-              </article>
-            </div>
-          </section>
+            <article class="card">
+              <div class="card-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="card-content">
+                <h3>Visit the Field Office</h3>
+                <p>By appointment. Mon–Sat / 10 AM – 6 PM. Drop in for gear consults, route briefings, and pre-trip medical reviews.</p>
+                <address>
+                  123 Mountain View Blvd<br />Boulder, CO 80301
+                </address>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
 
-          <!--   Contact Form -->
-          <section aria-labelledby="contact-form-heading">
-            <h2 id="contact-form-heading">Send Us a Message</h2>
-            <div class="contact-form">
-              <form action="#" method="post" novalidate aria-describedby="form-description">
-                <p id="form-description" class="sr-only">
-                  Complete this form to send us a message about your adventure planning needs. 
-                  Fields marked with an asterisk are required.
-                </p>
-                
-                <fieldset>
-                  <legend class="sr-only">Personal Information</legend>
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="name">
-                        Full Name 
-                        <span class="required" aria-label="required">*</span>
-                      </label>
-                      <input 
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        required 
-                        aria-describedby="name-error name-hint"
-                        autocomplete="name"
-                        aria-invalid="false"
-                      />
-                      <div id="name-hint" class="sr-only">Enter your first and last name</div>
-                      <div id="name-error" class="error-message" aria-live="polite"></div>
-                    </div>
+      <!-- ============================================
+           CONTACT FORM
+           ============================================ -->
+      <section aria-labelledby="contact-form-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="contact-form-heading"><span class="h-num">02 /</span> Tell us about <em>the trip.</em></h2>
+            <p class="section-subtitle">Required fields marked with an asterisk. We'll reply within 24 hours, including weekends.</p>
+          </div>
 
-                    <div class="form-group">
-                      <label for="email">
-                        Email Address 
-                        <span class="required" aria-label="required">*</span>
-                      </label>
-                      <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        required 
-                        aria-describedby="email-error email-hint"
-                        autocomplete="email"
-                        aria-invalid="false"
-                      />
-                      <div id="email-hint" class="sr-only">We'll use this to respond to your inquiry</div>
-                      <div id="email-error" class="error-message" aria-live="polite"></div>
-                    </div>
-                  </div>
-                </fieldset>
+          <div class="contact-form">
+            <form action="#" method="post" novalidate aria-describedby="form-description">
+              <p id="form-description" class="sr-only">
+                Complete this form to send us a message about your adventure planning. Fields marked with an asterisk are required.
+              </p>
 
-                <fieldset>
-                  <legend class="sr-only">Contact Details</legend>
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="phone">Phone Number</label>
-                      <input 
-                        type="tel" 
-                        id="phone" 
-                        name="phone" 
-                        autocomplete="tel"
-                        aria-describedby="phone-hint"
-                      />
-                      <div id="phone-hint" class="sr-only">Optional: for follow-up calls</div>
-                    </div>
-
-                    <div class="form-group">
-                      <label for="subject">
-                        Subject 
-                        <span class="required" aria-label="required">*</span>
-                      </label>
-                      <select id="subject" name="subject" required aria-describedby="subject-error">
-                        <option value="">Select a topic</option>
-                        <option value="booking">Booking Inquiry</option>
-                        <option value="custom">Custom Trip</option>
-                        <option value="group">Group Booking</option>
-                        <option value="gear">Gear & Preparation</option>
-                        <option value="sustainability">Sustainability</option>
-                        <option value="partnership">Partnership</option>
-                        <option value="other">Other</option>
-                      </select>
-                      <div id="subject-error" class="error-message" aria-live="polite"></div>
-                    </div>
-                  </div>
-                </fieldset>
-
-                <fieldset>
-                  <legend class="sr-only">Trip Preferences</legend>
+              <fieldset>
+                <legend>Contact Details</legend>
+                <div class="form-row">
                   <div class="form-group">
-                    <label for="destination">Interested Destination(s)</label>
-                    <select id="destination" name="destination" aria-describedby="destination-hint">
-                      <option value="">Select destination</option>
-                      <option value="nepal">Nepal - Everest Base Camp</option>
-                      <option value="peru">Peru - Andes Heritage</option>
-                      <option value="france">France - Mont Blanc</option>
-                      <option value="chile">Chile - Patagonia</option>
-                      <option value="canada">Canada - Indigenous Trek</option>
-                      <option value="morocco">Morocco - Berber Trail</option>
-                      <option value="custom">Custom Destination</option>
+                    <label for="name">Full Name <span class="required" aria-label="required">*</span></label>
+                    <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="name-error" />
+                    <div id="name-error" class="error-message" aria-live="polite"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email Address <span class="required" aria-label="required">*</span></label>
+                    <input type="email" id="email" name="email" required autocomplete="email" aria-describedby="email-error" />
+                    <div id="email-error" class="error-message" aria-live="polite"></div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" autocomplete="tel" />
+                  </div>
+                  <div class="form-group">
+                    <label for="subject">Subject <span class="required" aria-label="required">*</span></label>
+                    <select id="subject" name="subject" required aria-describedby="subject-error">
+                      <option value="">Select a topic</option>
+                      <option value="booking">Booking Inquiry</option>
+                      <option value="custom">Custom Route</option>
+                      <option value="group">Group Booking</option>
+                      <option value="gear">Gear &amp; Preparation</option>
+                      <option value="sustainability">Sustainability Audit</option>
+                      <option value="partnership">Partnership</option>
+                      <option value="other">Other</option>
                     </select>
-                    <div id="destination-hint" class="sr-only">Choose your preferred hiking destination</div>
+                    <div id="subject-error" class="error-message" aria-live="polite"></div>
                   </div>
+                </div>
+              </fieldset>
 
+              <fieldset>
+                <legend>Trip Preferences</legend>
+                <div class="form-row">
                   <div class="form-group">
-                    <label for="experience">Hiking Experience Level</label>
-                    <select id="experience" name="experience" aria-describedby="experience-hint">
-                      <option value="">Select experience level</option>
-                      <option value="beginner">Beginner - New to hiking</option>
-                      <option value="intermediate">Intermediate - Some experience</option>
-                      <option value="advanced">Advanced - Experienced hiker</option>
-                      <option value="expert">Expert - Extreme conditions</option>
+                    <label for="destination">Destination</label>
+                    <select id="destination" name="destination">
+                      <option value="">Select region</option>
+                      <option value="nepal">Nepal — Himalayas</option>
+                      <option value="peru">Peru — Andes</option>
+                      <option value="france">France / IT / CH — Alps</option>
+                      <option value="chile">Chile — Patagonia</option>
+                      <option value="canada">Canada — Rockies</option>
+                      <option value="morocco">Morocco — Atlas</option>
+                      <option value="custom">Custom</option>
                     </select>
-                    <div id="experience-hint" class="sr-only">Help us recommend suitable adventures</div>
                   </div>
-
                   <div class="form-group">
-                    <label for="group-size">Group Size</label>
-                    <select id="group-size" name="group-size" aria-describedby="group-size-hint">
-                      <option value="">Select group size</option>
-                      <option value="solo">Solo traveler</option>
-                      <option value="couple">2 people</option>
-                      <option value="small">3-5 people</option>
-                      <option value="medium">6-10 people</option>
-                      <option value="large">10+ people</option>
+                    <label for="experience">Experience Level</label>
+                    <select id="experience" name="experience">
+                      <option value="">Select level</option>
+                      <option value="beginner">T1–T2 — New to high altitude</option>
+                      <option value="intermediate">T3 — Some experience</option>
+                      <option value="advanced">T4 — Experienced</option>
+                      <option value="expert">T5 — Extreme</option>
                     </select>
-                    <div id="group-size-hint" class="sr-only">Number of people in your group</div>
-                  </div>
-                </fieldset>
-
-                <fieldset>
-                  <legend class="sr-only">Message and Preferences</legend>
-                  <div class="form-group">
-                    <label for="message">
-                      Message 
-                      <span class="required" aria-label="required">*</span>
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows="6"
-                      placeholder="Tell us about your adventure goals, questions, or special requirements..."
-                      required
-                      aria-describedby="message-error message-hint"
-                      aria-invalid="false"
-                    ></textarea>
-                    <div id="message-hint" class="sr-only">Share details about your adventure interests and any special needs</div>
-                    <div id="message-error" class="error-message" aria-live="polite"></div>
-                  </div>
-
-                  <!-- Newsletter Signup -->
-                  <div class="form-group">
-                    <label class="checkbox-label">
-                      <input
-                        type="checkbox"
-                        name="newsletter"
-                        id="newsletter"
-                        aria-describedby="newsletter-desc"
-                      />
-                      <span class="checkbox-text">
-                        Subscribe to our newsletter for adventure tips and exclusive offers
-                      </span>
-                    </label>
-                    <div id="newsletter-desc" class="sr-only">
-                      Get monthly updates about new destinations, hiking tips, and special offers
-                    </div>
-                  </div>
-                </fieldset>
-
-                <button type="submit" class="submit-button" aria-describedby="submit-desc">
-                  Send Message
-                </button>
-                <div id="submit-desc" class="sr-only">
-                  Submit your message and we'll respond within 24 hours
-                </div>
-              </form>
-            </div>
-          </section>
-
-          <!-- Interactive Map Section -->
-          <section aria-labelledby="map-heading">
-            <h2 id="map-heading" class="section-spacing-lg">Find Our Office</h2>
-            <div class="map-container">
-              <div class="css-map" role="img" aria-labelledby="map-description">
-                <div id="map-description" class="sr-only">
-                  Interactive map showing Adventure Trails Hikes office location at 123 Mountain View Blvd, Boulder, CO 80301
-                </div>
-                <!-- Map Background with Terrain -->
-                <div class="map-terrain">
-                  <!-- Mountains -->
-                  <div class="mountain mountain-1" aria-hidden="true"></div>
-                  <div class="mountain mountain-2" aria-hidden="true"></div>
-                  <div class="mountain mountain-3" aria-hidden="true"></div>
-                  
-                  <!-- Roads -->
-                  <div class="road road-main" aria-hidden="true"></div>
-                  <div class="road road-secondary" aria-hidden="true"></div>
-                  
-                  <!-- Our Location  -->
-                  <div class="location-marker" role="button" tabindex="0" aria-label="Adventure Trails Hikes office location">
-                    <div class="marker-pin">
-                      <div class="marker-icon" aria-hidden="true">🏔️</div>
-                    </div>
-                    <div class="marker-label">Adventure Trails Hikes</div>
-                  </div>
-                  
-                  <!-- Compass -->
-                  <div class="compass" aria-label="Map compass indicating north direction">
-                    <div class="compass-needle">N</div>
-                  </div>
-                  
-                  <!-- Scale -->
-                  <div class="map-scale" aria-label="Map scale: 1 mile">
-                    <div class="scale-line" aria-hidden="true"></div>
-                    <span>1 mile</span>
                   </div>
                 </div>
-              </div>
-              
-              <div class="map-info">
-                <div class="map-info-content">
-                  <div class="location-details">
-                    <h3>Visit Our Boulder Office</h3>
-                    <address>
-                      123 Mountain View Blvd<br>
-                      Boulder, CO 80301
-                    </address>
-                    <p>Mon-Sat: 10AM-6PM</p>
-                  </div>
-                  <div class="map-actions">
-                    <a href="https://maps.google.com/?q=Boulder,CO" target="_blank" class="cta-button secondary" aria-describedby="directions-desc">
-                      Get Directions
-                    </a>
-                    <div id="directions-desc" class="sr-only">Opens Google Maps in a new window</div>
-                    <button class="cta-button secondary zoom-button" aria-describedby="zoom-desc">
-                      View Area
-                    </button>
-                    <div id="zoom-desc" class="sr-only">Zoom in on the map area</div>
-                  </div>
+
+                <div class="form-group">
+                  <label for="group-size">Group Size</label>
+                  <select id="group-size" name="group-size">
+                    <option value="">Select size</option>
+                    <option value="solo">Solo</option>
+                    <option value="couple">2</option>
+                    <option value="small">3–5</option>
+                    <option value="medium">6–8 (max)</option>
+                    <option value="custom">Custom — discuss</option>
+                  </select>
                 </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Message</legend>
+                <div class="form-group">
+                  <label for="message">Tell us more <span class="required" aria-label="required">*</span></label>
+                  <textarea id="message" name="message" rows="6" placeholder="Goals, questions, dates you're holding, anything else worth knowing." required aria-describedby="message-error"></textarea>
+                  <div id="message-error" class="error-message" aria-live="polite"></div>
+                </div>
+
+                <div class="form-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="newsletter" id="newsletter" />
+                    <span class="checkbox-text">Subscribe to the monthly Field Dispatch — route updates, audit summaries, occasional 4,000-meter photographs.</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <button type="submit" class="submit-button">Send Inquiry</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+           FIELD OFFICE — SVG topo treatment (replaces CSS map)
+           ============================================ -->
+      <section class="content-section" aria-labelledby="location-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="location-heading"><span class="h-num">03 /</span> Find the <em>front door.</em></h2>
+            <p class="section-subtitle">123 Mountain View Boulevard · By appointment</p>
+          </div>
+
+          <div class="location-grid">
+            <div class="location-figure-stack">
+              <figure class="location-figure" aria-label="Map of the Boulder field office location">
+                <iframe
+                  src="https://maps.google.com/maps?q=123+Mountain+View+Blvd%2C+Boulder%2C+CO+80301&t=m&z=13&output=embed"
+                  class="location-map"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="Map of Adventure Trails Hikes — 123 Mountain View Boulevard, Boulder, Colorado"
+                ></iframe>
+                <span class="map-pin-tag" aria-hidden="true">
+                  <span class="pin-dot-small"></span>
+                  Field Station 042
+                </span>
+              </figure>
+
+              <div class="location-coord-line" aria-hidden="true">
+                <span class="pin-marker"></span>
+                <span>40.0150° N</span>
+                <span class="sep">·</span>
+                <span>105.2705° W</span>
+                <span class="sep">·</span>
+                <span>Boulder, CO</span>
+                <span class="sep">·</span>
+                <span>1,655 m</span>
               </div>
             </div>
-          </section>
 
-          <!-- FAQ Section -->
-          <section aria-labelledby="faq-heading">
-            <h2 id="faq-heading" class="section-spacing-lg">Frequently Asked Questions</h2>
-            <div class="faq-container" role="region" aria-label="Frequently asked questions">
-              
-              <!-- FAQ Item 1 -->
-              <div class="faq-item">
-                <input type="checkbox" id="faq1" class="faq-toggle" />
-                <label for="faq1" class="faq-question" role="button" aria-expanded="false" aria-controls="faq1-answer">
-                  What's included in the trip price?
-                  <span class="faq-icon" aria-hidden="true">+</span>
-                </label>
-                <div id="faq1-answer" class="faq-answer" role="region" aria-labelledby="faq1">
-                  <p>
-                    All our trips include accommodation, meals, local
-                    transportation, certified guides, cultural activities, and
-                    sustainability contributions. International flights and personal
-                    gear are not included.
-                  </p>
-                </div>
-              </div>
+            <div class="location-info">
+              <h2>123 Mountain View <em>Boulevard.</em></h2>
+              <p>Boulder · Colorado · 80301</p>
 
-              <!-- FAQ Item 2 -->
-              <div class="faq-item">
-                <input type="checkbox" id="faq2" class="faq-toggle" />
-                <label for="faq2" class="faq-question" role="button" aria-expanded="false" aria-controls="faq2-answer">
-                  What fitness level do I need?
-                  <span class="faq-icon" aria-hidden="true">+</span>
-                </label>
-                <div id="faq2-answer" class="faq-answer" role="region" aria-labelledby="faq2">
-                  <p>
-                    Fitness requirements vary by trip. We offer adventures from easy
-                    (suitable for most fitness levels) to extreme (requiring
-                    excellent physical condition). Each trip page lists specific
-                    requirements.
-                  </p>
-                </div>
-              </div>
+              <ul class="location-meta" aria-label="Office details">
+                <li><span class="label">Coords</span><span class="value">40.0150° N · 105.2705° W</span></li>
+                <li><span class="label">Elevation</span><span class="value">1,655 m</span></li>
+                <li><span class="label">Hours</span><span class="value">Mon–Sat · 10:00 – 18:00 MT</span></li>
+                <li><span class="label">Email</span><span class="value"><a href="mailto:hello@adventuretrails.com">hello@adventuretrails.com</a></span></li>
+                <li><span class="label">Phone</span><span class="value"><a href="tel:+1555ADVENTURE">+1 (555) ADVENTURE</a></span></li>
+                <li><span class="label">Visits</span><span class="value">By appointment</span></li>
+              </ul>
 
-              <!-- FAQ Item 3 -->
-              <div class="faq-item">
-                <input type="checkbox" id="faq3" class="faq-toggle" />
-                <label for="faq3" class="faq-question" role="button" aria-expanded="false" aria-controls="faq3-answer">
-                  How far in advance should I book?
-                  <span class="faq-icon" aria-hidden="true">+</span>
-                </label>
-                <div id="faq3-answer" class="faq-answer" role="region" aria-labelledby="faq3">
-                  <p>
-                    We recommend booking 3-6 months in advance for popular
-                    destinations. Some permits (like Everest Base Camp) require
-                    longer lead times. Last-minute bookings may be available but are
-                    limited.
-                  </p>
-                </div>
-              </div>
-
-              <!-- FAQ Item 4 -->
-              <div class="faq-item">
-                <input type="checkbox" id="faq4" class="faq-toggle" />
-                <label for="faq4" class="faq-question" role="button" aria-expanded="false" aria-controls="faq4-answer">
-                  What about travel insurance?
-                  <span class="faq-icon" aria-hidden="true">+</span>
-                </label>
-                <div id="faq4-answer" class="faq-answer" role="region" aria-labelledby="faq4">
-                  <p>
-                    Travel insurance is mandatory for all trips. We require coverage
-                    for medical expenses, evacuation, and trip cancellation. We can
-                    recommend trusted providers who specialize in adventure travel.
-                  </p>
-                </div>
-              </div>
-
-              <!-- FAQ Item 5 -->
-              <div class="faq-item">
-                <input type="checkbox" id="faq5" class="faq-toggle" />
-                <label for="faq5" class="faq-question" role="button" aria-expanded="false" aria-controls="faq5-answer">
-                  Can you accommodate dietary restrictions?
-                  <span class="faq-icon" aria-hidden="true">+</span>
-                </label>
-                <div id="faq5-answer" class="faq-answer" role="region" aria-labelledby="faq5">
-                  <p>
-                    Yes! We accommodate vegetarian, vegan, gluten-free, and other
-                    dietary needs. Please inform us during booking so we can work
-                    with local communities to prepare suitable meals.
-                  </p>
-                </div>
+              <div class="hero-actions">
+                <a href="https://maps.google.com/?q=Boulder,CO" target="_blank" rel="noopener" class="cta-button primary">
+                  <span>Open in Maps</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
               </div>
             </div>
-          </section>
+          </div>
+        </div>
+      </section>
 
-          <!-- Emergency Contact -->
-          <section class="newsletter-section primary-bg section-spacing-lg section-rounded" aria-labelledby="emergency-heading">
-            <div class="container">
-              <div class="newsletter-content">
-                <h2 id="emergency-heading">24/7 Emergency Support</h2>
-                <p>
-                  For travelers currently on adventures, we provide
-                  round-the-clock emergency assistance
-                </p>
-                <div class="flex-center flex-wrap gap-4">
-                  <a href="tel:+1555911HELP" class="cta-button secondary" aria-describedby="emergency-desc">
-                    Emergency: +1 (555) 911-HELP
-                  </a>
-                  <div id="emergency-desc" class="sr-only">24/7 emergency hotline for travelers on active expeditions</div>
-                </div>
+      <!-- ============================================
+           FAQ
+           ============================================ -->
+      <section class="content-section" aria-labelledby="faq-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="faq-heading"><span class="h-num">04 /</span> Five things people <em>ask first.</em></h2>
+            <p class="section-subtitle">If your question isn't here, the inquiry form will get a longer answer back to you within a day.</p>
+          </div>
+
+          <div class="faq-container" role="region" aria-label="Frequently asked questions">
+            <div class="faq-item">
+              <input type="checkbox" id="faq1" class="faq-toggle" />
+              <label for="faq1" class="faq-question" role="button" aria-expanded="false" aria-controls="faq1-answer">
+                What's included in the trip price?
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </label>
+              <div id="faq1-answer" class="faq-answer" role="region" aria-labelledby="faq1">
+                <p>Accommodation, all meals, in-region transport, certified guides, cultural programming, gear-library access, and verified carbon-offset contributions. Excluded: international flights, personal technical kit, travel insurance, and visas.</p>
               </div>
             </div>
-          </section>
+
+            <div class="faq-item">
+              <input type="checkbox" id="faq2" class="faq-toggle" />
+              <label for="faq2" class="faq-question" role="button" aria-expanded="false" aria-controls="faq2-answer">
+                What fitness level do I need?
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </label>
+              <div id="faq2-answer" class="faq-answer" role="region" aria-labelledby="faq2">
+                <p>We grade every route T1 to T5 — see the spec sheet on the <a href="hikes.html">expeditions catalogue</a>. T2 routes suit motivated first-timers; T5 routes require months of altitude conditioning and recent multi-day trekking experience. We'll never sell you above your grade.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <input type="checkbox" id="faq3" class="faq-toggle" />
+              <label for="faq3" class="faq-question" role="button" aria-expanded="false" aria-controls="faq3-answer">
+                How far ahead should I book?
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </label>
+              <div id="faq3-answer" class="faq-answer" role="region" aria-labelledby="faq3">
+                <p>3–6 months is comfortable. Permit-restricted routes (Everest, Annapurna, Toubkal) need 6–8 months minimum. Cancellation slots open occasionally — we maintain a short-notice list, ask about it.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <input type="checkbox" id="faq4" class="faq-toggle" />
+              <label for="faq4" class="faq-question" role="button" aria-expanded="false" aria-controls="faq4-answer">
+                Travel insurance — required?
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </label>
+              <div id="faq4-answer" class="faq-answer" role="region" aria-labelledby="faq4">
+                <p>Mandatory. Coverage must include medical, evacuation (helicopter if applicable), and trip cancellation. We can introduce you to two providers who specialise in adventure travel and don't have small-print exclusions for altitudes above 4,500 m.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <input type="checkbox" id="faq5" class="faq-toggle" />
+              <label for="faq5" class="faq-question" role="button" aria-expanded="false" aria-controls="faq5-answer">
+                Dietary requirements?
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </label>
+              <div id="faq5-answer" class="faq-answer" role="region" aria-labelledby="faq5">
+                <p>Yes. Vegetarian, vegan, gluten-free, halal, kosher — all accommodated when you tell us at booking. We coordinate directly with each host community 4 weeks before departure.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+           EMERGENCY STRIP — Pin "alert" slab (semantic urgency)
+           ============================================ -->
+      <section class="newsletter-section alert-bg" aria-labelledby="emergency-heading">
+        <div class="container">
+          <div class="newsletter-content">
+            <h2 id="emergency-heading"><span class="h-num">05 /</span> For travellers <em>currently on-route.</em></h2>
+            <p>24/7 emergency line, satellite-comms backup, evacuation coordination. Reserved for active expeditions and post-departure incidents only — for everything else, the regular phone line above is the right number.</p>
+            <div class="hero-actions">
+              <a href="tel:+1555911HELP" class="cta-button">
+                <span>Call +1 (555) 911-HELP</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1469 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77383 17.3147 6.72534 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27097 2.11999 4.17997C2.095 3.90344 2.12787 3.62474 2.21649 3.36172C2.30512 3.09869 2.44756 2.85715 2.63476 2.65223C2.82196 2.4473 3.05005 2.28326 3.30429 2.17064C3.55853 2.05801 3.83346 2.0001 4.10999 2H7.10999C7.59443 1.99523 8.06384 2.16708 8.43106 2.48353C8.79828 2.79999 9.03794 3.23945 9.10999 3.71997C9.23662 4.68004 9.47144 5.62273 9.80999 6.52997C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.63997L8.08999 9.90997C9.51355 12.4135 11.5864 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0554 17.47 14.19C18.3773 14.5285 19.32 14.7634 20.28 14.89C20.7658 14.9626 21.2094 15.2066 21.5265 15.5801C21.8437 15.9537 22.0122 16.4309 22 16.92Z" stroke="currentColor" stroke-width="2.5"/>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -546,49 +416,16 @@
       <div class="container footer-content">
         <div class="footer-section">
           <h3>Adventure Trails Hikes</h3>
-          <p>
-            Transformative hikes in nature with cultural immersion and
-            sustainable values.
-          </p>
+          <p>Extreme expeditions, cultural immersion, sustainable values. Field-tested since 2015.</p>
           <div class="social-links">
             <a href="#" aria-label="Follow us on Facebook">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                />
-              </svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
             <a href="#" aria-label="Follow us on Instagram">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.596-3.205-1.539l.643-.643c.588.735 1.48 1.206 2.562 1.206c1.789 0 3.24-1.451 3.24-3.24s-1.451-3.24-3.24-3.24c-1.082 0-1.974.471-2.562 1.206l-.643-.643c.757-.943 1.908-1.539 3.205-1.539c2.297 0 4.157 1.86 4.157 4.157s-1.86 4.157-4.157 4.157z"
-                />
-              </svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.620 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.596-3.205-1.539l.643-.643c.588.735 1.48 1.206 2.562 1.206c1.789 0 3.24-1.451 3.24-3.24s-1.451-3.24-3.24-3.24c-1.082 0-1.974.471-2.562 1.206l-.643-.643c.757-.943 1.908-1.539 3.205-1.539c2.297 0 4.157 1.86 4.157 4.157s-1.86 4.157-4.157 4.157z"/></svg>
             </a>
             <a href="#" aria-label="Follow us on Twitter">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
-                />
-              </svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
             </a>
           </div>
         </div>
@@ -621,12 +458,11 @@
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 Adventure Trails Hikes. All rights reserved.</p>
+      <div class="footer-bottom container">
+        <p>&copy; 2025 Adventure Trails Hikes — All rights reserved.</p>
       </div>
     </footer>
 
-    <!-- JavaScript for interactivity -->
     <script src="./scripts/main.js" defer></script>
   </body>
 </html>
