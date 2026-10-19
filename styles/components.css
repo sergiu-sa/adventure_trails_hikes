@@ -577,9 +577,9 @@ legend {
   color: var(--color-snow);
 }
 .testimonials-section h2::before { background: var(--color-ridge); }
-.testimonials-section .testimonials-section .testimonials-section .testimonial-grid {
+.testimonial-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: var(--space-md);
   margin-top: var(--space-2xl);
 }
@@ -694,6 +694,9 @@ legend {
   text-transform: uppercase;
   color: var(--color-stone);
 }
+
+/* Stone on Forest is 3.55:1 at 11px; snow-deep reads at 5.35:1 */
+.testimonials-section .testimonial-author p { color: var(--color-snow-deep); }
 
 /* ===================================
    TIMELINE — horizontal-leaning, hairline
@@ -1167,7 +1170,8 @@ legend {
 }
 .newsletter-section.primary-bg h2 { color: var(--color-snow); }
 .newsletter-section.alert-bg h2     { color: var(--color-snow); }
-.newsletter-section.alert-bg .newsletter-section.primary-bg .newsletter-section p {
+/* Default (ink) variant only; primary-bg and alert-bg keep their own type */
+.newsletter-section:not(.primary-bg):not(.alert-bg) p {
   color: var(--color-stone);
   margin-bottom: var(--space-xl);
   font-size: 1rem;
@@ -1767,16 +1771,7 @@ h2 em,
   color: var(--color-ridge);
 }
 
-.hero .chapter-num,
-.page-header .hero .chapter-num::after,
-.page-header .hero .chapter-num strong,
-.page-header /* ===================================
-   MANIFESTO — three full-screen statement panels
-   =================================== */
-.manifesto-screen.bg-ink .manifesto-screen.bg-ink @media (max-width: 900px) {
-  }
-
-.manifesto-screen.bg-ink .manifesto-screen.bg-ink /* ===================================
+/* ===================================
    FEATURED EXPEDITION — Depth slab (one chromatic
    moment per index page; reads as deep valley/dusk)
    =================================== */
@@ -1854,7 +1849,7 @@ h2 em,
   gap: var(--space-2xl);
 }
 
-.featured-info .featured-info .featured-info .featured-headline {
+.featured-headline {
   font-family: var(--font-display);
   text-transform: uppercase;
   font-size: clamp(2rem, 4vw, 3.5rem);
@@ -1892,6 +1887,10 @@ h2 em,
   flex-direction: column;
   gap: 4px;
 }
+
+/* The sheet draws the outer edge; drop the cell borders that would double it */
+.spec-row:nth-child(2n) { border-right: 0; }
+.spec-row:nth-last-child(-n+2) { border-bottom: 0; }
 
 .spec-label {
   font-family: var(--font-mono);
@@ -1935,6 +1934,12 @@ h2 em,
   }
   .featured-info { padding: var(--space-2xl) var(--space-xl); }
   .spec-sheet { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 415px) {
+  /* Keeps "MAR–OCT" on one line down to 360px */
+  .spec-row { padding: var(--space-md); }
+  .spec-value { font-size: 1.25rem; }
 }
 
 /* ===================================
@@ -2041,7 +2046,7 @@ h2 em,
   justify-content: center;
 }
 
-.editorial-text .editorial-text h3 {
+.editorial-text h3 {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3.5vw, 3rem);
   text-transform: uppercase;
@@ -2562,7 +2567,6 @@ h2 em,
   margin-bottom: var(--space-sm);
   max-width: 14ch;
 }
-.departures-heading h2 em { color: var(--color-hazard); }
 
 .departures-heading p {
   color: var(--color-stone);
