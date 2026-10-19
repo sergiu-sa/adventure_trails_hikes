@@ -360,7 +360,6 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-  outline: none;
   border-bottom-color: var(--color-hazard);
   border-bottom-width: 2px;
   box-shadow: none;
@@ -460,9 +459,14 @@ legend {
 }
 
 .newsletter-form input:focus {
-  outline: none;
+  outline: none; /* the form's overflow:hidden would clip it; the form draws the ring */
   border-bottom: none;
   background: var(--color-paper);
+}
+
+.newsletter-form:focus-within {
+  outline: 2px solid var(--focus-ring, var(--color-pin));
+  outline-offset: 3px;
 }
 
 .newsletter-form .cta-button {
@@ -480,6 +484,21 @@ legend {
   border-color: var(--color-snow);
   color: var(--color-snow);
   transform: none;
+}
+
+/* Dark surfaces: Ridge fill on hover/focus. Forest or Ink fills sank
+   into the Ink and Forest slabs (2.26:1 or 1:1). */
+.hero .cta-button.primary:hover,
+.hero .cta-button.primary:focus-visible,
+.featured-expedition .cta-button.primary:hover,
+.featured-expedition .cta-button.primary:focus-visible,
+.newsletter-section .cta-button.primary:hover,
+.newsletter-section .cta-button.primary:focus-visible,
+.newsletter-section .newsletter-form .cta-button:hover,
+.newsletter-section .newsletter-form .cta-button:focus-visible {
+  background: var(--color-action-on-dark);
+  border-color: var(--color-action-on-dark);
+  color: var(--color-ink);
 }
 
 /* ===================================
@@ -577,11 +596,16 @@ legend {
   color: var(--color-snow);
 }
 .testimonials-section h2::before { background: var(--color-ridge); }
+/* One column until three fit; auto-fit left a lone third card on tablets */
 .testimonial-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-md);
   margin-top: var(--space-2xl);
+}
+
+@media (min-width: 960px) {
+  .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 .testimonial {
@@ -594,7 +618,12 @@ legend {
   position: relative;
   animation: slideInUp 0.6s ease-out both;
   color: var(--color-bone);
+  /* Column flex so author rows line up across equal-height cards */
+  display: flex;
+  flex-direction: column;
 }
+
+.testimonial .testimonial-content { flex: 1; }
 
 .testimonial::before {
   content: "“";
@@ -939,10 +968,14 @@ legend {
 
 .faq-question:hover {
   border-color: var(--color-ink);
-  background: transparent;
+  background: var(--color-paper);
+  /* Extend the paper fill past the text without changing layout */
+  box-shadow: -12px 0 0 var(--color-paper), 12px 0 0 var(--color-paper);
   color: var(--color-hazard);
   transform: none;
 }
+
+.faq-question:hover .faq-icon { color: var(--color-forest); }
 
 .faq-question:active { transform: none; }
 
@@ -964,7 +997,9 @@ legend {
 .faq-answer {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.25s ease-out, opacity 0.25s ease-out;
+  /* visibility keeps links in a closed answer out of the tab order */
+  visibility: hidden;
+  transition: max-height 0.25s ease-out, opacity 0.25s ease-out, visibility 0.25s;
   background: transparent;
   border-radius: 0;
   margin-top: 0;
@@ -991,6 +1026,7 @@ legend {
 
 .faq-toggle:checked + .faq-question + .faq-answer {
   max-height: 400px;
+  visibility: visible;
   opacity: 1;
   margin-bottom: 0;
 }
@@ -1136,6 +1172,15 @@ legend {
 }
 .newsletter-section::before { top: 0; }
 .newsletter-section::after  { bottom: 0; }
+
+/* The last section sits flush on the footer, whose own stripe is the divider */
+main > .newsletter-section:last-child::after { content: none; }
+
+/* A Pin focus ring falls below 3:1 on these slabs; Snow passes on all of them */
+.newsletter-section.primary-bg,
+.newsletter-section.alert-bg,
+.featured-expedition,
+.testimonials-section { --focus-ring: var(--color-snow); }
 
 .newsletter-section.primary-bg {
   /* Forest "primary" CTA slab — calm trail green.
@@ -1695,6 +1740,43 @@ body.page-transitioning main {
 /* Alternate dot warms to Ridge gold — echoes contour shading on a topo map */
 .marquee-track > span:nth-child(2n)::after { color: var(--color-ridge); }
 
+/* Endless motion needs a way to stop it (WCAG 2.2.2): hover, focus or the toggle */
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track,
+.marquee.is-paused .marquee-track { animation-play-state: paused; }
+
+.marquee-toggle {
+  position: absolute;
+  top: 50%;
+  right: var(--space-md);
+  transform: translateY(-50%);
+  z-index: 2;
+  min-height: 32px;
+  padding: var(--space-xs) var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+  background: var(--color-ink);
+  border: 1px solid var(--color-bone);
+  border-radius: var(--radius-sm);
+  /* Fade the scrolling names out before they reach the button */
+  box-shadow: -32px 0 24px var(--color-ink);
+  cursor: pointer;
+}
+
+.marquee-toggle:hover,
+.marquee-toggle:focus-visible {
+  background: var(--color-action-on-dark);
+  border-color: var(--color-action-on-dark);
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-toggle { display: none; }
+}
+
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -2122,6 +2204,8 @@ h2 em,
   }
   .editorial-block:nth-child(odd) .editorial-image { order: 1; }
   .editorial-image { min-height: 320px; }
+  /* Single column is wider; 14ch wrapped these to four lines */
+  .editorial-text h3 { max-width: 20ch; }
 }
 
 /* ===================================
@@ -3462,10 +3546,19 @@ h2 em,
   margin: 0;
   color: var(--color-ink);
   line-height: 1.4;
+  /* The email address pushed contact 9px wider than phones up to 398px */
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+address a,
+.location-meta .value a {
+  display: inline-block;
+  padding-block: 3px;
 }
 
 @media (max-width: 900px) {
-  .location-grid { grid-template-columns: 1fr; }
+  .location-grid { grid-template-columns: minmax(0, 1fr); }
   .location-figure-stack {
     border-right: none;
     border-bottom: var(--border-hairline);

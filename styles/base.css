@@ -42,6 +42,9 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--space-lg);
 }
 
+/* Long single words ("SUSTAINABILITY") may break rather than push the page sideways */
+h1, h2 { overflow-wrap: break-word; }
+
 h1 {
   font-size: clamp(2.75rem, 9vw, 8rem);
   /* eased letter-spacing — less hammered, more readable at scale */
@@ -187,8 +190,10 @@ address a:focus {
 /* Focus — Pin reserved for a11y signal regardless of theme rebalance */
 *:focus { outline: none; }
 
+/* --focus-ring switches to Snow on Forest, Depth and Pin slabs,
+   where a Pin ring falls below 3:1 (set in components.css) */
 *:focus-visible {
-  outline: 2px solid var(--color-pin);
+  outline: 2px solid var(--focus-ring, var(--color-pin));
   outline-offset: 2px;
 }
 
@@ -196,7 +201,7 @@ button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--color-pin);
+  outline: 2px solid var(--focus-ring, var(--color-pin));
   outline-offset: 2px;
   box-shadow: none;
 }
