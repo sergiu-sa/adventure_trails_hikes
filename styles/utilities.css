@@ -53,7 +53,8 @@
 @media (max-width: 768px) {
   .mobile-menu-btn { display: flex !important; }
 
-  nav {
+  /* Header menu only; the footer nav must stay visible */
+  header nav {
     display: none;
     width: 100vw;
     margin: 0;
@@ -80,7 +81,7 @@
     opacity: 1;
   }
 
-  nav ul {
+  header nav ul {
     flex-direction: column;
     width: 100%;
     padding: 0;
@@ -88,16 +89,16 @@
     gap: 0;
   }
 
-  nav li {
+  header nav li {
     width: 100%;
     text-align: left;
     border: none;
     border-bottom: 1px solid rgba(232, 228, 221, 0.18);
     margin: 0;
   }
-  nav li:last-child { border-bottom: none; }
+  header nav li:last-child { border-bottom: none; }
 
-  nav a {
+  header nav a {
     font-family: var(--font-mono);
     font-size: 0.875rem;
     letter-spacing: 0.12em;
@@ -108,8 +109,8 @@
     padding: var(--space-md) var(--space-lg);
   }
 
-  nav a:focus,
-  nav a:hover {
+  header nav a:focus,
+  header nav a:hover {
     background: var(--color-forest);
     color: var(--color-snow);
     border-left: 4px solid var(--color-snow);
@@ -117,7 +118,7 @@
 
   /* Active row reads as "you are here" via gold rule + bold gold text;
      no Forest fill, which would overpower neighbouring rows */
-  nav a.active {
+  header nav a.active {
     background: transparent;
     color: var(--color-ridge);
     border-left: 4px solid var(--color-ridge);
@@ -198,8 +199,10 @@
   .hero-actions { flex-direction: column; gap: var(--space-md); }
   .hero-stats   { grid-template-columns: 1fr 1fr; gap: var(--space-md); }
 
-  .footer-content { text-align: center; }
-  .social-links   { justify-content: center; }
+  /* One left edge for every footer column, on the container gutter */
+  .footer-section { padding-left: 0; padding-right: 0; }
+  /* Wrap the copyright before it reaches the back-to-top button */
+  .footer-bottom p { padding-right: calc(44px + var(--space-lg)); }
 
   .timeline { margin-left: var(--space-lg); }
   .timeline::before { left: 0; }
@@ -239,7 +242,7 @@
    =================================== */
 @media (min-width: 769px) {
   .mobile-menu-btn { display: none !important; }
-  nav {
+  header nav {
     display: block !important;
     position: static;
     width: auto;
@@ -250,7 +253,7 @@
     padding: 0;
     transition: none;
   }
-  nav ul { flex-direction: row; gap: var(--space-xs); }
+  header nav ul { flex-direction: row; gap: var(--space-xs); }
 }
 
 /* ===================================
@@ -264,9 +267,8 @@
   }
   .logo { font-size: 1rem; gap: var(--space-xs); }
 
-  main  { padding-top: 90px; }
-  .hero { padding-top: 90px; min-height: 60vh; }
-  .hero h1 { font-size: 1.5rem; margin-bottom: var(--space-md); }
+  .hero { min-height: 60vh; }
+  .hero h1 { font-size: 3rem; margin-bottom: var(--space-md); }
 
   .contact-form { padding: var(--space-lg); }
   .faq-question { padding: var(--space-md); }

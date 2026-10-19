@@ -231,6 +231,17 @@
     });
   }
 
+  function initMarqueeToggle() {
+    const marquee = document.querySelector('.marquee');
+    const toggle = marquee && marquee.querySelector('.marquee-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', function() {
+      const paused = marquee.classList.toggle('is-paused');
+      toggle.querySelector('.marquee-toggle-label').textContent = paused ? 'Play' : 'Pause';
+    });
+  }
+
   function initCounterAnimation() {
     const stats = document.querySelectorAll('.hero-stat-number, .achievement-number');
 
@@ -521,6 +532,7 @@
     initScrollAnimations();
     initHeaderScroll();
     initMobileMenu();
+    initMarqueeToggle();
     initCounterAnimation();
     initFormValidation();
     initParallax();

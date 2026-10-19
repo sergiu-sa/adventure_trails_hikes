@@ -125,10 +125,20 @@ header.header-hidden {
 }
 
 .logo:hover {
-  color: var(--color-hazard);
   transform: none;
   text-decoration: none;
 }
+
+/* Hover draws the topo stripe under the wordmark */
+.logo span {
+  background: var(--gradient-topo-stripe) no-repeat 0 100% / 0 3px;
+  padding-bottom: 4px;
+  margin-bottom: -4px;
+  transition: background-size var(--transition-slow);
+}
+
+.logo:hover span,
+.logo:focus-visible span { background-size: 100% 3px; }
 
 .logo-icon-mask {
   width: 32px;
@@ -141,9 +151,9 @@ header.header-hidden {
   transition: var(--transition-fast);
 }
 
-.logo:hover .logo-icon-mask {
-  background-color: var(--color-hazard);
-  transform: none;
+.logo:hover .logo-icon-mask,
+.logo:focus-visible .logo-icon-mask {
+  transform: rotate(-12deg);
 }
 
 /* Mobile menu button */
@@ -194,8 +204,9 @@ header.header-hidden {
   transform: translateY(-6px) rotate(-45deg);
 }
 
-/* Navigation — mono uppercase, hard rectangular hover */
-nav ul {
+/* Navigation — mono uppercase, hard rectangular hover.
+   Scoped to the header so the footer nav keeps its own layout. */
+header nav ul {
   display: flex;
   list-style: none;
   gap: 0;
@@ -204,9 +215,9 @@ nav ul {
   padding: 0;
 }
 
-nav li { margin: 0; }
+header nav li { margin: 0; }
 
-nav a {
+header nav a {
   color: var(--color-ink);
   text-decoration: none;
   font-family: var(--font-mono);
@@ -221,13 +232,13 @@ nav a {
   border-left: 1px solid var(--color-ink);
 }
 
-nav li:first-child a { border-left: none; }
+header nav li:first-child a { border-left: none; }
 
-nav a::before { content: none; }
+header nav a::before { content: none; }
 
-nav a:hover,
-nav a:focus,
-nav a.active {
+header nav a:hover,
+header nav a:focus,
+header nav a.active {
   color: var(--color-bone);
   background: var(--color-ink);
   font-weight: var(--font-weight-bold);
@@ -235,7 +246,7 @@ nav a.active {
   text-decoration: none;
 }
 
-nav a.active {
+header nav a.active {
   /* Forest active state — calm trail green, not red alarm */
   background: var(--color-forest);
   color: var(--color-snow);
@@ -303,6 +314,9 @@ nav a.active {
   width: 100%;
   animation: fadeInUp 0.6s ease-out;
 }
+
+/* .hero-content carries the gutter, so the home hero lines up with the logo and inner heroes */
+.hero > .container { padding-left: 0; padding-right: 0; }
 
 .hero h1,
 .page-header h1 {
@@ -413,9 +427,18 @@ nav a.active {
   bottom: var(--space-lg);
   left: 50%;
   transform: translateX(-50%);
-  animation: bounce 2.4s infinite;
+  /* Two bounces, then rest — no endless idle motion */
+  animation: bounce 2.4s 2;
   cursor: pointer;
   z-index: 3;
+  /* 40px hit area around the 18px arrow; translateX(-50%) keeps it centred */
+  padding: 11px;
+  margin: -11px 0;
+}
+
+.scroll-indicator:hover .scroll-arrow,
+.scroll-indicator:focus-visible .scroll-arrow {
+  border-color: var(--color-ridge);
 }
 
 .scroll-arrow {
@@ -434,7 +457,7 @@ footer {
   background: var(--color-ink);
   color: var(--color-snow);
   padding: calc(var(--space-4xl) + 4px) 0 var(--space-lg);
-  margin-top: var(--space-5xl);
+  margin-top: 0;
   position: relative;
   overflow: hidden;
   border-top: none;
@@ -508,6 +531,7 @@ footer::after { content: none; }
 .footer-section nav {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 0;
 }
 
@@ -528,11 +552,12 @@ footer::after { content: none; }
 
 .footer-section a::before { content: none; }
 
+/* Ridge on Ink (7.44:1); Forest here was 2.26:1 and vanished */
 .footer-section a:hover,
 .footer-section a:focus {
-  color: var(--color-hazard);
+  color: var(--color-action-on-dark);
   transform: none;
-  border-bottom-color: var(--color-hazard);
+  border-bottom-color: var(--color-action-on-dark);
 }
 
 .footer-section a:hover::before,
@@ -564,8 +589,8 @@ footer::after { content: none; }
 
 .social-links a:hover,
 .social-links a:focus {
-  background: var(--color-hazard);
-  border-color: var(--color-hazard);
+  background: var(--color-action-on-dark);
+  border-color: var(--color-action-on-dark);
   color: var(--color-ink);
   transform: none;
   box-shadow: none;
@@ -594,8 +619,8 @@ footer::after { content: none; }
 }
 
 .cert-badge:hover {
-  background: var(--color-hazard);
-  border-color: var(--color-hazard);
+  background: var(--color-action-on-dark);
+  border-color: var(--color-action-on-dark);
   color: var(--color-ink);
   transform: none;
 }
