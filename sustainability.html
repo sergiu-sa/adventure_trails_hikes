@@ -12,8 +12,12 @@
     <meta property="og:title" content="Sustainability | Adventure Trails Hikes" />
     <meta property="og:description" content="The carbon ledger, six commitments, and signed pledge behind every Adventure Trails expedition." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://adventuretrails.com/sustainability.html" />
-    <meta property="og:image" content="https://adventuretrails.com/images/forestation.jpg" />
+    <meta property="og:url" content="https://adventuretrailshikes.netlify.app/sustainability.html" />
+    <meta property="og:image" content="https://adventuretrailshikes.netlify.app/images/forestation.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://adventuretrailshikes.netlify.app/sustainability.html" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 
     <title>Sustainability | Adventure Trails Hikes</title>
 
@@ -26,7 +30,14 @@
         }
       } catch (e) {}
     </script>
-    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Geist:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/layout.css" />
+    <link rel="stylesheet" href="./styles/components.css" />
+    <link rel="stylesheet" href="./styles/utilities.css" />
   </head>
   <body>
     <!-- ============================================
@@ -81,9 +92,13 @@
            ============================================ -->
       <section
         class="page-header"
-        style="background-image: url('./images/forestation.jpg')"
         aria-labelledby="page-heading"
       >
+        <picture class="hero-photo">
+          <source type="image/avif" srcset="./images/opt/forestation-480.avif" />
+          <source type="image/webp" srcset="./images/opt/forestation-480.webp" />
+          <img src="./images/forestation.jpg" alt="" width="480" height="640" fetchpriority="high" />
+        </picture>
         <div class="container">
           <h1 id="page-heading"><span class="h-num">04 /</span> Hike <em>lightly.</em></h1>
           <p>Carbon-negative · Zero landfill · 75% retained locally</p>
@@ -283,12 +298,12 @@
 
           <div class="card-grid">
             <article class="card">
-              <div
-                class="card-image"
-                style="background-image: url('./images/forestation.jpg')"
-                role="img"
-                aria-label="Andes reforestation project"
-              >
+              <div class="card-image">
+                <picture>
+                  <source type="image/avif" srcset="./images/opt/forestation-480.avif" />
+                  <source type="image/webp" srcset="./images/opt/forestation-480.webp" />
+                  <img src="./images/forestation.jpg" alt="Andes reforestation project" width="480" height="640" loading="lazy" />
+                </picture>
                 <span>Andes / Peru</span>
               </div>
               <div class="card-content">
@@ -302,12 +317,8 @@
               </div>
             </article>
             <article class="card">
-              <div
-                class="card-image"
-                style="background-image: url('./images/card-sustainability.jpg')"
-                role="img"
-                aria-label="Morocco clean water initiative"
-              >
+              <div class="card-image">
+                <img src="./images/card-sustainability.jpg" alt="Morocco clean water initiative" width="640" height="360" loading="lazy" />
                 <span>Atlas / Morocco</span>
               </div>
               <div class="card-content">
@@ -321,12 +332,8 @@
               </div>
             </article>
             <article class="card">
-              <div
-                class="card-image"
-                style="background-image: url('./images/wildlife.jpg')"
-                role="img"
-                aria-label="Wildlife corridor protection"
-              >
+              <div class="card-image">
+                <img src="./images/wildlife.jpg" alt="Wildlife corridor protection" width="966" height="644" loading="lazy" />
                 <span>Patagonia / Chile</span>
               </div>
               <div class="card-content">

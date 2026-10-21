@@ -21,16 +21,22 @@ This project demonstrates semantic HTML, modular CSS architecture, accessibility
 ├── gallery.html
 ├── contact.html
 ├── README.md
+├── favicon.svg
+├── favicon.ico         # 32px fallback for browsers without SVG favicons
+├── apple-touch-icon.png
+├── robots.txt
+├── sitemap.xml
+├── _headers            # Netlify cache headers
 ├── images/
+│   └── opt/            # resized AVIF/WebP hero photos
 ├── scripts/
 │   └── main.js
-└── styles/
+└── styles/             # linked from each page in this order
     ├── variables.css
     ├── base.css
     ├── layout.css
     ├── components.css
-    ├── utilities.css
-    └── main.css
+    └── utilities.css
 ```
 
 ## Features
@@ -38,7 +44,8 @@ This project demonstrates semantic HTML, modular CSS architecture, accessibility
 - Fully responsive (mobile, tablet, desktop)
 - Modular CSS — design tokens, base, layout, components, utilities
 - Semantic HTML5 + accessibility (skip link, focus rings, ARIA roles, prefers-reduced-motion)
-- SEO: Open Graph meta, alt attributes, headings hierarchy
+- SEO: Open Graph and Twitter card meta, canonical URLs, sitemap, robots.txt, alt attributes, headings hierarchy
+- Speed: stylesheets linked directly (no `@import` chain), hero photos as `<picture>` with AVIF/WebP and `fetchpriority="high"`, `loading="lazy"` below the first screen, hikes hover photos fetched on first hover
 - First-visit intro with a cartographic radar-pulse motif (about 0.6 s, once per browser session, timed in CSS so it never blocks the page)
 - Cross-fade between pages with the browser's built-in View Transitions (no library; other browsers navigate normally)
 - Reduced motion respected: no intro, page fades, smooth scrolling, counters, parallax or scroll reveals
@@ -91,6 +98,17 @@ Headlines on every page (and major sections) are numbered with a `01 /` prefix i
 - Asymmetric 70/30 splits (origin prose + metadata column on About; editorial blocks on home)
 - Photo-led heroes with grain overlay + Forest dusk gradient at the bottom
 - Cartographic first-visit intro: concentric contour rings (one per palette colour) pulsing outward from a Pin marker, brand wordmark in Ridge gold, "Plotting route…" status in mono
+
+### Hero images
+
+The heroes load from `images/opt/`, made from the originals in `images/` at 640, 1024 and 1600 px wide, plus the original's own width (never wider). On macOS:
+
+```sh
+sips -s format avif -s formatOptions 40 --resampleWidth 1024 images/about.jpg --out images/opt/about-1024.avif
+cwebp -q 60 -m 6 -resize 1024 0 images/about.jpg -o images/opt/about-1024.webp
+```
+
+If a file comes out larger than its JPEG (`hero-home-1000.webp` did), lower the quality. Images are cached for a week (`_headers`), so a replaced photo can take that long to reach returning visitors.
 
 ---
 

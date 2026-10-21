@@ -408,20 +408,22 @@
   }
 
   function initParallax() {
-    const hero = document.querySelector('.hero, .page-header');
-    if (!hero) return;
+    const photo = document.querySelector('.hero-photo');
+    if (!photo) return;
     if (window.innerWidth < 768 || reduceMotion.matches) return;
 
     let ticking = false;
 
+    // layout.css turns this into the capped 0.3x drift
+    function update() {
+      photo.style.setProperty('--scroll', window.scrollY);
+      ticking = false;
+    }
+    update();
+
     window.addEventListener('scroll', function() {
       if (!ticking) {
-        window.requestAnimationFrame(function() {
-          const scrolled = window.scrollY;
-          const rate = scrolled * 0.3;
-          hero.style.backgroundPositionY = `calc(50% + ${rate}px)`;
-          ticking = false;
-        });
+        window.requestAnimationFrame(update);
         ticking = true;
       }
     });
@@ -471,6 +473,18 @@
     });
   }
 
+  // Hikes rows only show their photo on hover/focus, so it isn't fetched until then
+  function initHikePhotos() {
+    document.querySelectorAll('.hike-row-bg[data-photo]').forEach(function(bg) {
+      const row = bg.closest('.hike-row');
+      function load() {
+        bg.style.backgroundImage = `url('${bg.dataset.photo}')`;
+      }
+      row.addEventListener('pointerenter', load, { once: true });
+      row.addEventListener('focusin', load, { once: true });
+    });
+  }
+
 
   function init() {
     initScrollIndicator();
@@ -485,6 +499,7 @@
     initParallax();
     initProgressIndicator();
     initCardActions();
+    initHikePhotos();
   }
 
   if (document.readyState === 'loading') {

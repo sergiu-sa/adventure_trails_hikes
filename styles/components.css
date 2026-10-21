@@ -203,8 +203,6 @@
 .card-image {
   width: 100%;
   height: var(--card-image-height);
-  background-size: cover;
-  background-position: center;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -240,6 +238,24 @@
   align-items: center;
   gap: var(--space-sm);
   font-size: 0.75rem;
+}
+
+/* Photos fill their frame and sit under its gradient, grain and tags */
+.card-image,
+.featured-photo,
+.editorial-image {
+  isolation: isolate;
+}
+
+.card-image img,
+.featured-photo img,
+.editorial-image img {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .card-content {
@@ -1874,8 +1890,6 @@ h2 em,
 }
 
 .featured-photo {
-  background-size: cover;
-  background-position: center;
   min-height: 620px;
   position: relative;
   border-right: 1px solid var(--color-bone);
@@ -2135,8 +2149,6 @@ h2 em,
 }
 
 .editorial-image {
-  background-size: cover;
-  background-position: center;
   min-height: 460px;
   position: relative;
 }

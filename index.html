@@ -17,8 +17,12 @@
     <meta property="og:title" content="Adventure Trails Hikes | Extreme Expeditions, Cultural Immersion" />
     <meta property="og:description" content="Extreme expeditions blended with cultural immersion. Discover nature, traditions, and sustainability in one journey." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://adventuretrails.com" />
-    <meta property="og:image" content="https://adventuretrails.com/images/hero-home.jpg" />
+    <meta property="og:url" content="https://adventuretrailshikes.netlify.app/" />
+    <meta property="og:image" content="https://adventuretrailshikes.netlify.app/images/hero-home.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://adventuretrailshikes.netlify.app/" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 
     <title>Adventure Trails Hikes | Extreme Expeditions, Cultural Immersion</title>
 
@@ -31,7 +35,14 @@
         }
       } catch (e) {}
     </script>
-    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Geist:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/layout.css" />
+    <link rel="stylesheet" href="./styles/components.css" />
+    <link rel="stylesheet" href="./styles/utilities.css" />
   </head>
   <body>
     <!-- ============================================
@@ -86,9 +97,13 @@
            ============================================ -->
       <section
         class="hero"
-        style="background-image: url('./images/hero-home.jpg')"
         aria-labelledby="hero-heading"
       >
+        <picture class="hero-photo">
+          <source type="image/avif" srcset="./images/opt/hero-home-640.avif 640w, ./images/opt/hero-home-1000.avif 1000w" sizes="100vw" />
+          <source type="image/webp" srcset="./images/opt/hero-home-640.webp 640w, ./images/opt/hero-home-1000.webp 1000w" sizes="100vw" />
+          <img src="./images/hero-home.jpg" alt="" width="1000" height="1500" fetchpriority="high" />
+        </picture>
         <div class="container">
           <div class="hero-content">
             <h1 id="hero-heading"><span class="h-num">01 /</span> Explore the world <em>on foot.</em></h1>
@@ -173,12 +188,8 @@
            ============================================ -->
       <section class="featured-expedition" aria-labelledby="featured-heading">
         <div class="featured-grid">
-          <div
-            class="featured-photo"
-            style="background-image: url('./images/peru_andes_heritage.jpg')"
-            role="img"
-            aria-label="Peru Andes Heritage expedition photograph"
-          >
+          <div class="featured-photo">
+            <img src="./images/peru_andes_heritage.jpg" alt="Peru Andes Heritage expedition photograph" width="960" height="640" loading="lazy" />
             <span class="featured-tag">Featured · Departing March</span>
           </div>
 
@@ -290,12 +301,8 @@
               </p>
               <span class="badge">UIAGM Certified · Wilderness Medicine</span>
             </div>
-            <div
-              class="editorial-image"
-              style="background-image: url('./images/guidance.jpg')"
-              role="img"
-              aria-label="Mountain guide leading a group through alpine terrain"
-            >
+            <div class="editorial-image">
+              <img src="./images/guidance.jpg" alt="Mountain guide leading a group through alpine terrain" width="640" height="359" loading="lazy" />
               <span class="photo-tag">Annapurna · 2024</span>
             </div>
           </article>
@@ -311,12 +318,8 @@
               </p>
               <span class="badge">Community Verified</span>
             </div>
-            <div
-              class="editorial-image"
-              style="background-image: url('./images/tradition.jpg')"
-              role="img"
-              aria-label="Cultural exchange with local hosts"
-            >
+            <div class="editorial-image">
+              <img src="./images/tradition.jpg" alt="Cultural exchange with local hosts" width="1280" height="853" loading="lazy" />
               <span class="photo-tag">Sacred Valley · 2023</span>
             </div>
           </article>
@@ -332,12 +335,8 @@
               </p>
               <span class="badge">B-Corp · Leave No Trace</span>
             </div>
-            <div
-              class="editorial-image"
-              style="background-image: url('./images/card-sustainability.jpg')"
-              role="img"
-              aria-label="Sustainability and reforestation field work"
-            >
+            <div class="editorial-image">
+              <img src="./images/card-sustainability.jpg" alt="Sustainability and reforestation field work" width="640" height="360" loading="lazy" />
               <span class="photo-tag">Patagonia · 2024</span>
             </div>
           </article>

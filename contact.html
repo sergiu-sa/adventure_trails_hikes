@@ -12,8 +12,12 @@
     <meta property="og:title" content="Contact | Adventure Trails Hikes" />
     <meta property="og:description" content="Field office in Boulder, Colorado. Inquire by form, phone, or email. 24-hour reply window." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://adventuretrails.com/contact.html" />
-    <meta property="og:image" content="https://adventuretrails.com/images/contact.jpg" />
+    <meta property="og:url" content="https://adventuretrailshikes.netlify.app/contact.html" />
+    <meta property="og:image" content="https://adventuretrailshikes.netlify.app/images/contact.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://adventuretrailshikes.netlify.app/contact.html" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 
     <title>Contact | Adventure Trails Hikes</title>
 
@@ -26,7 +30,14 @@
         }
       } catch (e) {}
     </script>
-    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Geist:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/layout.css" />
+    <link rel="stylesheet" href="./styles/components.css" />
+    <link rel="stylesheet" href="./styles/utilities.css" />
   </head>
   <body>
     <!-- ============================================
@@ -81,9 +92,13 @@
            ============================================ -->
       <section
         class="page-header"
-        style="background-image: url('./images/contact.jpg')"
         aria-labelledby="page-heading"
       >
+        <picture class="hero-photo">
+          <source type="image/avif" srcset="./images/opt/contact-427.avif" />
+          <source type="image/webp" srcset="./images/opt/contact-427.webp" />
+          <img src="./images/contact.jpg" alt="" width="427" height="640" fetchpriority="high" />
+        </picture>
         <div class="container">
           <h1 id="page-heading"><span class="h-num">06 /</span> Plan your <em>next route.</em></h1>
           <p>Inquire by form, email, phone · Reply within 24h</p>
