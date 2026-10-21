@@ -13,9 +13,12 @@
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
   background: var(--color-bone);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 body {

@@ -17,9 +17,16 @@
 
     <title>Expeditions | Adventure Trails Hikes</title>
 
+    <!-- First page of a visit only: plays the "Plotting route" intro (styles/components.css) -->
+    <script>
+      try {
+        if (!sessionStorage.getItem('at-intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          sessionStorage.setItem('at-intro', '1');
+          document.documentElement.classList.add('intro');
+        }
+      } catch (e) {}
+    </script>
     <link rel="stylesheet" href="./styles/main.css" />
-      <!-- No-JS fallback: loader stays hidden so content is visible -->
-    <noscript><style>.page-loader{display:none!important}</style></noscript>
   </head>
   <body>
     <!-- ============================================
