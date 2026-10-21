@@ -157,8 +157,6 @@ header.header-hidden {
 }
 
 /* Mobile menu button */
-.mobile-menu-toggle { display: none; }
-
 .mobile-menu-btn {
   display: none;
   flex-direction: column;
@@ -194,13 +192,13 @@ header.header-hidden {
   transform-origin: center;
 }
 
-.mobile-menu-toggle:checked ~ .header-container .mobile-menu-btn .hamburger-line:nth-child(1) {
+.mobile-menu-btn[aria-expanded="true"] .hamburger-line:nth-child(1) {
   transform: translateY(6px) rotate(45deg);
 }
-.mobile-menu-toggle:checked ~ .header-container .mobile-menu-btn .hamburger-line:nth-child(2) {
+.mobile-menu-btn[aria-expanded="true"] .hamburger-line:nth-child(2) {
   opacity: 0;
 }
-.mobile-menu-toggle:checked ~ .header-container .mobile-menu-btn .hamburger-line:nth-child(3) {
+.mobile-menu-btn[aria-expanded="true"] .hamburger-line:nth-child(3) {
   transform: translateY(-6px) rotate(-45deg);
 }
 
@@ -231,8 +229,6 @@ header nav a {
   text-transform: uppercase;
   border-left: 1px solid var(--color-ink);
 }
-
-header nav li:first-child a { border-left: none; }
 
 header nav a::before { content: none; }
 
@@ -593,39 +589,6 @@ footer::after { content: none; }
 .footer-section a:hover::before,
 .footer-section a:focus::before { content: none; }
 
-/* Social links — square outline, invert on hover */
-.social-links {
-  display: flex;
-  gap: var(--space-sm);
-  margin-top: var(--space-lg);
-}
-
-.social-links a {
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border: 1px solid var(--color-bone);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-fast);
-  margin-bottom: 0;
-  padding: 0;
-  color: var(--color-bone);
-}
-
-.social-links a::before { display: none; }
-
-.social-links a:hover,
-.social-links a:focus {
-  background: var(--color-action-on-dark);
-  border-color: var(--color-action-on-dark);
-  color: var(--color-ink);
-  transform: none;
-  box-shadow: none;
-}
-
 /* Cert badges — uppercase mono, hard rectangular */
 .certification-badges {
   display: flex;
@@ -674,6 +637,8 @@ footer::after { content: none; }
   font-size: 0.75rem;
 }
 
+.footer-bottom p + p { margin-top: var(--space-xs); }
+
 /* Footer responsive */
 @media (max-width: 1024px) {
   .footer-content {
@@ -691,7 +656,6 @@ footer::after { content: none; }
     text-align: left;
   }
   .footer-section:first-child h3::after { display: none; }
-  .social-links { justify-content: flex-start; }
 }
 
 /* Hero stats — sustainability variant */

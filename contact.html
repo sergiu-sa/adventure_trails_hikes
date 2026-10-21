@@ -59,18 +59,17 @@
     <a href="#main" class="skip-link">Skip to main content</a>
 
     <header role="banner">
-      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle" />
       <div class="header-container">
         <a href="index.html" class="logo" aria-label="Adventure Trails Hikes — return to homepage">
           <div class="logo-icon-mask" aria-hidden="true"></div>
           <span>Adventure Trails</span>
         </a>
-        <label for="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <button type="button" class="mobile-menu-btn" aria-expanded="false" aria-controls="main-nav" aria-label="Menu">
           <span class="hamburger-line" aria-hidden="true"></span>
           <span class="hamburger-line" aria-hidden="true"></span>
           <span class="hamburger-line" aria-hidden="true"></span>
-        </label>
-        <nav role="navigation" aria-label="Main navigation">
+        </button>
+        <nav id="main-nav" role="navigation" aria-label="Main navigation">
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -140,7 +139,7 @@
                 <h3>Call Us</h3>
                 <p>Mon–Fri / 9 AM – 6 PM Mountain Time. For travellers currently on expeditions, dial the 24-hour emergency line below.</p>
                 <address>
-                  <a href="tel:+1555ADVENTURE">+1 (555) ADVENTURE</a>
+                  <a href="tel:+13035550142">+1 (303) 555-0142</a>
                 </address>
               </div>
             </article>
@@ -327,7 +326,7 @@
                 <li><span class="label">Elevation</span><span class="value">1,655 m</span></li>
                 <li><span class="label">Hours</span><span class="value">Mon–Sat · 10:00 – 18:00 MT</span></li>
                 <li><span class="label">Email</span><span class="value"><a href="mailto:hello@adventuretrails.com">hello@adventuretrails.com</a></span></li>
-                <li><span class="label">Phone</span><span class="value"><a href="tel:+1555ADVENTURE">+1 (555) ADVENTURE</a></span></li>
+                <li><span class="label">Phone</span><span class="value"><a href="tel:+13035550142">+1 (303) 555-0142</a></span></li>
                 <li><span class="label">Visits</span><span class="value">By appointment</span></li>
               </ul>
 
@@ -420,8 +419,8 @@
             <h2 id="emergency-heading"><span class="h-num">05 /</span> For travellers <em>currently on-route.</em></h2>
             <p>24/7 emergency line, satellite-comms backup, evacuation coordination. Reserved for active expeditions and post-departure incidents only — for everything else, the regular phone line above is the right number.</p>
             <div class="hero-actions">
-              <a href="tel:+1555911HELP" class="cta-button">
-                <span>Call +1 (555) 911-HELP</span>
+              <a href="tel:+13035550199" class="cta-button">
+                <span>Call +1 (303) 555-0199</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1469 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77383 17.3147 6.72534 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27097 2.11999 4.17997C2.095 3.90344 2.12787 3.62474 2.21649 3.36172C2.30512 3.09869 2.44756 2.85715 2.63476 2.65223C2.82196 2.4473 3.05005 2.28326 3.30429 2.17064C3.55853 2.05801 3.83346 2.0001 4.10999 2H7.10999C7.59443 1.99523 8.06384 2.16708 8.43106 2.48353C8.79828 2.79999 9.03794 3.23945 9.10999 3.71997C9.23662 4.68004 9.47144 5.62273 9.80999 6.52997C9.94454 6.88792 9.97366 7.27691 9.8939 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.63997L8.08999 9.90997C9.51355 12.4135 11.5864 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0554 17.47 14.19C18.3773 14.5285 19.32 14.7634 20.28 14.89C20.7658 14.9626 21.2094 15.2066 21.5265 15.5801C21.8437 15.9537 22.0122 16.4309 22 16.92Z" stroke="currentColor" stroke-width="2.5"/>
                 </svg>
@@ -437,17 +436,6 @@
         <div class="footer-section">
           <h3>Adventure Trails Hikes</h3>
           <p>Extreme expeditions, cultural immersion, sustainable values. Field-tested since 2015.</p>
-          <div class="social-links">
-            <a href="#" aria-label="Follow us on Facebook">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="#" aria-label="Follow us on Instagram">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.620 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.596-3.205-1.539l.643-.643c.588.735 1.48 1.206 2.562 1.206c1.789 0 3.24-1.451 3.24-3.24s-1.451-3.24-3.24-3.24c-1.082 0-1.974.471-2.562 1.206l-.643-.643c.757-.943 1.908-1.539 3.205-1.539c2.297 0 4.157 1.86 4.157 4.157s-1.86 4.157-4.157 4.157z"/></svg>
-            </a>
-            <a href="#" aria-label="Follow us on Twitter">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-            </a>
-          </div>
         </div>
         <div class="footer-section">
           <h3>Quick Links</h3>
@@ -464,7 +452,7 @@
           <h3>Contact Info</h3>
           <address>
             <p>Email: <a href="mailto:hello@adventuretrails.com">hello@adventuretrails.com</a></p>
-            <p>Phone: <a href="tel:+1555ADVENTURE">+1 (555) ADVENTURE</a></p>
+            <p>Phone: <a href="tel:+13035550142">+1 (303) 555-0142</a></p>
             <p>Address: 123 Mountain View Blvd<br />Boulder, CO 80301</p>
           </address>
         </div>
@@ -479,7 +467,8 @@
         </div>
       </div>
       <div class="footer-bottom container">
-        <p>&copy; 2025 Adventure Trails Hikes — All rights reserved.</p>
+        <p>&copy; 2015–<span data-year>2026</span> Adventure Trails Hikes · Boulder, CO</p>
+        <p>A fictional company, built as a Noroff student project.</p>
       </div>
     </footer>
 

@@ -224,7 +224,9 @@
             header.classList.remove('scrolled');
           }
 
-          if (currentScroll > lastScroll && currentScroll > 200) {
+          // The open mobile menu hangs off the header, so hiding it would carry the menu away too
+          const menuOpen = header.querySelector('.mobile-menu-btn[aria-expanded="true"]');
+          if (currentScroll > lastScroll && currentScroll > 200 && !menuOpen) {
             header.classList.add('header-hidden');
           } else {
             header.classList.remove('header-hidden');
@@ -239,21 +241,44 @@
   }
 
   function initMobileMenu() {
-    const mobileToggle = document.getElementById('mobile-menu-toggle');
-    const navLinks = document.querySelectorAll('nav a');
+    const toggle = document.querySelector('.mobile-menu-btn');
+    const nav = toggle && document.getElementById(toggle.getAttribute('aria-controls'));
+    if (!nav) return;
 
-    if (!mobileToggle) return;
+    function isOpen() {
+      return toggle.getAttribute('aria-expanded') === 'true';
+    }
 
-    navLinks.forEach(function(link) {
+    function setOpen(open) {
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+
+    toggle.addEventListener('click', function() {
+      setOpen(!isOpen());
+    });
+
+    nav.querySelectorAll('a').forEach(function(link) {
       link.addEventListener('click', function() {
-        mobileToggle.checked = false;
+        setOpen(false);
       });
     });
 
+    // Tabbing past the last link would otherwise put focus on content hidden under the open menu
+    toggle.closest('header').addEventListener('focusout', function(e) {
+      if (isOpen() && !e.currentTarget.contains(e.relatedTarget)) setOpen(false);
+    });
+
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && mobileToggle.checked) {
-        mobileToggle.checked = false;
+      if (e.key === 'Escape' && isOpen()) {
+        setOpen(false);
+        toggle.focus();
       }
+    });
+  }
+
+  function initYear() {
+    document.querySelectorAll('[data-year]').forEach(function(el) {
+      el.textContent = new Date().getFullYear();
     });
   }
 
@@ -493,6 +518,7 @@
     initScrollAnimations();
     initHeaderScroll();
     initMobileMenu();
+    initYear();
     initMarqueeToggle();
     initCounterAnimation();
     initFormValidation();
