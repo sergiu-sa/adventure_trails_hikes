@@ -379,6 +379,16 @@ header nav a.active {
   opacity: 0.85;
 }
 
+.page-header .hero-chip {
+  width: fit-content;
+  margin-top: var(--space-md);
+  padding: 4px 8px;
+  border: 1px solid var(--color-bone);
+  border-radius: var(--radius-md);
+  font-size: 0.6875rem;
+  opacity: 1;
+}
+
 /* Hero CTAs */
 .hero-actions {
   display: flex;
@@ -506,7 +516,7 @@ footer::after { content: none; }
 
 .footer-content {
   display: grid;
-  grid-template-columns: 1.5fr repeat(3, 1fr);
+  grid-template-columns: 1.5fr repeat(2, 1fr);
   gap: 0;
   margin-bottom: var(--space-2xl);
   position: relative;
@@ -588,35 +598,6 @@ footer::after { content: none; }
 
 .footer-section a:hover::before,
 .footer-section a:focus::before { content: none; }
-
-/* Cert badges — uppercase mono, hard rectangular */
-.certification-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
-  margin-top: var(--space-sm);
-}
-
-.cert-badge {
-  background: transparent;
-  color: var(--color-bone);
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--radius-sm);
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border: 1px solid var(--color-bone);
-  transition: var(--transition-fast);
-}
-
-.cert-badge:hover {
-  background: var(--color-action-on-dark);
-  border-color: var(--color-action-on-dark);
-  color: var(--color-ink);
-  transform: none;
-}
 
 .footer-bottom {
   text-align: left;
