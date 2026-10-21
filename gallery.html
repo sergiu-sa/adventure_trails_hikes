@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Eighteen field photographs from six regions — taken on-route by guides and guests during expeditions."
+      content="Eighteen field photographs from six countries, taken on-route by guides and guests during expeditions."
     />
 
     <!-- SEO -->
     <meta property="og:title" content="Gallery | Adventure Trails Hikes" />
-    <meta property="og:description" content="Field photographs from Nepal, Peru, Patagonia, Atlas, the Alps, and the Rockies." />
+    <meta property="og:description" content="Field photographs from Nepal, Peru, Morocco, France, Austria and Canada." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://adventuretrailshikes.netlify.app/gallery.html" />
     <meta property="og:image" content="https://adventuretrailshikes.netlify.app/images/boots.jpg" />
@@ -108,7 +108,7 @@
       <section class="content-section" aria-labelledby="gallery-heading">
         <div class="container">
           <div class="section-header">
-            <h2 id="gallery-heading"><span class="h-num">01 /</span> Eighteen frames, <em>six regions.</em></h2>
+            <h2 id="gallery-heading"><span class="h-num">01 /</span> Eighteen frames, <em>six countries.</em></h2>
             <p class="section-subtitle">Taken by guides and guests on-route. No staged shots, no stock library, no AI. Each frame is captioned with location, photographer, and approximate elevation.</p>
           </div>
 
@@ -118,12 +118,12 @@
               <dd>18</dd>
             </div>
             <div>
-              <dt>Regions</dt>
+              <dt>Countries</dt>
               <dd>06</dd>
             </div>
             <div>
               <dt>Photographers</dt>
-              <dd>09</dd>
+              <dd>06</dd>
             </div>
             <div>
               <dt>Earliest</dt>
@@ -135,7 +135,7 @@
             <input type="radio" id="cat-all"        name="cat-filter" class="filter-input" checked />
             <input type="radio" id="cat-landscapes" name="cat-filter" class="filter-input" />
             <input type="radio" id="cat-culture"    name="cat-filter" class="filter-input" />
-            <input type="radio" id="cat-guides"     name="cat-filter" class="filter-input" />
+            <input type="radio" id="cat-trail"      name="cat-filter" class="filter-input" />
             <input type="radio" id="cat-wildlife"   name="cat-filter" class="filter-input" />
 
             <div class="filter-container">
@@ -143,136 +143,154 @@
                 <label for="cat-all"        class="filter-tab" role="tab" tabindex="0">All</label>
                 <label for="cat-landscapes" class="filter-tab" role="tab" tabindex="0">Landscapes</label>
                 <label for="cat-culture"    class="filter-tab" role="tab" tabindex="0">Culture</label>
-                <label for="cat-guides"     class="filter-tab" role="tab" tabindex="0">Guides</label>
+                <label for="cat-trail"      class="filter-tab" role="tab" tabindex="0">On trail</label>
                 <label for="cat-wildlife"   class="filter-tab" role="tab" tabindex="0">Wildlife</label>
               </div>
             </div>
 
             <div class="gallery-mosaic" id="photo-gallery" role="region" aria-live="polite" aria-label="Photo gallery">
 
-              <figure class="gallery-item filter-item hero" data-category="landscapes" style="background-image: url('./images/gallery-epic-trail.jpg')" tabindex="0" role="button" aria-label="View Nepal Himalayan trail full-size">
+              <figure class="gallery-item filter-item span-2 row-2" data-category="trail" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/gallery-epic-trail.jpg" alt="A line of trekkers with packs climbing a snow slope in blue pre-dawn light" width="1932" height="1288" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>NPL · 5,140 m</strong>
-                  Himalayan Trail · D. Chen
+                  <strong>NPL · 5,200 m</strong>
+                  Thorong La Before Dawn · D. Chen
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item" data-category="landscapes" style="background-image: url('./images/peru_sunrise.jpg')" tabindex="0" role="button" aria-label="View Peru sunrise over Andes">
+              <figure class="gallery-item filter-item" data-category="culture" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/peru_sunrise.jpg" alt="The ruins of Machu Picchu below Huayna Picchu, with green terraces and cloud on the peaks" width="1000" height="762" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>PER · 4,200 m</strong>
-                  Andes Sunrise · M. Rodriguez
+                  <strong>PER · 2,430 m</strong>
+                  Machu Picchu at Midday · M. Rodriguez
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item row-2" data-category="culture" style="background-image: url('./images/gallery-portrait.jpg')" tabindex="0" role="button" aria-label="View Berber portrait">
+              <figure class="gallery-item filter-item row-2" data-category="landscapes" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/patagonia.jpg" alt="A tall waterfall pouring off a rock wall into a rocky glacial river, with a boulder in front" width="708" height="1067" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>MAR · 2,800 m</strong>
-                  Berber Hosts · A. Patel
+                  <strong>CAN · 1,500 m</strong>
+                  Takakkaw Falls, Yoho · J. Beaver
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item" data-category="landscapes" style="background-image: url('./images/frace_alpine.avif')" tabindex="0" role="button" aria-label="View France alpine meadows">
+              <figure class="gallery-item filter-item" data-category="wildlife" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/canadian_rockies.jpg" alt="A moose wading in a still mountain lake below snowy peaks and pine forest" width="941" height="627" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>FRA · 2,650 m</strong>
-                  Alpine Meadows · L. Bernard
+                  <strong>CAN · 1,600 m</strong>
+                  Moose in the Shallows · J. Beaver
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item span-2" data-category="landscapes" style="background-image: url('./images/patagonia.jpg')" tabindex="0" role="button" aria-label="View Patagonia glacier valley">
+              <figure class="gallery-item filter-item span-2" data-category="landscapes" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/gallery-portrait.jpg" alt="A snowfield in front of a long range of snow-capped peaks under a clear blue sky" width="1932" height="1288" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>CHL · 1,200 m</strong>
-                  Glacier Valley · D. Chen
+                  <strong>NPL · 3,800 m</strong>
+                  Snowline, Looking North · P. Sherpa
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item" data-category="landscapes" style="background-image: url('./images/mont-blanc.jpg')" tabindex="0" role="button" aria-label="View Mont Blanc summit">
+              <figure class="gallery-item filter-item" data-category="culture" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/tradition.jpg" alt="Two girls in embroidered blouses grinding maize on stone slabs, with dried corn hanging behind them" width="1280" height="853" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>FR · 4,810 m</strong>
-                  Mont Blanc Massif · L. Bernard
+                  <strong>PER · 2,900 m</strong>
+                  Grinding Maize, Sacred Valley · M. Rodriguez
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item row-2" data-category="landscapes" style="background-image: url('./images/canadian_rockies.jpg')" tabindex="0" role="button" aria-label="View Canadian Rockies">
+              <figure class="gallery-item filter-item row-2" data-category="landscapes" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/frace_alpine.avif" alt="A snow-covered summit rising above a sea of cloud at dusk" width="500" height="750" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>CAN · 2,400 m</strong>
-                  Stoney Nakoda Lake · J. Beaver
+                  <strong>FRA · 3,500 m</strong>
+                  Above the Cloud Sea · L. Bernard
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item" data-category="culture" style="background-image: url('./images/about.jpg')" tabindex="0" role="button" aria-label="View Nepal prayer ceremony">
+              <figure class="gallery-item filter-item" data-category="trail" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/about.jpg" alt="A hiker with a large blue pack and a red sleeping bag on a dirt path along a green, misty ridge" width="1280" height="720" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>NPL · 3,440 m</strong>
-                  Prayer Ceremony · P. Sherpa
+                  <strong>NPL · 2,800 m</strong>
+                  Monsoon Ridge · P. Sherpa
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item span-2" data-category="culture" style="background-image: url('./images/peru_andes_heritage.jpg')" tabindex="0" role="button" aria-label="View Quechua weaving">
+              <figure class="gallery-item filter-item span-2" data-category="trail" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/card-guides.jpg" alt="Yellow tents pitched on snow at dusk below a forested hillside" width="1932" height="1288" loading="lazy" style="object-position: 50% 85%" />
                 <figcaption class="gallery-caption">
-                  <strong>PER · 3,400 m</strong>
-                  Quechua Weaving · M. Rodriguez
+                  <strong>NPL · 3,400 m</strong>
+                  Snow Camp, Last Light · D. Chen
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item" data-category="culture" style="background-image: url('./images/tradition.jpg')" tabindex="0" role="button" aria-label="View traditional cooking">
+              <figure class="gallery-item filter-item" data-category="wildlife" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/peru_andes_heritage.jpg" alt="A llama standing on a terrace above the ruins of Machu Picchu" width="960" height="640" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>NPL · 2,900 m</strong>
-                  Cooking Hearth · A. Patel
+                  <strong>PER · 2,450 m</strong>
+                  Llama Above the Citadel · M. Rodriguez
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item" data-category="guides" style="background-image: url('./images/guidance.jpg')" tabindex="0" role="button" aria-label="View expert guides">
+              <figure class="gallery-item filter-item" data-category="trail" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/aisha_pa.jpg" alt="A hiker in a red jacket walking a path between old, gnarled maple trees in a sunny valley meadow" width="640" height="427" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>NPL · 4,500 m</strong>
-                  Lead Guides · D. Chen
+                  <strong>AUT · 1,220 m</strong>
+                  A. Patel Among the Maples · M. Rodriguez
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item span-2" data-category="guides" style="background-image: url('./images/card-guides.jpg')" tabindex="0" role="button" aria-label="View campfire moment">
+              <figure class="gallery-item filter-item span-2" data-category="trail" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/guidance.jpg" alt="Two walkers far down a snowy road through a bare winter forest" width="640" height="359" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>CHL · 950 m</strong>
-                  Around the Fire · D. Chen
+                  <strong>FRA · 900 m</strong>
+                  Winter Approach Road · L. Bernard
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item" data-category="culture" style="background-image: url('./images/maria_ro.jpg')" tabindex="0" role="button" aria-label="View cultural exchange">
+              <figure class="gallery-item filter-item" data-category="landscapes" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/mont-blanc.jpg" alt="The snowy Mont Blanc massif above a meadow of yellow wildflowers with grazing cows" width="960" height="640" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>MAR · 1,800 m</strong>
-                  Cultural Exchange · A. Patel
+                  <strong>FRA · 2,000 m</strong>
+                  Mont Blanc from the Meadows · L. Bernard
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item row-2" data-category="guides" style="background-image: url('./images/aisha_pa.jpg')" tabindex="0" role="button" aria-label="View community leaders">
+              <figure class="gallery-item filter-item row-2" data-category="trail" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/hero-home.jpg" alt="A green backpack with Yoho, Jasper and Prince Edward Island pins on its front pocket" width="1000" height="1500" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>IND · 2,200 m</strong>
-                  Community Leaders · A. Patel
+                  <strong>CAN · 1,060 m</strong>
+                  Pins from the Season · J. Beaver
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item" data-category="wildlife" style="background-image: url('./images/wildlife.jpg')" tabindex="0" role="button" aria-label="View Patagonian wildlife">
+              <figure class="gallery-item filter-item" data-category="trail" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/wildlife.jpg" alt="Trekkers silhouetted against the low sun on a rocky slope, with snow blowing past" width="966" height="644" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>CHL · 600 m</strong>
-                  Patagonian Puma · J. Beaver
+                  <strong>MAR · 4,000 m</strong>
+                  Into the Sun, Toubkal · A. Patel
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item" data-category="wildlife" style="background-image: url('./images/card-sustainability.jpg')" tabindex="0" role="button" aria-label="View mountain wildlife">
+              <figure class="gallery-item filter-item" data-category="trail" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/maria_ro.jpg" alt="A woman in a green jacket standing on dark rocks, looking out over a grey beach and forested shore" width="1500" height="1000" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>CAN · 2,100 m</strong>
-                  Bighorn Sheep · J. Beaver
+                  <strong>CAN · 0 m</strong>
+                  M. Rodriguez, Rest Day · D. Chen
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item span-2" data-category="wildlife" style="background-image: url('./images/forestation.jpg')" tabindex="0" role="button" aria-label="View Andes reforestation">
+              <figure class="gallery-item filter-item span-2" data-category="landscapes" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/card-sustainability.jpg" alt="A gravel path running between two rows of old tree trunks over green grass" width="640" height="360" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>PER · 2,600 m</strong>
-                  Andes Reforestation · M. Rodriguez
+                  <strong>FRA · 450 m</strong>
+                  The Long Avenue · L. Bernard
                 </figcaption>
               </figure>
 
-              <figure class="gallery-item filter-item" data-category="landscapes" style="background-image: url('./images/hero-home.jpg')" tabindex="0" role="button" aria-label="View summit ridge">
+              <figure class="gallery-item filter-item" data-category="landscapes" tabindex="0" role="button" aria-haspopup="dialog">
+                <img src="./images/forestation.jpg" alt="Looking straight up a broad tree trunk into a green, leafy canopy" width="480" height="640" loading="lazy" />
                 <figcaption class="gallery-caption">
-                  <strong>NPL · 5,545 m</strong>
-                  Summit Ridge · D. Chen
+                  <strong>FRA · 700 m</strong>
+                  Under the Canopy · L. Bernard
                 </figcaption>
               </figure>
 
