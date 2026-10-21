@@ -1489,45 +1489,30 @@ textarea.invalid {
 }
 
 /* ===================================
-   READING TIME — mono pill
-   =================================== */
-.reading-time {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  margin-top: var(--space-md);
-  padding: 4px 8px;
-  background: transparent;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-bone);
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-bone);
-  backdrop-filter: none;
-}
-
-.reading-time svg { opacity: 0.85; }
-
-/* ===================================
    PAGE LOADER — Ink full-screen overlay with cartographic
-   contour-pulse motif. Visible by default until window.load,
-   then fades out via body.page-loaded. Re-shows during
-   internal-link page transitions.
+   contour-pulse motif. Hidden by default; shown once per
+   browser session as a first-visit intro when the inline
+   head script adds html.intro. Timed by CSS alone, so a
+   slow image or a failed script can never leave it up.
    =================================== */
 .page-loader {
   position: fixed;
   inset: 0;
   z-index: 99999;
   background: var(--color-ink);
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.45s ease, visibility 0s linear 0.45s;
   overflow: hidden;
+}
+
+html.intro .page-loader {
+  display: flex;
+  animation: loader-out 0.3s ease 0.3s forwards;
+}
+
+@keyframes loader-out {
+  to { opacity: 0; visibility: hidden; }
 }
 
 /* Topo-stripe seams top + bottom — site signature on the loader too */
@@ -1543,20 +1528,6 @@ textarea.invalid {
 }
 .page-loader::before { top: 0; }
 .page-loader::after  { bottom: 0; }
-
-/* Hidden once page is loaded */
-body.page-loaded .page-loader {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.45s ease, visibility 0s linear 0.45s;
-}
-
-/* Re-shown when transitioning to another page */
-body.page-transitioning .page-loader {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.25s ease;
-}
 
 .page-loader-content {
   text-align: center;
@@ -1649,20 +1620,34 @@ body.page-transitioning .page-loader {
   30%           { opacity: 1;   transform: translateY(-2px); }
 }
 
-/* Reduced motion — kill the pulses, keep the static state visible */
+/* Reduced motion — no intro at all (the head script also skips it) */
 @media (prefers-reduced-motion: reduce) {
-  .loader-ring { animation: none; opacity: 0.4; }
-  .loader-pin-ring { animation: none; }
-  .loader-dots span { animation: none; opacity: 1; }
+  html.intro .page-loader { display: none; }
 }
 
 /* ===================================
-   PAGE TRANSITIONS — gentle body fade
-   (back-up to the loader; works without it too)
+   PAGE TRANSITIONS — the browser cross-fades between pages
+   (cross-document View Transitions). Browsers without
+   support simply navigate as before.
    =================================== */
-body.page-transitioning main {
-  opacity: 0.4;
-  transition: opacity 0.25s linear;
+@view-transition {
+  navigation: auto;
+}
+
+/* The header stays put while the page underneath changes */
+header {
+  view-transition-name: site-header;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.26s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
 }
 
 /* ===================================

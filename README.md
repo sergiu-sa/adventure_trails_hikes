@@ -8,7 +8,7 @@ Live: <https://adventuretrailshikes.netlify.app/>
 
 ## Project Overview
 
-This project demonstrates semantic HTML, modular CSS architecture, accessibility best practices, SEO, and responsive layouts. The original brief was HTML + CSS only; the resit version adds vanilla JavaScript for the page loader, page transitions, gallery lightbox, scroll progress, lazy-load, and CSS-only filter logic.
+This project demonstrates semantic HTML, modular CSS architecture, accessibility best practices, SEO, and responsive layouts. The original brief was HTML + CSS only; the resit version adds vanilla JavaScript for the first-visit intro, gallery lightbox, scroll progress, lazy-load, and CSS-only filter logic.
 
 ## Folder Structure
 
@@ -39,8 +39,9 @@ This project demonstrates semantic HTML, modular CSS architecture, accessibility
 - Modular CSS — design tokens, base, layout, components, utilities
 - Semantic HTML5 + accessibility (skip link, focus rings, ARIA roles, prefers-reduced-motion)
 - SEO: Open Graph meta, alt attributes, headings hierarchy
-- Page loader with cartographic radar-pulse motif (visible on every page until window.load)
-- Smooth page transitions between internal links
+- First-visit intro with a cartographic radar-pulse motif (about 0.6 s, once per browser session, timed in CSS so it never blocks the page)
+- Cross-fade between pages with the browser's built-in View Transitions (no library; other browsers navigate normally)
+- Reduced motion respected: no intro, page fades, smooth scrolling, counters, parallax or scroll reveals
 - Cross-page filtering on hikes (region) and gallery (category) — pure CSS via `:checked ~` sibling selectors
 - Real Google Maps embed on contact, with brand-coloured Pin sticker overlay
 - Lightbox gallery, page progress indicator, lazy-load, copy-to-clipboard, toast notifications
@@ -50,7 +51,7 @@ This project demonstrates semantic HTML, modular CSS architecture, accessibility
 
 - HTML5
 - Custom CSS with CSS variables, modular files
-- Vanilla JavaScript (page loader, transitions, lightbox, scroll/UX enhancements)
+- Vanilla JavaScript (first-visit intro, lightbox, scroll/UX enhancements)
 - No frameworks, no build step
 
 ---
@@ -89,7 +90,7 @@ Headlines on every page (and major sections) are numbered with a `01 /` prefix i
 - Isolated card grids with `gap` between cards (cards/dispatch/testimonials) — each card stands alone with full hairline frame + radius
 - Asymmetric 70/30 splits (origin prose + metadata column on About; editorial blocks on home)
 - Photo-led heroes with grain overlay + Forest dusk gradient at the bottom
-- Cartographic page loader: concentric contour rings (one per palette colour) pulsing outward from a Pin marker, brand wordmark in Ridge gold, "Plotting route…" status in mono
+- Cartographic first-visit intro: concentric contour rings (one per palette colour) pulsing outward from a Pin marker, brand wordmark in Ridge gold, "Plotting route…" status in mono
 
 ---
 

@@ -1,6 +1,30 @@
 (function() {
   'use strict';
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function scrollBehavior() {
+    return reduceMotion.matches ? 'auto' : 'smooth';
+  }
+
+  // Runs callback as the first-visit intro curtain starts to lift (at once if there is none)
+  function whenIntroLifts(callback) {
+    const loader = document.querySelector('.page-loader');
+    const intro = loader && loader.getAnimations
+      ? loader.getAnimations().find(function(a) { return a.animationName === 'loader-out'; })
+      : null;
+    // progress stays null until the fade's start delay has passed
+    if (!intro || intro.effect.getComputedTiming().progress !== null) {
+      callback();
+      return;
+    }
+    loader.addEventListener('animationstart', function onStart(e) {
+      if (e.target !== loader) return;
+      loader.removeEventListener('animationstart', onStart);
+      callback();
+    });
+  }
+
   function initScrollIndicator() {
     const scrollIndicator = document.querySelector('.scroll-indicator');
     if (!scrollIndicator) return;
@@ -10,7 +34,7 @@
       if (hero) {
         const nextSection = hero.nextElementSibling;
         if (nextSection) {
-          nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          nextSection.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
         }
       }
     });
@@ -50,7 +74,7 @@
     });
 
     backToTopBtn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: scrollBehavior() });
     });
   }
 
@@ -162,6 +186,8 @@
   }
 
   function initScrollAnimations() {
+    if (reduceMotion.matches) return;
+
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
 
     const observer = new IntersectionObserver(function(entries) {
@@ -243,6 +269,8 @@
   }
 
   function initCounterAnimation() {
+    if (reduceMotion.matches) return;
+
     const stats = document.querySelectorAll('.hero-stat-number, .achievement-number');
 
     const observer = new IntersectionObserver(function(entries) {
@@ -254,8 +282,11 @@
       });
     }, { threshold: 0.5 });
 
-    stats.forEach(function(stat) {
-      observer.observe(stat);
+    // Count up where the visitor can see it, not under the intro curtain
+    whenIntroLifts(function() {
+      stats.forEach(function(stat) {
+        observer.observe(stat);
+      });
     });
   }
 
@@ -379,7 +410,7 @@
   function initParallax() {
     const hero = document.querySelector('.hero, .page-header');
     if (!hero) return;
-    if (window.innerWidth < 768) return;
+    if (window.innerWidth < 768 || reduceMotion.matches) return;
 
     let ticking = false;
 
@@ -422,70 +453,7 @@
     });
   }
 
-  function initReadingTime() {
-    const mainContent = document.querySelector('main');
-    if (!mainContent) return;
 
-    const text = mainContent.textContent || '';
-    const wordCount = text.trim().split(/\s+/).length;
-    const readingTime = Math.ceil(wordCount / 200);
-
-    if (readingTime < 2) return;
-
-    const readingIndicator = document.createElement('div');
-    readingIndicator.className = 'reading-time';
-    readingIndicator.innerHTML = `
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-        <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <span>${readingTime} min read</span>
-    `;
-
-    const pageHeader = document.querySelector('.page-header .container');
-    if (pageHeader) {
-      pageHeader.appendChild(readingIndicator);
-    }
-  }
-
-  function initPageTransitions() {
-    // Loader is visible by default (CSS). Wait for window.load so all
-    // images + fonts have actually arrived, then add a small min-delay
-    // so the loader is briefly visible even on cached fast loads.
-    const MIN_LOADER_MS = 400;
-    const startedAt = performance.now();
-
-    function dismissLoader() {
-      const elapsed = performance.now() - startedAt;
-      const remaining = Math.max(0, MIN_LOADER_MS - elapsed);
-      setTimeout(function () {
-        document.body.classList.add('page-loaded');
-      }, remaining);
-    }
-
-    if (document.readyState === 'complete') {
-      dismissLoader();
-    } else {
-      window.addEventListener('load', dismissLoader);
-    }
-
-    // Internal-link transitions — re-show the loader, then navigate
-    const internalLinks = document.querySelectorAll('a[href$=".html"]:not([target="_blank"])');
-    internalLinks.forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (e.ctrlKey || e.metaKey || e.shiftKey) return;
-
-        e.preventDefault();
-        document.body.classList.remove('page-loaded');
-        document.body.classList.add('page-transitioning');
-
-        setTimeout(function() {
-          window.location.href = href;
-        }, 350);
-      });
-    });
-  }
 
   function initCardActions() {
     const cards = document.querySelectorAll('.card');
@@ -503,27 +471,6 @@
     });
   }
 
-  function initKeyboardShortcuts() {
-    document.addEventListener('keydown', function(e) {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
-      if (e.key === 'h' && !e.ctrlKey && !e.metaKey) {
-        window.location.href = 'index.html';
-      }
-
-      if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
-        const searchInput = document.querySelector('input[type="search"], input[name="search"]');
-        if (searchInput) {
-          e.preventDefault();
-          searchInput.focus();
-        }
-      }
-
-      if (e.key === 't' && !e.ctrlKey && !e.metaKey) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    });
-  }
 
   function init() {
     initScrollIndicator();
@@ -537,10 +484,7 @@
     initFormValidation();
     initParallax();
     initProgressIndicator();
-    initReadingTime();
-    initPageTransitions();
     initCardActions();
-    initKeyboardShortcuts();
   }
 
   if (document.readyState === 'loading') {
