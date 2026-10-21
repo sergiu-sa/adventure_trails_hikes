@@ -79,13 +79,12 @@
   }
 
   function initLightbox() {
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
     if (galleryItems.length === 0) return;
 
-    const lightbox = document.createElement('div');
+    // showModal() moves focus in, keeps it there, makes the page inert and closes on Escape
+    const lightbox = document.createElement('dialog');
     lightbox.className = 'lightbox';
-    lightbox.setAttribute('role', 'dialog');
-    lightbox.setAttribute('aria-modal', 'true');
     lightbox.setAttribute('aria-label', 'Image lightbox');
     lightbox.innerHTML = `
       <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
@@ -112,76 +111,54 @@
     const prevBtn = lightbox.querySelector('.lightbox-prev');
     const nextBtn = lightbox.querySelector('.lightbox-next');
 
-    let currentIndex = 0;
-    const images = [];
+    let current = galleryItems[0];
 
-    galleryItems.forEach((item, index) => {
-      const style = item.getAttribute('style');
-      const urlMatch = style.match(/url\(['"]?([^'"]+)['"]?\)/);
-      const caption = item.querySelector('.gallery-caption')?.textContent || '';
+    function show(item) {
+      const photo = item.querySelector('img');
+      current = item;
+      lightboxImage.src = photo.src;
+      lightboxImage.alt = photo.alt;
+      lightboxCaption.innerHTML = item.querySelector('.gallery-caption').innerHTML;
+    }
 
-      if (urlMatch) {
-        images.push({ src: urlMatch[1], caption: caption });
+    // Steps through the tiles the category filter left visible, not all 18
+    function step(by) {
+      const visible = galleryItems.filter(function(item) { return item.checkVisibility(); });
+      const index = visible.indexOf(current);
+      show(visible[(index + by + visible.length) % visible.length]);
+    }
+
+    galleryItems.forEach(function(item) {
+      function open() {
+        show(item);
+        lightbox.showModal();
       }
 
-      item.addEventListener('click', function() {
-        currentIndex = index;
-        openLightbox();
-      });
-
+      item.addEventListener('click', open);
       item.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          currentIndex = index;
-          openLightbox();
+          open();
         }
       });
     });
 
-    function openLightbox() {
-      updateLightboxImage();
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      closeBtn.focus();
-    }
-
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-      galleryItems[currentIndex].focus();
-    }
-
-    function updateLightboxImage() {
-      if (images[currentIndex]) {
-        lightboxImage.src = images[currentIndex].src;
-        lightboxImage.alt = images[currentIndex].caption;
-        lightboxCaption.textContent = images[currentIndex].caption;
-      }
-    }
-
-    function nextImage() {
-      currentIndex = (currentIndex + 1) % images.length;
-      updateLightboxImage();
-    }
-
-    function prevImage() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      updateLightboxImage();
-    }
-
-    closeBtn.addEventListener('click', closeLightbox);
-    nextBtn.addEventListener('click', nextImage);
-    prevBtn.addEventListener('click', prevImage);
+    closeBtn.addEventListener('click', function() { lightbox.close(); });
+    nextBtn.addEventListener('click', function() { step(1); });
+    prevBtn.addEventListener('click', function() { step(-1); });
 
     lightbox.addEventListener('click', function(e) {
-      if (e.target === lightbox) closeLightbox();
+      if (e.target === lightbox) lightbox.close();
     });
 
-    document.addEventListener('keydown', function(e) {
-      if (!lightbox.classList.contains('active')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
+    lightbox.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight') step(1);
+      if (e.key === 'ArrowLeft') step(-1);
+    });
+
+    // Fires for Escape too. Lands on the photo last shown, which may not be the one opened
+    lightbox.addEventListener('close', function() {
+      current.focus();
     });
   }
 

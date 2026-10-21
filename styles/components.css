@@ -863,8 +863,6 @@ legend {
 
 .gallery-item {
   aspect-ratio: 4/3;
-  background-size: cover;
-  background-position: center;
   border-radius: 0;
   display: flex;
   align-items: end;
@@ -880,6 +878,17 @@ legend {
   overflow: hidden;
   box-shadow: none;
   cursor: pointer;
+  /* Keeps the photo's z-index: -1 inside the tile, under the gradient and wash */
+  isolation: isolate;
+}
+
+.gallery-item img {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .gallery-item::before {
@@ -1339,23 +1348,27 @@ main > .newsletter-section:last-child::after { content: none; }
 /* ===================================
    LIGHTBOX — ink, sharp
    =================================== */
+/* A <dialog> opened with showModal(), so it already sits above everything */
 .lightbox {
-  position: fixed;
-  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
   background: rgba(20, 17, 11, 0.97);
-  z-index: var(--z-modal);
+}
+
+/* Only when open: a display on .lightbox itself would show the closed dialog */
+.lightbox[open] {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: var(--transition-fast);
-  backdrop-filter: none;
 }
 
-.lightbox.active {
-  opacity: 1;
-  visibility: visible;
+body:has(.lightbox[open]) {
+  overflow: hidden;
 }
 
 .lightbox-content {
@@ -1385,6 +1398,11 @@ main > .newsletter-section:last-child::after { content: none; }
   text-transform: uppercase;
   text-align: left;
   opacity: 0.85;
+}
+
+.lightbox-caption strong {
+  display: block;
+  color: var(--color-ridge);
 }
 
 .lightbox-close {
@@ -3348,7 +3366,6 @@ h2 em,
 
 .gallery-mosaic .gallery-item.span-2 { grid-column: span 2; }
 .gallery-mosaic .gallery-item.row-2  { grid-row: span 2; }
-.gallery-mosaic .gallery-item.hero   { grid-column: span 2; grid-row: span 2; }
 
 .gallery-mosaic .gallery-caption {
   padding: var(--space-md);
@@ -3379,37 +3396,30 @@ h2 em,
 
 @media (max-width: 1100px) {
   .gallery-mosaic { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 200px; }
-  .gallery-mosaic .gallery-item.hero { grid-column: span 2; grid-row: span 2; }
 }
 @media (max-width: 700px) {
   .gallery-mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
   .gallery-mosaic .gallery-item.span-2 { grid-column: span 2; }
   .gallery-mosaic .gallery-item.row-2  { grid-row: span 2; }
-  .gallery-mosaic .gallery-item.hero   { grid-column: span 2; grid-row: span 2; }
 }
 @media (max-width: 460px) {
   .gallery-mosaic { grid-template-columns: 1fr; grid-auto-rows: 240px; }
   .gallery-mosaic .gallery-item.span-2,
-  .gallery-mosaic .gallery-item.row-2,
-  .gallery-mosaic .gallery-item.hero { grid-column: span 1; grid-row: span 1; }
+  .gallery-mosaic .gallery-item.row-2 { grid-column: span 1; grid-row: span 1; }
 }
 
 /* GALLERY CSS-only category filter */
 .gallery-shell { display: contents; }
 .gallery-shell .filter-input { display: none; }
 
-#cat-all:checked        ~ .gallery-mosaic .filter-item { display: block; }
-#cat-landscapes:checked ~ .gallery-mosaic .filter-item,
-#cat-culture:checked    ~ .gallery-mosaic .filter-item,
-#cat-guides:checked     ~ .gallery-mosaic .filter-item,
-#cat-wildlife:checked   ~ .gallery-mosaic .filter-item {
+/* Only hides: setting display on the shown tiles would undo .gallery-item's flex,
+   which keeps the caption down on the dark end of the gradient */
+#cat-landscapes:checked ~ .gallery-mosaic .filter-item:not([data-category="landscapes"]),
+#cat-culture:checked    ~ .gallery-mosaic .filter-item:not([data-category="culture"]),
+#cat-trail:checked      ~ .gallery-mosaic .filter-item:not([data-category="trail"]),
+#cat-wildlife:checked   ~ .gallery-mosaic .filter-item:not([data-category="wildlife"]) {
   display: none;
 }
-
-#cat-landscapes:checked ~ .gallery-mosaic .filter-item[data-category="landscapes"] { display: block; }
-#cat-culture:checked    ~ .gallery-mosaic .filter-item[data-category="culture"]    { display: block; }
-#cat-guides:checked     ~ .gallery-mosaic .filter-item[data-category="guides"]     { display: block; }
-#cat-wildlife:checked   ~ .gallery-mosaic .filter-item[data-category="wildlife"]   { display: block; }
 
 /* ===================================
    CONTACT — location SVG topo + meta
