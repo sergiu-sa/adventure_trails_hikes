@@ -261,19 +261,49 @@ header nav a.active {
   text-align: left;
   padding: 0;
   position: relative;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  min-height: 100vh;
+  --hero-h: 100vh;
+  min-height: var(--hero-h);
   display: flex;
   align-items: flex-end;
   overflow: hidden;
+  /* overflow alone doesn't clip the position: fixed .hero-photo on desktop */
+  clip-path: inset(0);
   margin-top: 0;
   border-bottom: var(--border-hairline);
 }
 
 .page-header {
-  min-height: 70vh;
+  --hero-h: 70vh;
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Desktop: the photo stays put while the page scrolls over it, and main.js
+   feeds --scroll so it also drifts down 0.3x. It starts 30% of the header's
+   height above the viewport, and the drift stops there, so its top edge
+   never shows. Clamped at 0 because Safari's top bounce scrolls negative. */
+@media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+  .hero-photo {
+    position: fixed;
+    top: calc(var(--hero-h) * -0.3);
+    transform: translateY(clamp(0px, var(--scroll, 0) * 0.3px, var(--hero-h) * 0.3));
+  }
+
+  /* Centres tall photos on the viewport as before; min() pins short ones
+     to the top of the box, where centring would leave a gap for the drift */
+  .hero-photo img {
+    object-position: 50% min(0px, calc(50% + var(--hero-h) * 0.15));
+  }
 }
 
 .hero::before,

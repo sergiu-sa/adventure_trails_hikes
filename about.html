@@ -12,8 +12,12 @@
     <meta property="og:title" content="About | Adventure Trails Hikes" />
     <meta property="og:description" content="The founding story, six commitments, and timeline behind Adventure Trails Hikes." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://adventuretrails.com/about.html" />
-    <meta property="og:image" content="https://adventuretrails.com/images/about.jpg" />
+    <meta property="og:url" content="https://adventuretrailshikes.netlify.app/about.html" />
+    <meta property="og:image" content="https://adventuretrailshikes.netlify.app/images/about.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://adventuretrailshikes.netlify.app/about.html" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 
     <title>About | Adventure Trails Hikes</title>
 
@@ -26,7 +30,14 @@
         }
       } catch (e) {}
     </script>
-    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Geist:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/layout.css" />
+    <link rel="stylesheet" href="./styles/components.css" />
+    <link rel="stylesheet" href="./styles/utilities.css" />
   </head>
   <body>
     <!-- ============================================
@@ -81,9 +92,13 @@
            ============================================ -->
       <section
         class="page-header"
-        style="background-image: url('./images/about.jpg')"
         aria-labelledby="page-heading"
       >
+        <picture class="hero-photo">
+          <source type="image/avif" srcset="./images/opt/about-640.avif 640w, ./images/opt/about-1024.avif 1024w, ./images/opt/about-1280.avif 1280w" sizes="100vw" />
+          <source type="image/webp" srcset="./images/opt/about-640.webp 640w, ./images/opt/about-1024.webp 1024w, ./images/opt/about-1280.webp 1280w" sizes="100vw" />
+          <img src="./images/about.jpg" alt="" width="1280" height="720" fetchpriority="high" />
+        </picture>
         <div class="container">
           <h1 id="page-heading"><span class="h-num">02 /</span> Where culture meets <em>wilderness.</em></h1>
           <p>Guiding responsible expeditions since 2015</p>
@@ -329,12 +344,8 @@
 
           <div class="card-grid">
             <article class="card">
-              <div
-                class="card-image"
-                style="background-image: url('./images/maria_ro.jpg')"
-                role="img"
-                aria-label="Portrait of Maria Rodriguez, Co-Founder & CEO."
-              >
+              <div class="card-image">
+                <img src="./images/maria_ro.jpg" alt="Portrait of Maria Rodriguez" width="1500" height="1000" loading="lazy" />
                 <span>Maria Rodriguez</span>
               </div>
               <div class="card-content">
@@ -349,12 +360,8 @@
             </article>
 
             <article class="card">
-              <div
-                class="card-image"
-                style="background-image: url('./images/david_chen.jpg')"
-                role="img"
-                aria-label="Portrait of David Chen, Co-Founder & CTO."
-              >
+              <div class="card-image">
+                <img src="./images/david_chen.jpg" alt="Portrait of David Chen" width="1121" height="775" loading="lazy" />
                 <span>David Chen</span>
               </div>
               <div class="card-content">
@@ -369,12 +376,8 @@
             </article>
 
             <article class="card">
-              <div
-                class="card-image"
-                style="background-image: url('./images/aisha_pa.jpg')"
-                role="img"
-                aria-label="Portrait of Aisha Patel, Cultural Programs Director."
-              >
+              <div class="card-image">
+                <img src="./images/aisha_pa.jpg" alt="Portrait of Aisha Patel" width="640" height="427" loading="lazy" />
                 <span>Aisha Patel</span>
               </div>
               <div class="card-content">

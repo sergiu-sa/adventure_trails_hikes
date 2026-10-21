@@ -1,0 +1,6 @@
+# Images are cached for a week, not a year: logo.svg and the photos get
+# replaced under the same name. styles/ and scripts/ keep Netlify's default
+# (revalidate on every visit) because their URLs carry no version, so any
+# cache would serve old CSS and JS with new HTML after a deploy.
+/images/*
+  Cache-Control: public, max-age=604800

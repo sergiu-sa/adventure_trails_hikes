@@ -193,7 +193,6 @@
   .page-header {
     min-height: 60vh;
     padding: var(--space-2xl) 0 var(--space-xl);
-    background-attachment: scroll;
   }
 
   .hero-actions { flex-direction: column; gap: var(--space-md); }
@@ -285,8 +284,6 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .hero,
-  .page-header { background-attachment: scroll; }
 }
 
 /* ===================================
@@ -321,6 +318,7 @@
   .mobile-menu-btn,
   .scroll-indicator,
   .newsletter-section,
+  .hero-photo,
   .page-loader { display: none !important; }
 
   body {

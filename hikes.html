@@ -12,8 +12,12 @@
     <meta property="og:title" content="Expeditions | Adventure Trails Hikes" />
     <meta property="og:description" content="Nine extreme expeditions across six regions. Distance, elevation, duration, difficulty — full specs on every route." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://adventuretrails.com/hikes.html" />
-    <meta property="og:image" content="https://adventuretrails.com/images/hikes_1.jpg" />
+    <meta property="og:url" content="https://adventuretrailshikes.netlify.app/hikes.html" />
+    <meta property="og:image" content="https://adventuretrailshikes.netlify.app/images/hikes_1.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://adventuretrailshikes.netlify.app/hikes.html" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 
     <title>Expeditions | Adventure Trails Hikes</title>
 
@@ -26,7 +30,14 @@
         }
       } catch (e) {}
     </script>
-    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Geist:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/layout.css" />
+    <link rel="stylesheet" href="./styles/components.css" />
+    <link rel="stylesheet" href="./styles/utilities.css" />
   </head>
   <body>
     <!-- ============================================
@@ -81,9 +92,13 @@
            ============================================ -->
       <section
         class="page-header"
-        style="background-image: url('./images/hikes_1.jpg')"
         aria-labelledby="page-heading"
       >
+        <picture class="hero-photo">
+          <source type="image/avif" srcset="./images/opt/hikes_1-640.avif 640w, ./images/opt/hikes_1-1024.avif 1024w, ./images/opt/hikes_1-1600.avif 1600w, ./images/opt/hikes_1-2048.avif 2048w" sizes="100vw" />
+          <source type="image/webp" srcset="./images/opt/hikes_1-640.webp 640w, ./images/opt/hikes_1-1024.webp 1024w, ./images/opt/hikes_1-1600.webp 1600w, ./images/opt/hikes_1-2048.webp 2048w" sizes="100vw" />
+          <img src="./images/hikes_1.jpg" alt="" width="2048" height="1365" fetchpriority="high" />
+        </picture>
         <div class="container">
           <h1 id="page-heading"><span class="h-num">03 /</span> Choose your <em>next route.</em></h1>
           <p>Field-tested expeditions · Spec-sheet transparency</p>
@@ -146,7 +161,7 @@
 
               <!-- 01 — Nepal: Everest Immersion -->
               <li class="hike-row filter-item" data-region="himalayas">
-                <div class="hike-row-bg" style="background-image: url('./images/gallery-epic-trail.jpg')" aria-hidden="true"></div>
+                <div class="hike-row-bg" data-photo="./images/gallery-epic-trail.jpg" aria-hidden="true"></div>
                 <div class="hike-row-content">
                   <div class="hike-num">01</div>
                   <div class="hike-body">
@@ -176,7 +191,7 @@
 
               <!-- 02 — Peru: Andes Heritage -->
               <li class="hike-row filter-item" data-region="andes">
-                <div class="hike-row-bg" style="background-image: url('./images/peru_andes_heritage.jpg')" aria-hidden="true"></div>
+                <div class="hike-row-bg" data-photo="./images/peru_andes_heritage.jpg" aria-hidden="true"></div>
                 <div class="hike-row-content">
                   <div class="hike-num">02</div>
                   <div class="hike-body">
@@ -206,7 +221,7 @@
 
               <!-- 03 — France/Italy/Switzerland: Tour du Mont Blanc -->
               <li class="hike-row filter-item" data-region="alps">
-                <div class="hike-row-bg" style="background-image: url('./images/mont-blanc.jpg')" aria-hidden="true"></div>
+                <div class="hike-row-bg" data-photo="./images/mont-blanc.jpg" aria-hidden="true"></div>
                 <div class="hike-row-content">
                   <div class="hike-num">03</div>
                   <div class="hike-body">
@@ -236,7 +251,7 @@
 
               <!-- 04 — Chile: Patagonia W Trek -->
               <li class="hike-row filter-item" data-region="andes">
-                <div class="hike-row-bg" style="background-image: url('./images/patagonia.jpg')" aria-hidden="true"></div>
+                <div class="hike-row-bg" data-photo="./images/patagonia.jpg" aria-hidden="true"></div>
                 <div class="hike-row-content">
                   <div class="hike-num">04</div>
                   <div class="hike-body">
@@ -266,7 +281,7 @@
 
               <!-- 05 — Canada: Indigenous Trek -->
               <li class="hike-row filter-item" data-region="rockies">
-                <div class="hike-row-bg" style="background-image: url('./images/canadian_rockies.jpg')" aria-hidden="true"></div>
+                <div class="hike-row-bg" data-photo="./images/canadian_rockies.jpg" aria-hidden="true"></div>
                 <div class="hike-row-content">
                   <div class="hike-num">05</div>
                   <div class="hike-body">
@@ -296,7 +311,7 @@
 
               <!-- 06 — Morocco: Berber Trail -->
               <li class="hike-row filter-item" data-region="africa">
-                <div class="hike-row-bg" style="background-image: url('./images/gallery-portrait.jpg')" aria-hidden="true"></div>
+                <div class="hike-row-bg" data-photo="./images/gallery-portrait.jpg" aria-hidden="true"></div>
                 <div class="hike-row-content">
                   <div class="hike-num">06</div>
                   <div class="hike-body">
@@ -326,7 +341,7 @@
 
               <!-- 07 — Peru: Sacred Valley Explorer -->
               <li class="hike-row filter-item" data-region="andes">
-                <div class="hike-row-bg" style="background-image: url('./images/peru_sunrise.jpg')" aria-hidden="true"></div>
+                <div class="hike-row-bg" data-photo="./images/peru_sunrise.jpg" aria-hidden="true"></div>
                 <div class="hike-row-content">
                   <div class="hike-num">07</div>
                   <div class="hike-body">
@@ -356,7 +371,7 @@
 
               <!-- 08 — France: Alpine Discovery -->
               <li class="hike-row filter-item" data-region="alps">
-                <div class="hike-row-bg" style="background-image: url('./images/frace_alpine.avif')" aria-hidden="true"></div>
+                <div class="hike-row-bg" data-photo="./images/frace_alpine.avif" aria-hidden="true"></div>
                 <div class="hike-row-content">
                   <div class="hike-num">08</div>
                   <div class="hike-body">
@@ -386,7 +401,7 @@
 
               <!-- 09 — Nepal: Annapurna Circuit -->
               <li class="hike-row filter-item" data-region="himalayas">
-                <div class="hike-row-bg" style="background-image: url('./images/boots.jpg')" aria-hidden="true"></div>
+                <div class="hike-row-bg" data-photo="./images/boots.jpg" aria-hidden="true"></div>
                 <div class="hike-row-content">
                   <div class="hike-num">09</div>
                   <div class="hike-body">
