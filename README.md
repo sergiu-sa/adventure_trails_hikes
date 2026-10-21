@@ -27,6 +27,7 @@ This project demonstrates semantic HTML, modular CSS architecture, accessibility
 ├── robots.txt
 ├── sitemap.xml
 ├── _headers            # Netlify cache headers
+├── fonts/              # self-hosted woff2 files + their OFL licences
 ├── images/
 │   └── opt/            # resized AVIF/WebP hero photos
 ├── scripts/
@@ -45,7 +46,7 @@ This project demonstrates semantic HTML, modular CSS architecture, accessibility
 - Modular CSS — design tokens, base, layout, components, utilities
 - Semantic HTML5 + accessibility (skip link, focus rings, ARIA roles, prefers-reduced-motion)
 - SEO: Open Graph and Twitter card meta, canonical URLs, sitemap, robots.txt, alt attributes, headings hierarchy
-- Speed: stylesheets linked directly (no `@import` chain), hero photos as `<picture>` with AVIF/WebP and `fetchpriority="high"`, `loading="lazy"` below the first screen, hikes hover photos fetched on first hover
+- Speed: self-hosted fonts with the heading font preloaded, stylesheets linked directly (no `@import` chain), hero photos as `<picture>` with AVIF/WebP and `fetchpriority="high"`, `loading="lazy"` below the first screen, hikes hover photos fetched on first hover
 - First-visit intro with a cartographic radar-pulse motif (about 0.6 s, once per browser session, timed in CSS so it never blocks the page)
 - Cross-fade between pages with the browser's built-in View Transitions (no library; other browsers navigate normally)
 - Reduced motion respected: no intro, page fades, smooth scrolling, counters, parallax or scroll reveals
@@ -87,6 +88,8 @@ The palette is used as a **functional cartographic system**, not as decoration. 
 - **Body**: [Geist](https://fonts.google.com/specimen/Geist) — clean, characterful sans-serif (replaces Inter, which felt generic)
 - **Meta / data**: [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) — used uppercase tracked for spec sheets, coordinates, time stamps, calendar months, technical labels
 
+All three are served from `fonts/` (Latin subset, woff2, SIL Open Font Licence) rather than from Google's servers, which saves two cross-origin connections before the first heading can paint.
+
 Headlines on every page (and major sections) are numbered with a `01 /` prefix integrated into the display family — the number is part of the type, not a separate meta-label above it (Direction C in the design log).
 
 ### Layout & Architecture
@@ -108,7 +111,7 @@ sips -s format avif -s formatOptions 40 --resampleWidth 1024 images/about.jpg --
 cwebp -q 60 -m 6 -resize 1024 0 images/about.jpg -o images/opt/about-1024.webp
 ```
 
-If a file comes out larger than its JPEG (`hero-home-1000.webp` did), lower the quality. Images are cached for a week (`_headers`), so a replaced photo can take that long to reach returning visitors.
+If a file comes out larger than its JPEG (`hero-home-1000.webp` did), lower the quality. Keep AVIF width and height even (use `-z <height> <width>` to round): `sips` tiles large AVIFs, and Chrome decodes a tiled AVIF with an odd height but never paints it (`hikes_1-2048.avif` at 2048×1365 showed no photo). Images are cached for a week (`_headers`), so a replaced photo can take that long to reach returning visitors.
 
 ---
 
