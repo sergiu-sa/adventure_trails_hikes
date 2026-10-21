@@ -3,6 +3,29 @@
    Aesthetic: Expedition Brutalism
    =================================== */
 
+/* Self-hosted Latin subsets from Google Fonts; licences sit beside them in
+   /fonts. Geist and JetBrains Mono are variable: one file covers all weights. */
+@font-face {
+  font-family: "Archivo Black";
+  src: url("../fonts/archivo-black-v23-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("../fonts/geist-v5-latin.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../fonts/jetbrains-mono-v24-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
 /* Reset */
 *,
 *::before,
