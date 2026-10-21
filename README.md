@@ -20,6 +20,7 @@ This project demonstrates semantic HTML, modular CSS architecture, accessibility
 ├── sustainability.html
 ├── gallery.html
 ├── contact.html
+├── 404.html            # "Off the map"; Netlify serves it for any missing path
 ├── README.md
 ├── favicon.svg
 ├── favicon.ico         # 32px fallback for browsers without SVG favicons
@@ -45,6 +46,7 @@ This project demonstrates semantic HTML, modular CSS architecture, accessibility
 - Fully responsive (mobile, tablet, desktop)
 - Modular CSS — design tokens, base, layout, components, utilities
 - Semantic HTML5 + accessibility (skip link, focus rings, ARIA roles, prefers-reduced-motion)
+- Mobile menu is a real `<button aria-expanded>`; Escape closes it and returns focus to the button. Without JavaScript the footer links still reach every page
 - SEO: Open Graph and Twitter card meta, canonical URLs, sitemap, robots.txt, alt attributes, headings hierarchy
 - Speed: self-hosted fonts with the heading font preloaded, stylesheets linked directly (no `@import` chain), hero photos as `<picture>` with AVIF/WebP and `fetchpriority="high"`, `loading="lazy"` below the first screen, hikes hover photos fetched on first hover
 - First-visit intro with a cartographic radar-pulse motif (about 0.6 s, once per browser session, timed in CSS so it never blocks the page)

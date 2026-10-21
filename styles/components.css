@@ -511,7 +511,9 @@ legend {
 .newsletter-section .cta-button.primary:hover,
 .newsletter-section .cta-button.primary:focus-visible,
 .newsletter-section .newsletter-form .cta-button:hover,
-.newsletter-section .newsletter-form .cta-button:focus-visible {
+.newsletter-section .newsletter-form .cta-button:focus-visible,
+.not-found .cta-button.primary:hover,
+.not-found .cta-button.primary:focus-visible {
   background: var(--color-action-on-dark);
   border-color: var(--color-action-on-dark);
   color: var(--color-ink);
@@ -3661,4 +3663,94 @@ address a,
   color: var(--color-slope);
   opacity: 0.7;
 }
+
+/* ===================================
+   404 — Ink slab, contour rings around a lost Pin
+   =================================== */
+.not-found {
+  background: var(--color-ink);
+  color: var(--color-snow);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.not-found-contours {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.not-found-contours ellipse {
+  fill: none;
+  stroke: var(--color-ridge);
+  stroke-opacity: 0.3;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.not-found-contours .pin-ring {
+  fill: none;
+  stroke: var(--color-pin);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.not-found-contours .pin-core { fill: var(--color-pin); }
+
+/* 72px clears the fixed header, which sits over the top of the slab */
+.not-found .container {
+  position: relative;
+  width: 100%;
+  padding-block: calc(72px + var(--space-4xl)) var(--space-4xl);
+}
+
+.not-found-ref {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+  margin-bottom: var(--space-md);
+}
+
+.not-found h1 { color: var(--color-snow); }
+
+.not-found h1 .h-num,
+.not-found h1 em { color: var(--color-ridge); }
+
+.not-found-lede {
+  color: var(--color-snow);
+  font-size: 1.125rem;
+  max-width: 50ch;
+  margin-bottom: var(--space-2xl);
+}
+
+.not-found-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-xl);
+  border-top: 1px solid rgba(232, 228, 221, 0.18);
+  padding-top: var(--space-lg);
+}
+
+.not-found-links a {
+  color: var(--color-snow);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.not-found-links a span {
+  color: var(--color-stone);
+  margin-right: 0.5em;
+}
+
+.not-found-links a:hover,
+.not-found-links a:focus-visible { color: var(--color-action-on-dark); }
 
