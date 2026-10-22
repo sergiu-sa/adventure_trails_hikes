@@ -1802,8 +1802,12 @@ header {
 
 /* Endless motion needs a way to stop it (WCAG 2.2.2): the toggle, or hovering the text.
    Not .marquee:hover or :focus-within, which the toggle itself sets, so Play could never restart it */
-.marquee-track:hover,
 .marquee.is-paused .marquee-track { animation-play-state: paused; }
+
+/* hover: hover, or a tap's sticky :hover on touch screens pauses it while the toggle says Pause */
+@media (hover: hover) {
+  .marquee-track:hover { animation-play-state: paused; }
+}
 
 .marquee-toggle {
   position: absolute;
@@ -2370,10 +2374,10 @@ h2 em,
 /* ===================================
    FIELD MARQUEE (region tape) — variant
    =================================== */
+/* No border-top: the hero right above already ends in the same hairline */
 .region-marquee {
   background: var(--color-bone);
   color: var(--color-ink);
-  border-top: var(--border-hairline);
   border-bottom: var(--border-hairline);
 }
 
@@ -3050,6 +3054,12 @@ h2 em,
 @media (max-width: 1000px) {
   .timeline-horizontal,
   .timeline-horizontal.cols-3 { grid-template-columns: repeat(3, 1fr); }
+}
+/* About's five years leave the last 3-column row one short: no neighbour draws the
+   empty slot's top or left line, so the cells beside it do (inside, on the shared pixel) */
+@media (min-width: 701px) and (max-width: 1000px) {
+  .timeline-horizontal > :nth-child(3n):nth-last-child(3) { border-bottom: var(--border-hairline); }
+  .timeline-horizontal > :last-child:not(:nth-child(3n)) { border-right: var(--border-hairline); }
 }
 @media (max-width: 700px) {
   .timeline-horizontal,
