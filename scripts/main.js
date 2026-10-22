@@ -336,6 +336,25 @@
     requestAnimationFrame(updateCounter);
   }
 
+  // Hero coordinates tick up from zero like a GPS fix settling. Zero-padded to
+  // the final length so the line never changes width while it counts
+  function initReadout() {
+    const values = document.querySelectorAll('.hero-readout data');
+    if (values.length === 0 || reduceMotion.matches) return;
+
+    whenIntroLifts(function() {
+      const start = performance.now();
+      requestAnimationFrame(function tick() {
+        const progress = Math.min((performance.now() - start) / 1500, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        values.forEach(function(el) {
+          el.textContent = (el.value * eased).toFixed(4).padStart(el.value.length, '0');
+        });
+        if (progress < 1) requestAnimationFrame(tick);
+      });
+    });
+  }
+
   function initFormValidation() {
     const forms = document.querySelectorAll('form');
 
@@ -498,6 +517,7 @@
     initYear();
     initMarqueeToggle();
     initCounterAnimation();
+    initReadout();
     initFormValidation();
     initParallax();
     initProgressIndicator();

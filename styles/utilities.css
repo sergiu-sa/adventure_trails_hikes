@@ -320,6 +320,7 @@
   .scroll-indicator,
   .newsletter-section,
   .hero-photo,
+  .hero-map,
   .page-loader { display: none !important; }
 
   body {
