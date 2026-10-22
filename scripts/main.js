@@ -391,13 +391,14 @@
           return;
         }
 
-        // Fields stay filled: clearing them would read as "sent". Emptying the note first
-        // makes role="status" announce a second submit too
+        // Fields stay filled: clearing them would read as "sent". The wording alternates so
+        // every submit changes the text, which role="status" needs to announce it again
         const note = form.parentElement.querySelector('.form-note');
         if (!note) return;
-        note.textContent = '';
         note.classList.add('is-sent');
-        setTimeout(function() { note.textContent = 'Not sent · this form is a demo'; }, 100);
+        note.textContent = note.textContent.startsWith('Not sent')
+          ? 'Still not sent · this form is a demo'
+          : 'Not sent · this form is a demo';
       });
     });
   }
