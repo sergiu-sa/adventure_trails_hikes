@@ -506,6 +506,17 @@ legend {
   transform: none;
 }
 
+/* A <small>, not a <p>: the newsletter slabs' p rules would restyle it.
+   main.js rewrites it as the confirmation, hence role="status" */
+.form-note {
+  display: block;
+  margin-top: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 /* Dark surfaces: Ridge fill on hover/focus. Forest or Ink fills sank
    into the Ink and Forest slabs (2.26:1 or 1:1). */
 .hero .cta-button.primary:hover,
@@ -686,7 +697,7 @@ legend {
 
 .testimonial:hover::before { color: var(--color-ridge); opacity: 0.8; }
 .testimonial:hover .testimonial-content { color: var(--color-snow); }
-.testimonial:hover .testimonial-author h4 { color: var(--color-snow); }
+.testimonial:hover .testimonial-author h3 { color: var(--color-snow); }
 .testimonial:hover .testimonial-author p  { color: var(--color-snow); opacity: 0.85; }
 
 .testimonial:hover .testimonial-avatar {
@@ -743,7 +754,7 @@ legend {
   border: 1px solid var(--color-bone);
 }
 
-.testimonial-author h4 {
+.testimonial-author h3 {
   margin: 0;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
@@ -910,6 +921,15 @@ legend {
   object-fit: cover;
 }
 
+/* Fills the tile so the photo inside still fills it; the tile draws the focus ring */
+.gallery-open {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: none;
+  cursor: inherit;
+}
+
 .gallery-item::before {
   content: "";
   position: absolute;
@@ -947,7 +967,7 @@ legend {
   transform: none;
 }
 
-.gallery-item:focus-visible {
+.gallery-item:has(:focus-visible) {
   outline: 3px solid var(--color-pin);
   outline-offset: -3px;
 }
@@ -3284,7 +3304,7 @@ h2 em,
 }
 
 /* Focus state — Pin outline beats the static Ridge ring (a11y). */
-.gallery-mosaic .gallery-item:focus-visible {
+.gallery-mosaic .gallery-item:has(:focus-visible) {
   outline: 3px solid var(--color-pin);
   outline-offset: -3px;
 }

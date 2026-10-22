@@ -369,8 +369,9 @@ header nav a.active {
   max-width: 18ch;
 }
 
+/* Below 445px the floor scales with the screen so "WILDERNESS." fits whole down to 320px */
 .page-header h1 {
-  font-size: clamp(3rem, 8vw, 7rem);
+  font-size: clamp(min(3rem, 10.8vw), 8vw, 7rem);
 }
 
 .hero p,
@@ -632,7 +633,7 @@ footer::after { content: none; }
   padding-right: var(--space-2xl);
 }
 
-.footer-section h3 {
+.footer-section h2 {
   color: var(--color-bone);
   margin-bottom: var(--space-md);
   font-family: var(--font-mono);
@@ -645,9 +646,9 @@ footer::after { content: none; }
   border-bottom: none;
 }
 
-.footer-section h3::after { content: none; }
+.footer-section h2::after { content: none; }
 
-.footer-section:first-child h3 {
+.footer-section:first-child h2 {
   font-family: var(--font-display);
   font-size: 1.5rem;
   letter-spacing: -0.02em;
@@ -734,7 +735,7 @@ footer::after { content: none; }
     border-top: none;
     text-align: left;
   }
-  .footer-section:first-child h3::after { display: none; }
+  .footer-section:first-child h2::after { display: none; }
 }
 
 /* Hero stats — sustainability variant */

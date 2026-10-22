@@ -128,18 +128,11 @@
       show(visible[(index + by + visible.length) % visible.length]);
     }
 
+    // On the whole tile, not just its button, so a click on the caption opens it too
     galleryItems.forEach(function(item) {
-      function open() {
+      item.addEventListener('click', function() {
         show(item);
         lightbox.showModal();
-      }
-
-      item.addEventListener('click', open);
-      item.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          open();
-        }
       });
     });
 
@@ -158,7 +151,7 @@
 
     // Fires for Escape too. Lands on the photo last shown, which may not be the one opened
     lightbox.addEventListener('close', function() {
-      current.focus();
+      current.querySelector('.gallery-open').focus();
     });
   }
 
@@ -306,8 +299,9 @@
     const start = 0;
     const startTime = performance.now();
 
-    function updateCounter(currentTime) {
-      const elapsed = currentTime - startTime;
+    // performance.now(), not the rAF timestamp: that one can predate startTime and go negative
+    function updateCounter() {
+      const elapsed = performance.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
       const current = start + (value - start) * easeOutQuart;
@@ -373,7 +367,9 @@
         });
       });
 
+      // Every form on the site is a demo, so nothing is ever posted
       form.addEventListener('submit', function(e) {
+        e.preventDefault();
         let isValid = true;
 
         inputs.forEach(function(input) {
@@ -383,10 +379,13 @@
         });
 
         if (!isValid) {
-          e.preventDefault();
           const firstInvalid = form.querySelector('.invalid');
           if (firstInvalid) firstInvalid.focus();
+          return;
         }
+
+        const note = form.parentElement.querySelector('.form-note');
+        if (note) note.textContent = 'Demo only · nothing was sent';
       });
     });
   }
@@ -453,10 +452,8 @@
   function initProgressIndicator() {
     const progressBar = document.createElement('div');
     progressBar.className = 'page-progress';
-    progressBar.setAttribute('role', 'progressbar');
-    progressBar.setAttribute('aria-label', 'Page scroll progress');
-    progressBar.setAttribute('aria-valuemin', '0');
-    progressBar.setAttribute('aria-valuemax', '100');
+    // Decorative: screen readers already report scroll position
+    progressBar.setAttribute('aria-hidden', 'true');
     document.body.appendChild(progressBar);
 
     let ticking = false;
@@ -468,7 +465,6 @@
           const docHeight = document.documentElement.scrollHeight - window.innerHeight;
           const progress = (scrollTop / docHeight) * 100;
           progressBar.style.width = progress + '%';
-          progressBar.setAttribute('aria-valuenow', Math.round(progress));
           ticking = false;
         });
         ticking = true;
