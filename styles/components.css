@@ -530,6 +530,11 @@ legend {
   margin: var(--space-2xl) 0;
 }
 
+/* The filters run on :has(); without it the tabs would do nothing, so drop them and list everything */
+@supports not selector(:has(*)) {
+  .filter-container { display: none; }
+}
+
 .filter-tabs {
   display: flex;
   gap: 0;
@@ -543,8 +548,16 @@ legend {
   overflow: hidden;
 }
 
+/* Transparent over its label instead of display: none or a 1px clip, so it stays
+   in the tab order and touch screen readers find it where the tab is drawn */
 .filter-input {
-  display: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
 }
 
 .filter-tab {
@@ -584,7 +597,7 @@ legend {
   transform: translate(1px, 1px);
 }
 
-.filter-input:checked + .filter-tab {
+.filter-tab:has(> .filter-input:checked) {
   /* Forest active state */
   background: var(--color-forest);
   color: var(--color-snow);
@@ -592,11 +605,13 @@ legend {
   box-shadow: none;
   transform: none;
   font-weight: var(--font-weight-bold);
+  --focus-ring: var(--color-snow);
 }
 
-.filter-input:focus-visible + .filter-tab {
-  outline: 2px solid var(--color-pin);
-  outline-offset: 2px;
+.filter-tab:has(> .filter-input:focus-visible) {
+  outline: 2px solid var(--focus-ring, var(--color-pin));
+  /* Inset: .filter-tabs clips its children to its rounded corners */
+  outline-offset: -4px;
 }
 
 .filter-item {
@@ -974,10 +989,6 @@ legend {
 }
 .faq-item:last-child { border-bottom: 1px solid var(--color-ink); }
 
-.faq-toggle {
-  display: none;
-}
-
 .faq-question {
   display: flex;
   justify-content: space-between;
@@ -997,6 +1008,9 @@ legend {
   text-align: left;
   color: var(--color-ink);
 }
+
+/* Safari draws the disclosure triangle here; display: flex already drops it elsewhere */
+.faq-question::-webkit-details-marker { display: none; }
 
 .faq-question:hover {
   border-color: var(--color-ink);
@@ -1026,16 +1040,9 @@ legend {
   margin-left: var(--space-md);
 }
 
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  /* visibility keeps links in a closed answer out of the tab order */
-  visibility: hidden;
-  transition: max-height 0.25s ease-out, opacity 0.25s ease-out, visibility 0.25s;
-  background: transparent;
-  border-radius: 0;
-  margin-top: 0;
-  opacity: 0;
+/* Open only: animating the close or the height needs interpolate-size, which only Chrome has */
+.faq-item[open] .faq-answer {
+  animation: fadeInUp 0.25s ease-out;
 }
 
 .faq-answer p {
@@ -1045,22 +1052,13 @@ legend {
   max-width: 70ch;
 }
 
-.faq-toggle:checked + .faq-question {
-  border-color: var(--color-ink);
-  background: transparent;
+.faq-item[open] .faq-question {
   color: var(--color-hazard);
 }
 
-.faq-toggle:checked + .faq-question .faq-icon {
+.faq-item[open] .faq-icon {
   transform: rotate(45deg);
   color: var(--color-hazard);
-}
-
-.faq-toggle:checked + .faq-question + .faq-answer {
-  max-height: 400px;
-  visibility: visible;
-  opacity: 1;
-  margin-bottom: 0;
 }
 
 /* ===================================
@@ -2747,31 +2745,16 @@ h2 em,
 
 /* ===================================
    CSS-ONLY REGION FILTER
-   - All filter-input radios and the .hike-list must be siblings under .filter-shell
    =================================== */
 .filter-shell { display: contents; }
 
-.filter-shell .filter-input { display: none; }
-
-/* default — show all when "all" is checked */
-#filter-all:checked ~ .hike-list .filter-item { display: block; }
-
-/* hide all, then reveal the specific region */
-#filter-himalayas:checked ~ .hike-list .filter-item,
-#filter-andes:checked     ~ .hike-list .filter-item,
-#filter-alps:checked      ~ .hike-list .filter-item,
-#filter-rockies:checked   ~ .hike-list .filter-item,
-#filter-africa:checked    ~ .hike-list .filter-item {
+.filter-shell:has(#filter-himalayas:checked) .filter-item:not([data-region="himalayas"]),
+.filter-shell:has(#filter-andes:checked)     .filter-item:not([data-region="andes"]),
+.filter-shell:has(#filter-alps:checked)      .filter-item:not([data-region="alps"]),
+.filter-shell:has(#filter-rockies:checked)   .filter-item:not([data-region="rockies"]),
+.filter-shell:has(#filter-africa:checked)    .filter-item:not([data-region="africa"]) {
   display: none;
 }
-
-#filter-himalayas:checked ~ .hike-list .filter-item[data-region="himalayas"] { display: block; }
-#filter-andes:checked     ~ .hike-list .filter-item[data-region="andes"]     { display: block; }
-#filter-alps:checked      ~ .hike-list .filter-item[data-region="alps"]      { display: block; }
-#filter-rockies:checked   ~ .hike-list .filter-item[data-region="rockies"]   { display: block; }
-#filter-africa:checked    ~ .hike-list .filter-item[data-region="africa"]    { display: block; }
-
-/* Same logic for any other .filter-item containers (e.g. gallery uses category instead) */
 
 /* ORIGIN GRID — 70/30 prose + mono metadata */
 .origin-grid {
@@ -3352,14 +3335,13 @@ h2 em,
 
 /* GALLERY CSS-only category filter */
 .gallery-shell { display: contents; }
-.gallery-shell .filter-input { display: none; }
 
 /* Only hides: setting display on the shown tiles would undo .gallery-item's flex,
    which keeps the caption down on the dark end of the gradient */
-#cat-landscapes:checked ~ .gallery-mosaic .filter-item:not([data-category="landscapes"]),
-#cat-culture:checked    ~ .gallery-mosaic .filter-item:not([data-category="culture"]),
-#cat-trail:checked      ~ .gallery-mosaic .filter-item:not([data-category="trail"]),
-#cat-wildlife:checked   ~ .gallery-mosaic .filter-item:not([data-category="wildlife"]) {
+.gallery-shell:has(#cat-landscapes:checked) .filter-item:not([data-category="landscapes"]),
+.gallery-shell:has(#cat-culture:checked)    .filter-item:not([data-category="culture"]),
+.gallery-shell:has(#cat-trail:checked)      .filter-item:not([data-category="trail"]),
+.gallery-shell:has(#cat-wildlife:checked)   .filter-item:not([data-category="wildlife"]) {
   display: none;
 }
 

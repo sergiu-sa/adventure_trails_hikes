@@ -133,19 +133,13 @@
           </dl>
 
           <div class="gallery-shell">
-            <input type="radio" id="cat-all"        name="cat-filter" class="filter-input" checked />
-            <input type="radio" id="cat-landscapes" name="cat-filter" class="filter-input" />
-            <input type="radio" id="cat-culture"    name="cat-filter" class="filter-input" />
-            <input type="radio" id="cat-trail"      name="cat-filter" class="filter-input" />
-            <input type="radio" id="cat-wildlife"   name="cat-filter" class="filter-input" />
-
             <div class="filter-container">
-              <div class="filter-tabs" role="tablist" aria-label="Filter photos by category">
-                <label for="cat-all"        class="filter-tab" role="tab" tabindex="0">All</label>
-                <label for="cat-landscapes" class="filter-tab" role="tab" tabindex="0">Landscapes</label>
-                <label for="cat-culture"    class="filter-tab" role="tab" tabindex="0">Culture</label>
-                <label for="cat-trail"      class="filter-tab" role="tab" tabindex="0">On trail</label>
-                <label for="cat-wildlife"   class="filter-tab" role="tab" tabindex="0">Wildlife</label>
+              <div class="filter-tabs" role="radiogroup" aria-label="Filter photos by category">
+                <label class="filter-tab"><input type="radio" name="cat-filter" id="cat-all"        class="filter-input" checked />All</label>
+                <label class="filter-tab"><input type="radio" name="cat-filter" id="cat-landscapes" class="filter-input" />Landscapes</label>
+                <label class="filter-tab"><input type="radio" name="cat-filter" id="cat-culture"    class="filter-input" />Culture</label>
+                <label class="filter-tab"><input type="radio" name="cat-filter" id="cat-trail"      class="filter-input" />On trail</label>
+                <label class="filter-tab"><input type="radio" name="cat-filter" id="cat-wildlife"   class="filter-input" />Wildlife</label>
               </div>
             </div>
 

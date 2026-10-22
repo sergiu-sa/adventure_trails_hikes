@@ -343,12 +343,6 @@
     -webkit-text-fill-color: initial;
   }
 
-  .faq-toggle:checked + .faq-question + .faq-answer {
-    max-height: none;
-    opacity: 1;
-    page-break-inside: avoid;
-  }
-
   .contact-form { border: 1px solid #ccc; }
 }
 
