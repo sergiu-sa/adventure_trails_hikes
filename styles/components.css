@@ -494,6 +494,8 @@ legend {
   color: var(--color-bone);
   border: none;
   border-left: 2px solid var(--color-bone);
+  /* Square: the form's own radius and overflow round the outer corners */
+  border-radius: 0;
   white-space: nowrap;
   padding: var(--space-md) var(--space-xl);
 }
@@ -581,6 +583,8 @@ legend {
 }
 
 .filter-tab {
+  /* The global label margin left a strip under every tab inside the frame */
+  margin: 0;
   padding: var(--space-sm) var(--space-lg);
   background: var(--color-bone);
   border: none;
@@ -1338,9 +1342,10 @@ main > .newsletter-section:last-child::after { content: none; }
   right: var(--space-lg);
   width: 44px;
   height: 44px;
-  background: var(--color-ink);
-  color: var(--color-bone);
-  border: 2px solid var(--color-bone);
+  /* Forest stands out on Snow, the Snow ring on Ink: it floats over both */
+  background: var(--color-forest);
+  color: var(--color-snow);
+  border: 2px solid var(--color-snow);
   border-radius: var(--radius-full);
   cursor: pointer;
   display: flex;
@@ -1362,10 +1367,10 @@ main > .newsletter-section:last-child::after { content: none; }
 
 .back-to-top:hover {
   transform: translate(-2px, -2px);
-  /* Slope kraft drop-shadow + Forest action fill */
+  /* Slope kraft drop-shadow + Snow fill, Ink ring so it still shows on Snow */
   box-shadow: 4px 4px 0 var(--color-slope);
-  background: var(--color-forest);
-  color: var(--color-snow);
+  background: var(--color-snow);
+  color: var(--color-ink);
   border-color: var(--color-ink);
 }
 
@@ -2087,12 +2092,16 @@ h2 em,
   margin-top: var(--space-2xl);
   border-radius: var(--radius-md);
   overflow: hidden;
+  padding: 0;
 }
 
+/* Left/top hairlines pulled 1px outward: the frame clips the outer ones, so
+   none doubles the frame at any column count (margin also beats base.css li) */
 .method-step {
+  margin: -1px 0 0 -1px;
   padding: var(--space-2xl) var(--space-xl);
-  border-right: var(--border-hairline);
-  border-bottom: var(--border-hairline);
+  border-left: var(--border-hairline);
+  border-top: var(--border-hairline);
   background: var(--color-paper);
   transition: var(--transition-fast);
   display: flex;
@@ -2895,10 +2904,13 @@ h2 em,
   grid-template-columns: 110px 1fr auto;
   gap: var(--space-2xl);
   align-items: start;
+  margin: 0; /* base.css li margin left a gap the hover fill couldn't reach */
   padding: var(--space-2xl) var(--space-md);
   border-bottom: var(--border-hairline);
   transition: var(--transition-fast);
 }
+
+.commitment:last-child { border-bottom: none; }
 
 .commitment:hover {
   background: var(--color-ink);
@@ -2973,14 +2985,17 @@ h2 em,
   margin: var(--space-2xl) 0;
   border-radius: var(--radius-md);
   overflow: hidden;
+  padding: 0;
 }
 
 .timeline-horizontal.cols-3 { grid-template-columns: repeat(3, 1fr); }
 
+/* Same hairline technique as .method-step */
 .timeline-horizontal-item {
+  margin: -1px 0 0 -1px;
   padding: var(--space-xl);
-  border-right: var(--border-hairline);
-  border-bottom: var(--border-hairline);
+  border-left: var(--border-hairline);
+  border-top: var(--border-hairline);
   background: var(--color-paper);
   position: relative;
   transition: var(--transition-fast);
