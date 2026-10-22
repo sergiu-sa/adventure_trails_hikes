@@ -164,12 +164,10 @@
     border-radius: var(--radius-sm);
   }
 
-  /* Newsletter form column layout — convert button left-stripe to
-     top-stripe; drop button radius so it sits flush in the wrapper */
+  /* Newsletter form column layout — convert button left-stripe to top-stripe */
   .newsletter-form .cta-button {
     border-left: none;
     border-top: 2px solid var(--color-bone);
-    border-radius: 0;
   }
 
   /* Filter tabs become individual chips on mobile (the bordered group
