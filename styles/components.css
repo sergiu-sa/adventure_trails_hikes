@@ -517,6 +517,15 @@ legend {
   text-transform: uppercase;
 }
 
+/* After submit it becomes a stamp; currentColor keeps it legible on every slab */
+.form-note.is-sent {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-bold);
+}
+
 /* Dark surfaces: Ridge fill on hover/focus. Forest or Ink fills sank
    into the Ink and Forest slabs (2.26:1 or 1:1). */
 .hero .cta-button.primary:hover,
@@ -1786,9 +1795,9 @@ header {
 /* Alternate dot warms to Ridge gold — echoes contour shading on a topo map */
 .marquee-track > span:nth-child(2n)::after { color: var(--color-ridge); }
 
-/* Endless motion needs a way to stop it (WCAG 2.2.2): hover, focus or the toggle */
-.marquee:hover .marquee-track,
-.marquee:focus-within .marquee-track,
+/* Endless motion needs a way to stop it (WCAG 2.2.2): the toggle, or hovering the text.
+   Not .marquee:hover or :focus-within, which the toggle itself sets, so Play could never restart it */
+.marquee-track:hover,
 .marquee.is-paused .marquee-track { animation-play-state: paused; }
 
 .marquee-toggle {

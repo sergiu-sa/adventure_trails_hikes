@@ -123,7 +123,8 @@
 
     // Steps through the tiles the category filter left visible, not all 18
     function step(by) {
-      const visible = galleryItems.filter(function(item) { return item.checkVisibility(); });
+      // getClientRects, not checkVisibility(), which Safari only has from 17.4
+      const visible = galleryItems.filter(function(item) { return item.getClientRects().length > 0; });
       const index = visible.indexOf(current);
       show(visible[(index + by + visible.length) % visible.length]);
     }
@@ -236,6 +237,12 @@
     // Tabbing past the last link would otherwise put focus on content hidden under the open menu
     toggle.closest('header').addEventListener('focusout', function(e) {
       if (isOpen() && !e.currentTarget.contains(e.relatedTarget)) setOpen(false);
+    });
+
+    // Above the utilities.css breakpoint the button is hidden; a menu left open there (Safari
+    // never focuses a tapped button, so focusout can't catch it) would pin the header in initHeaderScroll
+    window.matchMedia('(max-width: 768px)').addEventListener('change', function() {
+      setOpen(false);
     });
 
     document.addEventListener('keydown', function(e) {
@@ -384,8 +391,13 @@
           return;
         }
 
+        // Fields stay filled: clearing them would read as "sent". Emptying the note first
+        // makes role="status" announce a second submit too
         const note = form.parentElement.querySelector('.form-note');
-        if (note) note.textContent = 'Demo only · nothing was sent';
+        if (!note) return;
+        note.textContent = '';
+        note.classList.add('is-sent');
+        setTimeout(function() { note.textContent = 'Not sent · this form is a demo'; }, 100);
       });
     });
   }
