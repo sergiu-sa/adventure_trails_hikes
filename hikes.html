@@ -133,25 +133,17 @@
           </dl>
 
           <!-- ============================================
-               FILTER + LIST — radios placed as siblings to .hike-list
-               so the CSS-only :checked ~ filter works
+               FILTER + LIST
                ============================================ -->
           <div class="filter-shell">
-            <input type="radio" id="filter-all"        name="region-filter" class="filter-input" checked />
-            <input type="radio" id="filter-himalayas"  name="region-filter" class="filter-input" />
-            <input type="radio" id="filter-andes"      name="region-filter" class="filter-input" />
-            <input type="radio" id="filter-alps"       name="region-filter" class="filter-input" />
-            <input type="radio" id="filter-rockies"    name="region-filter" class="filter-input" />
-            <input type="radio" id="filter-africa"     name="region-filter" class="filter-input" />
-
             <div class="filter-container">
-              <div class="filter-tabs" role="tablist" aria-label="Filter expeditions by region">
-                <label for="filter-all"       class="filter-tab" role="tab" tabindex="0">All</label>
-                <label for="filter-himalayas" class="filter-tab" role="tab" tabindex="0">Himalayas</label>
-                <label for="filter-andes"     class="filter-tab" role="tab" tabindex="0">Andes</label>
-                <label for="filter-alps"      class="filter-tab" role="tab" tabindex="0">Alps</label>
-                <label for="filter-rockies"   class="filter-tab" role="tab" tabindex="0">Rockies</label>
-                <label for="filter-africa"    class="filter-tab" role="tab" tabindex="0">Africa</label>
+              <div class="filter-tabs" role="radiogroup" aria-label="Filter expeditions by region">
+                <label class="filter-tab"><input type="radio" name="region-filter" id="filter-all"       class="filter-input" checked />All</label>
+                <label class="filter-tab"><input type="radio" name="region-filter" id="filter-himalayas" class="filter-input" />Himalayas</label>
+                <label class="filter-tab"><input type="radio" name="region-filter" id="filter-andes"     class="filter-input" />Andes</label>
+                <label class="filter-tab"><input type="radio" name="region-filter" id="filter-alps"      class="filter-input" />Alps</label>
+                <label class="filter-tab"><input type="radio" name="region-filter" id="filter-rockies"   class="filter-input" />Rockies</label>
+                <label class="filter-tab"><input type="radio" name="region-filter" id="filter-africa"    class="filter-input" />Africa</label>
               </div>
             </div>
 

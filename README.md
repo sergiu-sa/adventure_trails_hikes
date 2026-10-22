@@ -52,7 +52,8 @@ This project demonstrates semantic HTML, modular CSS architecture, accessibility
 - First-visit intro with a cartographic radar-pulse motif (about 0.6 s, once per browser session, timed in CSS so it never blocks the page)
 - Cross-fade between pages with the browser's built-in View Transitions (no library; other browsers navigate normally)
 - Reduced motion respected: no intro, page fades, smooth scrolling, counters, parallax or scroll reveals
-- Cross-page filtering on hikes (region) and gallery (category) — pure CSS via `:checked ~` sibling selectors
+- Cross-page filtering on hikes (region) and gallery (category) — pure CSS: each tab is a native radio (arrow keys switch the filter) read with `:has(:checked)`
+- Contact FAQ is native `<details>`/`<summary>`, so Enter and Space open it without JavaScript
 - Real Google Maps embed on contact, with brand-coloured Pin sticker overlay
 - Lightbox gallery, page progress indicator, lazy-load, copy-to-clipboard, toast notifications
 - Form validation with hazard-Pin error states reserved for accessibility signal
