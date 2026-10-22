@@ -164,6 +164,10 @@
 
 .card:hover .card-content { color: var(--color-bone); }
 
+/* address a:hover is Forest, which disappears on the Ink hover card (2.3:1) */
+.card:hover address a:hover,
+.card:hover address a:focus { color: var(--color-action-on-dark); }
+
 .feature-card {
   text-align: left;
 }
@@ -222,12 +226,12 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(20, 17, 11, 0.65) 100%);
+  background: linear-gradient(180deg, transparent 35%, rgba(20, 17, 11, 0.85) 100%);
   transition: var(--transition-fast);
 }
 
 .card:hover .card-image::before {
-  background: linear-gradient(180deg, transparent 30%, rgba(20, 17, 11, 0.85) 100%);
+  background: linear-gradient(180deg, transparent 25%, rgba(20, 17, 11, 0.92) 100%);
 }
 
 .card-image span {
@@ -659,7 +663,7 @@ legend {
 
 .testimonial:hover {
   /* Slope warm earth on hover — kraft-paper feel + subtle lift */
-  background: var(--color-slope);
+  background: var(--color-slope-text);
   color: var(--color-snow);
   transform: none;
   box-shadow: var(--shadow-md);
@@ -674,7 +678,7 @@ legend {
   transform: none;
   box-shadow: none;
   background: var(--color-snow);
-  color: var(--color-slope);
+  color: var(--color-slope-text);
 }
 
 .testimonial-rating {
@@ -895,7 +899,8 @@ legend {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(20, 17, 11, 0.85));
+  /* Dark enough under the 10px Ridge geo-tag for 4.5:1 on bright photos */
+  background: linear-gradient(180deg, transparent 30%, rgba(20, 17, 11, 0.78) 62%, rgba(20, 17, 11, 0.96));
   transition: var(--transition-fast);
 }
 
@@ -911,7 +916,7 @@ legend {
 }
 
 .gallery-item:hover::before {
-  background: linear-gradient(180deg, transparent 30%, rgba(20, 17, 11, 0.95));
+  background: linear-gradient(180deg, transparent 20%, rgba(20, 17, 11, 0.78) 60%, rgba(20, 17, 11, 0.97));
 }
 
 .gallery-item:hover::after {
@@ -1150,7 +1155,7 @@ legend {
 }
 
 .achievement-label {
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   font-family: var(--font-mono);
   font-weight: var(--font-weight-medium);
   margin: 0;
@@ -1223,7 +1228,7 @@ main > .newsletter-section:last-child::after { content: none; }
 /* Pin "alert" slab — reserved for emergency / urgent semantic context only.
    Variant repaints seams in solid Ink to keep the urgency unambiguous. */
 .newsletter-section.alert-bg {
-  background: var(--color-pin);
+  background: var(--color-pin-deep);
   color: var(--color-snow);
 }
 .newsletter-section.alert-bg::before,
@@ -1241,7 +1246,9 @@ main > .newsletter-section:last-child::after { content: none; }
   margin-bottom: var(--space-md);
 }
 .newsletter-section.primary-bg h2 { color: var(--color-snow); }
-.newsletter-section.alert-bg h2     { color: var(--color-snow); }
+.newsletter-section.alert-bg h2,
+.newsletter-section.alert-bg h2 em,
+.newsletter-section.alert-bg h2 .h-num { color: var(--color-snow); }
 /* Default (ink) variant only; primary-bg and alert-bg keep their own type */
 .newsletter-section:not(.primary-bg):not(.alert-bg) p {
   color: var(--color-stone);
@@ -1932,7 +1939,7 @@ h2 em,
   z-index: 2;
   border-radius: var(--radius-sm);
   /* Pin reserved — this is literally a "stuck-on" tag */
-  background: var(--color-pin);
+  background: var(--color-pin-deep);
   color: var(--color-snow);
   padding: var(--space-xs) var(--space-md);
   font-family: var(--font-mono);
@@ -2260,7 +2267,7 @@ h2 em,
   font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2277,7 +2284,7 @@ h2 em,
 }
 
 .dispatch-meta strong {
-  color: var(--color-slope);
+  color: var(--color-slope-text);
   font-weight: var(--font-weight-bold);
 }
 
@@ -2372,7 +2379,7 @@ h2 em,
   font-size: 0.625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   font-weight: var(--font-weight-bold);
   margin: 0;
 }
@@ -2837,7 +2844,7 @@ h2 em,
   font-size: 0.625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   font-weight: var(--font-weight-bold);
 }
 
@@ -2928,7 +2935,7 @@ h2 em,
   font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   border: 1px solid var(--color-ink);
   border-radius: var(--radius-sm);
   padding: 4px 8px;
@@ -3058,7 +3065,7 @@ h2 em,
   font-size: 0.75rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   font-weight: var(--font-weight-bold);
   border-bottom: 1px solid currentColor;
   padding-bottom: var(--space-sm);
@@ -3114,7 +3121,7 @@ h2 em,
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-pin);
+  color: var(--color-pin-deep);
   transform: rotate(8deg);
   display: flex;
   flex-direction: column;
@@ -3145,7 +3152,7 @@ h2 em,
   font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   margin-bottom: var(--space-lg);
   border-bottom: 1px solid var(--color-ink);
   padding-bottom: var(--space-md);
@@ -3153,7 +3160,7 @@ h2 em,
 }
 
 .pledge-meta strong {
-  color: var(--color-slope);
+  color: var(--color-slope-text);
   display: block;
   margin-bottom: 4px;
 }
@@ -3201,7 +3208,7 @@ h2 em,
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.12em;
   /* Slope decorative numeric markers */
-  color: var(--color-slope);
+  color: var(--color-slope-text);
   align-self: start;
   padding-top: 2px;
 }
@@ -3237,7 +3244,7 @@ h2 em,
   font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   font-weight: var(--font-weight-bold);
   margin-top: var(--space-xs);
 }
@@ -3402,7 +3409,7 @@ h2 em,
   bottom: var(--space-md);
   left: var(--space-md);
   z-index: 2;
-  background: var(--color-pin);
+  background: var(--color-pin-deep);
   color: var(--color-snow);
   padding: var(--space-xs) var(--space-md);
   font-family: var(--font-mono);
@@ -3446,7 +3453,7 @@ h2 em,
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   margin: 0;
 }
 
@@ -3479,7 +3486,7 @@ h2 em,
   font-size: 0.625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   font-weight: var(--font-weight-bold);
   align-self: center;
 }

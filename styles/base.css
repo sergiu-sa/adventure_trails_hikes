@@ -196,6 +196,8 @@ address a:focus {
 
 .skip-link:focus {
   top: 6px;
+  /* a:focus would otherwise paint it Forest on Ink (2.3:1) */
+  color: var(--color-bone);
   /* Pin reserved for max-signal a11y indicators */
   outline: 2px solid var(--color-pin);
   outline-offset: 2px;
