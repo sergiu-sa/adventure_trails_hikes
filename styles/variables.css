@@ -19,7 +19,8 @@
   --color-snow-deep:   #DACFA8;            /* deeper paper for borders against Snow */
   --color-stone:       #B8A87E;            /* light tan-gray on dark surfaces */
   --color-stone-dark:  var(--color-slope); /* mono-label / secondary text on light */
-  --color-pin-deep:    #A52E18;            /* darker Pin for hover/active (errors only) */
+  --color-slope-text:  #66502E;            /* Slope for small text: 6.2:1 on Snow, 5.7:1 on Paper (Slope is 4.0 / 3.7) */
+  --color-pin-deep:    #A52E18;            /* darker Pin behind or as small text: 5.7:1 with Snow (Pin is 4.0) */
 
   /* Semantic action tokens — Forest is the new "primary action" color.
      Pin is reserved for the literal cartographic pin (markers, stamps,

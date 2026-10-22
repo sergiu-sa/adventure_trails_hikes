@@ -40,7 +40,7 @@
 .section-subtitle {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   margin: 0;
   font-weight: var(--font-weight-medium);
   letter-spacing: 0.08em;
