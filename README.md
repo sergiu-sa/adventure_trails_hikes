@@ -51,7 +51,8 @@ This project demonstrates semantic HTML, modular CSS architecture, accessibility
 - Speed: self-hosted fonts with the heading font preloaded, stylesheets linked directly (no `@import` chain), hero photos as `<picture>` with AVIF/WebP and `fetchpriority="high"`, `loading="lazy"` below the first screen, hikes hover photos fetched on first hover
 - First-visit intro with a cartographic radar-pulse motif (about 0.6 s, once per browser session, timed in CSS so it never blocks the page)
 - Cross-fade between pages with the browser's built-in View Transitions (no library; other browsers navigate normally)
-- Reduced motion respected: no intro, page fades, smooth scrolling, counters, parallax or scroll reveals
+- Contour heroes: a red pin at each page's own point (the featured Sacred Valley route, the Boulder base, Kala Patthar, Thorong La, Field Station 042), topographic contour lines around it and a mono coordinate readout that ticks up on arrival. The contour layer sits in the same spot on every page, so it holds still while the photo cross-fades, and it draws only on the first page of a visit
+- Reduced motion respected: no intro, page fades, smooth scrolling, counters, coordinate ticking, contour drawing, parallax or scroll reveals
 - Cross-page filtering on hikes (region) and gallery (category) — pure CSS: each tab is a native radio (arrow keys switch the filter) read with `:has(:checked)`
 - Contact FAQ is native `<details>`/`<summary>`, so Enter and Space open it without JavaScript
 - Real Google Maps embed on contact, with brand-coloured Pin sticker overlay
@@ -102,7 +103,7 @@ Headlines on every page (and major sections) are numbered with a `01 /` prefix i
 - Tiled grid containers with rounded outer corners + `overflow: hidden` (regions bar, achievements grid, sustainability features, commitments list, method grid, timeline, giant-stat ledger, spec sheet, departures calendar)
 - Isolated card grids with `gap` between cards (cards/dispatch/testimonials) — each card stands alone with full hairline frame + radius
 - Asymmetric 70/30 splits (origin prose + metadata column on About; editorial blocks on home)
-- Photo-led heroes with grain overlay + Forest dusk gradient at the bottom
+- Photo-led heroes with grain overlay, an Ink wash behind the text and a Forest dusk gradient at the bottom
 - Cartographic first-visit intro: concentric contour rings (one per palette colour) pulsing outward from a Pin marker, brand wordmark in Ridge gold, "Plotting route…" status in mono
 
 ### Hero images

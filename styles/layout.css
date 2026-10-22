@@ -307,15 +307,31 @@ header nav a.active {
   content: "";
   position: absolute;
   inset: 0;
-  /* Top: light Ink wash. Bottom: Forest deep moss — the photo
-     descends into the trees. */
-  background: linear-gradient(
-    180deg,
-    rgba(20, 17, 11, 0.15) 0%,
-    rgba(20, 17, 11, 0.42) 45%,
-    rgba(62, 84, 50, 0.72) 78%,
-    rgba(62, 84, 50, 0.92) 100%
-  );
+  /* Ink wash behind the text on the left, pin side left brighter. Top to
+     bottom, light Ink into Forest deep moss: the photo descends into the trees. */
+  background:
+    linear-gradient(90deg, rgba(20, 17, 11, 0.5) 0%, rgba(20, 17, 11, 0.36) 55%, rgba(20, 17, 11, 0) 85%),
+    linear-gradient(
+      180deg,
+      rgba(20, 17, 11, 0.25) 0%,
+      rgba(20, 17, 11, 0.55) 38%,
+      rgba(62, 84, 50, 0.85) 68%,
+      rgba(62, 84, 50, 0.94) 100%
+    );
+}
+
+/* Phones: the text runs the full width and starts near the top */
+@media (max-width: 768px) {
+  .hero::before,
+  .page-header::before {
+    background: linear-gradient(
+      180deg,
+      rgba(20, 17, 11, 0.6) 0%,
+      rgba(20, 17, 11, 0.68) 40%,
+      rgba(62, 84, 50, 0.88) 75%,
+      rgba(62, 84, 50, 0.95) 100%
+    );
+  }
 }
 
 /* Grain overlay on hero photography */
@@ -387,6 +403,88 @@ header nav a.active {
   border-radius: var(--radius-md);
   font-size: 0.6875rem;
   opacity: 1;
+}
+
+/* Coordinates of the page's own point, under the hero text. main.js ticks
+   the <data> values up from zero */
+.hero .hero-readout,
+.page-header .hero-readout {
+  margin: var(--space-sm) 0 0;
+  max-width: none;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+.hero-readout .pin-dot {
+  display: inline-block;
+  vertical-align: 0.1em;
+  margin-right: var(--space-xs);
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-pin);
+}
+
+/* Same viewport spot on every page, so the page cross-fade leaves the rings
+   still: it blends with plus-lighter, and identical rings add back to full */
+.hero-map {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-contours {
+  position: absolute;
+  left: 76%;
+  /* 40vw wins on portrait screens and lifts the pin above the headline */
+  top: min(55vh, 40vw);
+  width: 1200px;
+  translate: -50% -50%;
+  /* Lines fade out away from the pin, so none cross the small text */
+  mask-image: radial-gradient(closest-side, #000 35%, transparent);
+  -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent);
+}
+
+.hero-contours path {
+  fill: none;
+  stroke: var(--color-ridge);
+  stroke-width: 1;
+  opacity: 0.45;
+}
+
+/* Every fifth line heavier: the index contour of a topographic map */
+.hero-contours .index {
+  stroke-width: 1.75;
+  opacity: 0.7;
+}
+
+.hero-pin-halo { fill: var(--color-pin); opacity: 0.3; }
+.hero-pin      { fill: var(--color-pin); }
+.hero-pin-dot  { fill: var(--color-snow); }
+
+/* Phones: the text fills the hero, so the pin takes the gap under the header */
+@media (max-width: 768px) {
+  .hero-contours {
+    left: calc(100% - 40px);
+    top: 92px;
+    width: 760px;
+  }
+}
+
+/* First page of a visit only (html.intro), so later pages arrive with the
+   layer already drawn. Rings draw from the pin outward as the intro lifts */
+html.intro .hero-contours path {
+  stroke-dasharray: 1;
+  animation: contour-draw 1.6s cubic-bezier(0.3, 0.6, 0.3, 1) calc(0.3s + var(--i) * 0.08s) backwards;
+}
+
+@keyframes contour-draw {
+  from { stroke-dashoffset: 1; }
 }
 
 /* Hero CTAs */
