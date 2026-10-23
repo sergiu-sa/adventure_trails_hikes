@@ -164,9 +164,9 @@
 
 .card:hover .card-content { color: var(--color-bone); }
 
-.feature-card {
-  text-align: left;
-}
+/* address a:hover is Forest, which disappears on the Ink hover card (2.3:1) */
+.card:hover address a:hover,
+.card:hover address a:focus { color: var(--color-action-on-dark); }
 
 .card-icon {
   position: absolute;
@@ -203,8 +203,6 @@
 .card-image {
   width: 100%;
   height: var(--card-image-height);
-  background-size: cover;
-  background-position: center;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -224,12 +222,12 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(20, 17, 11, 0.65) 100%);
+  background: linear-gradient(180deg, transparent 35%, rgba(20, 17, 11, 0.85) 100%);
   transition: var(--transition-fast);
 }
 
 .card:hover .card-image::before {
-  background: linear-gradient(180deg, transparent 30%, rgba(20, 17, 11, 0.85) 100%);
+  background: linear-gradient(180deg, transparent 25%, rgba(20, 17, 11, 0.92) 100%);
 }
 
 .card-image span {
@@ -240,6 +238,24 @@
   align-items: center;
   gap: var(--space-sm);
   font-size: 0.75rem;
+}
+
+/* Photos fill their frame and sit under its gradient, grain and tags */
+.card-image,
+.featured-photo,
+.editorial-image {
+  isolation: isolate;
+}
+
+.card-image img,
+.featured-photo img,
+.editorial-image img {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .card-content {
@@ -264,24 +280,6 @@
   max-width: none;
 }
 
-/* Price tag — hard hazard slab */
-.price-tag {
-  /* Slope warm tag — like a printed ranch-stamp price label */
-  background: var(--color-slope);
-  color: var(--color-snow);
-  padding: var(--space-xs) var(--space-md);
-  border-radius: var(--radius-sm);
-  font-family: var(--font-mono);
-  font-weight: var(--font-weight-bold);
-  display: inline-block;
-  margin-top: var(--space-sm);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  box-shadow: none;
-  border: 1px solid var(--color-ink);
-}
-
 /* Badge — outlined hairline */
 .badge {
   display: inline-flex;
@@ -298,20 +296,10 @@
   letter-spacing: 0.1em;
 }
 
-.trip-details {
-  margin-bottom: var(--space-sm);
-  color: var(--color-stone-dark);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
 /* ===================================
    FORMS — underline-only inputs
    =================================== */
 .contact-form {
-  max-width: 760px;
   margin: var(--space-2xl) 0;
   background: var(--color-paper);
   padding: var(--space-3xl);
@@ -360,7 +348,6 @@ textarea {
 input:focus,
 select:focus,
 textarea:focus {
-  outline: none;
   border-bottom-color: var(--color-hazard);
   border-bottom-width: 2px;
   box-shadow: none;
@@ -460,9 +447,14 @@ legend {
 }
 
 .newsletter-form input:focus {
-  outline: none;
+  outline: none; /* the form's overflow:hidden would clip it; the form draws the ring */
   border-bottom: none;
   background: var(--color-paper);
+}
+
+.newsletter-form:focus-within {
+  outline: 2px solid var(--focus-ring, var(--color-pin));
+  outline-offset: 3px;
 }
 
 .newsletter-form .cta-button {
@@ -470,6 +462,8 @@ legend {
   color: var(--color-bone);
   border: none;
   border-left: 2px solid var(--color-bone);
+  /* Square: the form's own radius and overflow round the outer corners */
+  border-radius: 0;
   white-space: nowrap;
   padding: var(--space-md) var(--space-xl);
 }
@@ -482,11 +476,53 @@ legend {
   transform: none;
 }
 
+/* A <small>, not a <p>: the newsletter slabs' p rules would restyle it.
+   main.js rewrites it as the confirmation, hence role="status" */
+.form-note {
+  display: block;
+  margin-top: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* After submit it becomes a stamp; currentColor keeps it legible on every slab */
+.form-note.is-sent {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Dark surfaces: Ridge fill on hover/focus. Forest or Ink fills sank
+   into the Ink and Forest slabs (2.26:1 or 1:1). */
+.hero .cta-button.primary:hover,
+.hero .cta-button.primary:focus-visible,
+.featured-expedition .cta-button.primary:hover,
+.featured-expedition .cta-button.primary:focus-visible,
+.newsletter-section .cta-button.primary:hover,
+.newsletter-section .cta-button.primary:focus-visible,
+.newsletter-section .newsletter-form .cta-button:hover,
+.newsletter-section .newsletter-form .cta-button:focus-visible,
+.not-found .cta-button.primary:hover,
+.not-found .cta-button.primary:focus-visible {
+  background: var(--color-action-on-dark);
+  border-color: var(--color-action-on-dark);
+  color: var(--color-ink);
+}
+
 /* ===================================
    FILTER TABS — hard rectangular tabs
    =================================== */
 .filter-container {
   margin: var(--space-2xl) 0;
+}
+
+/* The filters run on :has(); without it the tabs would do nothing, so drop them and list everything */
+@supports not selector(:has(*)) {
+  .filter-container { display: none; }
 }
 
 .filter-tabs {
@@ -502,11 +538,21 @@ legend {
   overflow: hidden;
 }
 
+/* Transparent over its label instead of display: none or a 1px clip, so it stays
+   in the tab order and touch screen readers find it where the tab is drawn */
 .filter-input {
-  display: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
 }
 
 .filter-tab {
+  /* The global label margin left a strip under every tab inside the frame */
+  margin: 0;
   padding: var(--space-sm) var(--space-lg);
   background: var(--color-bone);
   border: none;
@@ -543,7 +589,7 @@ legend {
   transform: translate(1px, 1px);
 }
 
-.filter-input:checked + .filter-tab {
+.filter-tab:has(> .filter-input:checked) {
   /* Forest active state */
   background: var(--color-forest);
   color: var(--color-snow);
@@ -551,11 +597,13 @@ legend {
   box-shadow: none;
   transform: none;
   font-weight: var(--font-weight-bold);
+  --focus-ring: var(--color-snow);
 }
 
-.filter-input:focus-visible + .filter-tab {
-  outline: 2px solid var(--color-pin);
-  outline-offset: 2px;
+.filter-tab:has(> .filter-input:focus-visible) {
+  outline: 2px solid var(--focus-ring, var(--color-pin));
+  /* Inset: .filter-tabs clips its children to its rounded corners */
+  outline-offset: -4px;
 }
 
 .filter-item {
@@ -577,11 +625,16 @@ legend {
   color: var(--color-snow);
 }
 .testimonials-section h2::before { background: var(--color-ridge); }
-.testimonials-section .testimonials-section .testimonials-section .testimonial-grid {
+/* One column until three fit; auto-fit left a lone third card on tablets */
+.testimonial-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-md);
   margin-top: var(--space-2xl);
+}
+
+@media (min-width: 960px) {
+  .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 .testimonial {
@@ -594,7 +647,12 @@ legend {
   position: relative;
   animation: slideInUp 0.6s ease-out both;
   color: var(--color-bone);
+  /* Column flex so author rows line up across equal-height cards */
+  display: flex;
+  flex-direction: column;
 }
+
+.testimonial .testimonial-content { flex: 1; }
 
 .testimonial::before {
   content: "“";
@@ -612,7 +670,7 @@ legend {
 
 .testimonial:hover {
   /* Slope warm earth on hover — kraft-paper feel + subtle lift */
-  background: var(--color-slope);
+  background: var(--color-slope-text);
   color: var(--color-snow);
   transform: none;
   box-shadow: var(--shadow-md);
@@ -620,14 +678,14 @@ legend {
 
 .testimonial:hover::before { color: var(--color-ridge); opacity: 0.8; }
 .testimonial:hover .testimonial-content { color: var(--color-snow); }
-.testimonial:hover .testimonial-author h4 { color: var(--color-snow); }
+.testimonial:hover .testimonial-author h3 { color: var(--color-snow); }
 .testimonial:hover .testimonial-author p  { color: var(--color-snow); opacity: 0.85; }
 
 .testimonial:hover .testimonial-avatar {
   transform: none;
   box-shadow: none;
   background: var(--color-snow);
-  color: var(--color-slope);
+  color: var(--color-slope-text);
 }
 
 .testimonial-rating {
@@ -677,7 +735,7 @@ legend {
   border: 1px solid var(--color-bone);
 }
 
-.testimonial-author h4 {
+.testimonial-author h3 {
   margin: 0;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
@@ -695,25 +753,12 @@ legend {
   color: var(--color-stone);
 }
 
+/* Stone on Forest is 3.55:1 at 11px; snow-deep reads at 5.35:1 */
+.testimonials-section .testimonial-author p { color: var(--color-snow-deep); }
+
 /* ===================================
    TIMELINE — horizontal-leaning, hairline
    =================================== */
-.timeline {
-  position: relative;
-  max-width: 900px;
-  margin: var(--space-3xl) 0;
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: var(--color-ink);
-  transform: translateX(-50%);
-}
 
 .timeline-item {
   position: relative;
@@ -752,69 +797,12 @@ legend {
 .timeline-item:nth-child(odd)::before { right: -8px; }
 .timeline-item:nth-child(even)::before { left: -8px; }
 
-.timeline-content {
-  background: var(--color-paper);
-  padding: var(--space-lg);
-  border-radius: var(--radius-lg);
-  box-shadow: none;
-  border: var(--border-hairline);
-  transition: var(--transition-fast);
-}
-
-.timeline-content:hover {
-  transform: none;
-  box-shadow: none;
-  background: var(--color-ink);
-  color: var(--color-bone);
-}
-
-.timeline-content:hover .timeline-year,
-.timeline-content:hover .timeline-title,
-.timeline-content:hover .timeline-description { color: var(--color-snow); }
-.timeline-content:hover .timeline-year { color: var(--color-ridge); }
-
-.timeline-year {
-  /* Slope earth — decorative year label */
-  color: var(--color-slope);
-  font-family: var(--font-mono);
-  font-weight: var(--font-weight-bold);
-  font-size: 0.875rem;
-  letter-spacing: 0.1em;
-  margin-bottom: var(--space-xs);
-}
-
-.timeline-item:nth-child(even) .timeline-year { color: var(--color-ink); }
-
-.timeline-title {
-  color: var(--color-ink);
-  margin-bottom: var(--space-xs);
-  font-family: var(--font-display);
-  font-size: 1.125rem;
-  text-transform: uppercase;
-}
-
-.timeline-description {
-  color: var(--color-ink);
-  margin: 0;
-  font-size: 0.9375rem;
-  line-height: 1.55;
-}
-
 /* ===================================
    GALLERY — zero-gap mosaic prep
    =================================== */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 0;
-  margin-top: var(--space-2xl);
-  background: var(--color-ink);
-}
 
 .gallery-item {
   aspect-ratio: 4/3;
-  background-size: cover;
-  background-position: center;
   border-radius: 0;
   display: flex;
   align-items: end;
@@ -830,13 +818,34 @@ legend {
   overflow: hidden;
   box-shadow: none;
   cursor: pointer;
+  /* Keeps the photo's z-index: -1 inside the tile, under the gradient and wash */
+  isolation: isolate;
+}
+
+.gallery-item img {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Fills the tile so the photo inside still fills it; the tile draws the focus ring */
+.gallery-open {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: none;
+  cursor: inherit;
 }
 
 .gallery-item::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(20, 17, 11, 0.85));
+  /* Dark enough under the 10px Ridge geo-tag for 4.5:1 on bright photos */
+  background: linear-gradient(180deg, transparent 30%, rgba(20, 17, 11, 0.78) 62%, rgba(20, 17, 11, 0.96));
   transition: var(--transition-fast);
 }
 
@@ -852,7 +861,7 @@ legend {
 }
 
 .gallery-item:hover::before {
-  background: linear-gradient(180deg, transparent 30%, rgba(20, 17, 11, 0.95));
+  background: linear-gradient(180deg, transparent 20%, rgba(20, 17, 11, 0.78) 60%, rgba(20, 17, 11, 0.97));
 }
 
 .gallery-item:hover::after {
@@ -868,7 +877,7 @@ legend {
   transform: none;
 }
 
-.gallery-item:focus-visible {
+.gallery-item:has(:focus-visible) {
   outline: 3px solid var(--color-pin);
   outline-offset: -3px;
 }
@@ -900,7 +909,6 @@ legend {
    FAQ — ink-on-bone, sharp, no rounded
    =================================== */
 .faq-container {
-  max-width: 900px;
   margin: var(--space-2xl) 0;
 }
 
@@ -909,10 +917,6 @@ legend {
   border-top: 1px solid var(--color-ink);
 }
 .faq-item:last-child { border-bottom: 1px solid var(--color-ink); }
-
-.faq-toggle {
-  display: none;
-}
 
 .faq-question {
   display: flex;
@@ -934,12 +938,19 @@ legend {
   color: var(--color-ink);
 }
 
+/* Safari draws the disclosure triangle here; display: flex already drops it elsewhere */
+.faq-question::-webkit-details-marker { display: none; }
+
 .faq-question:hover {
   border-color: var(--color-ink);
-  background: transparent;
+  background: var(--color-paper);
+  /* Extend the paper fill past the text without changing layout */
+  box-shadow: -12px 0 0 var(--color-paper), 12px 0 0 var(--color-paper);
   color: var(--color-hazard);
   transform: none;
 }
+
+.faq-question:hover .faq-icon { color: var(--color-forest); }
 
 .faq-question:active { transform: none; }
 
@@ -958,14 +969,9 @@ legend {
   margin-left: var(--space-md);
 }
 
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.25s ease-out, opacity 0.25s ease-out;
-  background: transparent;
-  border-radius: 0;
-  margin-top: 0;
-  opacity: 0;
+/* Open only: animating the close or the height needs interpolate-size, which only Chrome has */
+.faq-item[open] .faq-answer {
+  animation: fadeInUp 0.25s ease-out;
 }
 
 .faq-answer p {
@@ -975,28 +981,19 @@ legend {
   max-width: 70ch;
 }
 
-.faq-toggle:checked + .faq-question {
-  border-color: var(--color-ink);
-  background: transparent;
+.faq-item[open] .faq-question {
   color: var(--color-hazard);
 }
 
-.faq-toggle:checked + .faq-question .faq-icon {
+.faq-item[open] .faq-icon {
   transform: rotate(45deg);
   color: var(--color-hazard);
-}
-
-.faq-toggle:checked + .faq-question + .faq-answer {
-  max-height: 400px;
-  opacity: 1;
-  margin-bottom: 0;
 }
 
 /* ===================================
    ACHIEVEMENTS / FEATURES grids
    =================================== */
-.achievements-grid,
-.sustainability-features {
+.achievements-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 0;
@@ -1007,10 +1004,6 @@ legend {
   border-bottom: var(--border-hairline);
   border-radius: var(--radius-md);
   overflow: hidden;
-}
-
-.sustainability-features {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .achievement,
@@ -1084,7 +1077,7 @@ legend {
 }
 
 .achievement-label {
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   font-family: var(--font-mono);
   font-weight: var(--font-weight-medium);
   margin: 0;
@@ -1134,6 +1127,15 @@ legend {
 .newsletter-section::before { top: 0; }
 .newsletter-section::after  { bottom: 0; }
 
+/* The last section sits flush on the footer, whose own stripe is the divider */
+main > .newsletter-section:last-child::after { content: none; }
+
+/* A Pin focus ring falls below 3:1 on these slabs; Snow passes on all of them */
+.newsletter-section.primary-bg,
+.newsletter-section.alert-bg,
+.featured-expedition,
+.testimonials-section { --focus-ring: var(--color-snow); }
+
 .newsletter-section.primary-bg {
   /* Forest "primary" CTA slab — calm trail green.
      Variant repaints the topo-stripe seams in Slope warm earth. */
@@ -1148,7 +1150,7 @@ legend {
 /* Pin "alert" slab — reserved for emergency / urgent semantic context only.
    Variant repaints seams in solid Ink to keep the urgency unambiguous. */
 .newsletter-section.alert-bg {
-  background: var(--color-pin);
+  background: var(--color-pin-deep);
   color: var(--color-snow);
 }
 .newsletter-section.alert-bg::before,
@@ -1166,8 +1168,11 @@ legend {
   margin-bottom: var(--space-md);
 }
 .newsletter-section.primary-bg h2 { color: var(--color-snow); }
-.newsletter-section.alert-bg h2     { color: var(--color-snow); }
-.newsletter-section.alert-bg .newsletter-section.primary-bg .newsletter-section p {
+.newsletter-section.alert-bg h2,
+.newsletter-section.alert-bg h2 em,
+.newsletter-section.alert-bg h2 .h-num { color: var(--color-snow); }
+/* Default (ink) variant only; primary-bg and alert-bg keep their own type */
+.newsletter-section:not(.primary-bg):not(.alert-bg) p {
   color: var(--color-stone);
   margin-bottom: var(--space-xl);
   font-size: 1rem;
@@ -1175,49 +1180,6 @@ legend {
 }
 .newsletter-section.primary-bg p { color: var(--color-snow); opacity: 0.92; }
 .newsletter-section.alert-bg     p { color: var(--color-snow); opacity: 0.95; }
-
-/* Hero stats — sustainability page variant */
-.hero-stats.sustainability-page {
-  background: var(--color-paper);
-  border: var(--border-hairline);
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.hero-stats.sustainability-page .hero-stat {
-  background: transparent;
-  border: none;
-  border-right: 1px solid var(--color-ink);
-  border-bottom: none;
-  backdrop-filter: none;
-  padding: var(--space-xl);
-}
-
-.hero-stats.sustainability-page .hero-stat:last-child { border-right: none; }
-
-.hero-stats.sustainability-page .hero-stat:hover {
-  background: var(--color-ink);
-  border-color: var(--color-ink);
-  transform: none;
-  box-shadow: none;
-}
-
-.hero-stats.sustainability-page .hero-stat:hover .hero-stat-number,
-.hero-stats.sustainability-page .hero-stat:hover .hero-stat-label {
-  color: var(--color-bone);
-}
-
-.hero-stats.sustainability-page .hero-stat-number {
-  color: var(--color-ink);
-  text-shadow: none;
-}
-
-.hero-stats.sustainability-page .hero-stat-label {
-  color: var(--color-stone-dark);
-}
 
 /* ===================================
    BACK TO TOP — square, hard
@@ -1228,9 +1190,10 @@ legend {
   right: var(--space-lg);
   width: 44px;
   height: 44px;
-  background: var(--color-ink);
-  color: var(--color-bone);
-  border: 2px solid var(--color-bone);
+  /* Forest stands out on Snow, the Snow ring on Ink: it floats over both */
+  background: var(--color-forest);
+  color: var(--color-snow);
+  border: 2px solid var(--color-snow);
   border-radius: var(--radius-full);
   cursor: pointer;
   display: flex;
@@ -1252,10 +1215,10 @@ legend {
 
 .back-to-top:hover {
   transform: translate(-2px, -2px);
-  /* Slope kraft drop-shadow + Forest action fill */
+  /* Slope kraft drop-shadow + Snow fill, Ink ring so it still shows on Snow */
   box-shadow: 4px 4px 0 var(--color-slope);
-  background: var(--color-forest);
-  color: var(--color-snow);
+  background: var(--color-snow);
+  color: var(--color-ink);
   border-color: var(--color-ink);
 }
 
@@ -1272,23 +1235,27 @@ legend {
 /* ===================================
    LIGHTBOX — ink, sharp
    =================================== */
+/* A <dialog> opened with showModal(), so it already sits above everything */
 .lightbox {
-  position: fixed;
-  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
   background: rgba(20, 17, 11, 0.97);
-  z-index: var(--z-modal);
+}
+
+/* Only when open: a display on .lightbox itself would show the closed dialog */
+.lightbox[open] {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: var(--transition-fast);
-  backdrop-filter: none;
 }
 
-.lightbox.active {
-  opacity: 1;
-  visibility: visible;
+body:has(.lightbox[open]) {
+  overflow: hidden;
 }
 
 .lightbox-content {
@@ -1318,6 +1285,11 @@ legend {
   text-transform: uppercase;
   text-align: left;
   opacity: 0.85;
+}
+
+.lightbox-caption strong {
+  display: block;
+  color: var(--color-ridge);
 }
 
 .lightbox-close {
@@ -1396,13 +1368,6 @@ legend {
 .card-grid .animate-on-scroll:nth-child(5) { transition-delay: 0.25s; }
 .card-grid .animate-on-scroll:nth-child(6) { transition-delay: 0.30s; }
 
-.gallery-grid .animate-on-scroll:nth-child(1) { transition-delay: 0.04s; }
-.gallery-grid .animate-on-scroll:nth-child(2) { transition-delay: 0.08s; }
-.gallery-grid .animate-on-scroll:nth-child(3) { transition-delay: 0.12s; }
-.gallery-grid .animate-on-scroll:nth-child(4) { transition-delay: 0.16s; }
-.gallery-grid .animate-on-scroll:nth-child(5) { transition-delay: 0.20s; }
-.gallery-grid .animate-on-scroll:nth-child(6) { transition-delay: 0.24s; }
-
 /* ===================================
    FORM VALIDATION
    =================================== */
@@ -1440,45 +1405,30 @@ textarea.invalid {
 }
 
 /* ===================================
-   READING TIME — mono pill
-   =================================== */
-.reading-time {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  margin-top: var(--space-md);
-  padding: 4px 8px;
-  background: transparent;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-bone);
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-bone);
-  backdrop-filter: none;
-}
-
-.reading-time svg { opacity: 0.85; }
-
-/* ===================================
    PAGE LOADER — Ink full-screen overlay with cartographic
-   contour-pulse motif. Visible by default until window.load,
-   then fades out via body.page-loaded. Re-shows during
-   internal-link page transitions.
+   contour-pulse motif. Hidden by default; shown once per
+   browser session as a first-visit intro when the inline
+   head script adds html.intro. Timed by CSS alone, so a
+   slow image or a failed script can never leave it up.
    =================================== */
 .page-loader {
   position: fixed;
   inset: 0;
   z-index: 99999;
   background: var(--color-ink);
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.45s ease, visibility 0s linear 0.45s;
   overflow: hidden;
+}
+
+html.intro .page-loader {
+  display: flex;
+  animation: loader-out 0.3s ease 0.3s forwards;
+}
+
+@keyframes loader-out {
+  to { opacity: 0; visibility: hidden; }
 }
 
 /* Topo-stripe seams top + bottom — site signature on the loader too */
@@ -1494,20 +1444,6 @@ textarea.invalid {
 }
 .page-loader::before { top: 0; }
 .page-loader::after  { bottom: 0; }
-
-/* Hidden once page is loaded */
-body.page-loaded .page-loader {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.45s ease, visibility 0s linear 0.45s;
-}
-
-/* Re-shown when transitioning to another page */
-body.page-transitioning .page-loader {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.25s ease;
-}
 
 .page-loader-content {
   text-align: center;
@@ -1600,20 +1536,34 @@ body.page-transitioning .page-loader {
   30%           { opacity: 1;   transform: translateY(-2px); }
 }
 
-/* Reduced motion — kill the pulses, keep the static state visible */
+/* Reduced motion — no intro at all (the head script also skips it) */
 @media (prefers-reduced-motion: reduce) {
-  .loader-ring { animation: none; opacity: 0.4; }
-  .loader-pin-ring { animation: none; }
-  .loader-dots span { animation: none; opacity: 1; }
+  html.intro .page-loader { display: none; }
 }
 
 /* ===================================
-   PAGE TRANSITIONS — gentle body fade
-   (back-up to the loader; works without it too)
+   PAGE TRANSITIONS — the browser cross-fades between pages
+   (cross-document View Transitions). Browsers without
+   support simply navigate as before.
    =================================== */
-body.page-transitioning main {
-  opacity: 0.4;
-  transition: opacity 0.25s linear;
+@view-transition {
+  navigation: auto;
+}
+
+/* The header stays put while the page underneath changes */
+header {
+  view-transition-name: site-header;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.26s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
 }
 
 /* ===================================
@@ -1622,7 +1572,6 @@ body.page-transitioning main {
 @media print {
   .page-progress,
   .back-to-top,
-  .toast,
   header,
   footer,
   .scroll-indicator {
@@ -1691,61 +1640,55 @@ body.page-transitioning main {
 /* Alternate dot warms to Ridge gold — echoes contour shading on a topo map */
 .marquee-track > span:nth-child(2n)::after { color: var(--color-ridge); }
 
+/* Endless motion needs a way to stop it (WCAG 2.2.2): the toggle, or hovering the text.
+   Not .marquee:hover or :focus-within, which the toggle itself sets, so Play could never restart it */
+.marquee.is-paused .marquee-track { animation-play-state: paused; }
+
+/* hover: hover, or a tap's sticky :hover on touch screens pauses it while the toggle says Pause */
+@media (hover: hover) {
+  .marquee-track:hover { animation-play-state: paused; }
+}
+
+.marquee-toggle {
+  position: absolute;
+  top: 50%;
+  right: var(--space-md);
+  transform: translateY(-50%);
+  z-index: 2;
+  min-height: 32px;
+  padding: var(--space-xs) var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+  background: var(--color-ink);
+  border: 1px solid var(--color-bone);
+  border-radius: var(--radius-sm);
+  /* Fade the scrolling names out before they reach the button */
+  box-shadow: -32px 0 24px var(--color-ink);
+  cursor: pointer;
+}
+
+.marquee-toggle:hover,
+.marquee-toggle:focus-visible {
+  background: var(--color-action-on-dark);
+  border-color: var(--color-action-on-dark);
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-toggle { display: none; }
+}
+
 @keyframes marquee-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
-/* Numbered chapter — used to anchor sections */
-/* Grain overlay (apply to any container) */
-.grain {
-  position: relative;
-}
-
-.grain::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.12;
-  mix-blend-mode: multiply;
-}
-
-/* Cartographic accent utilities — chromatic colors deployed surgically */
-.accent-hazard { color: var(--color-pin); }
-.accent-pin    { color: var(--color-pin); }
-.accent-ridge  { color: var(--color-ridge); }
-.accent-forest { color: var(--color-forest); }
-.accent-depth  { color: var(--color-depth); }
-.accent-slope  { color: var(--color-slope); }
-
-.bg-hazard { background: var(--color-pin); color: var(--color-ink); }
-.bg-pin    { background: var(--color-pin); color: var(--color-snow); }
-.bg-ink    { background: var(--color-ink); color: var(--color-snow); }
-.bg-bone   { background: var(--color-snow); color: var(--color-ink); }
-.bg-snow   { background: var(--color-snow); color: var(--color-ink); }
-.bg-paper  { background: var(--color-paper); color: var(--color-ink); }
-.bg-depth  { background: var(--color-depth); color: var(--color-snow); }
-.bg-forest { background: var(--color-forest); color: var(--color-snow); }
-.bg-ridge  { background: var(--color-ridge); color: var(--color-ink); }
-.bg-slope  { background: var(--color-slope); color: var(--color-snow); }
-
-/* Hairline rule */
-.rule {
-  height: 0;
-  border: 0;
-  border-top: 1px solid var(--color-ink);
-  margin: var(--space-xl) 0;
-}
-
-.rule.thick { border-top-width: 2px; }
-.rule.hazard { border-top-color: var(--color-hazard); }
-
 /* Hazard accent on emphasized words inside display headlines */
 h1 em,
 h2 em,
-.manifesto-statement em,
 .editorial-text em,
 .featured-headline em {
   font-family: inherit;
@@ -1758,8 +1701,6 @@ h2 em,
 .hero h1 em,
 .page-header h1 em,
 .featured-headline em,
-.manifesto-screen.bg-ink h1 em,
-.manifesto-screen.bg-ink .manifesto-statement em,
 .testimonials-section h2 em,
 .newsletter-section h2 em,
 .departures-heading h2 em,
@@ -1767,16 +1708,7 @@ h2 em,
   color: var(--color-ridge);
 }
 
-.hero .chapter-num,
-.page-header .hero .chapter-num::after,
-.page-header .hero .chapter-num strong,
-.page-header /* ===================================
-   MANIFESTO — three full-screen statement panels
-   =================================== */
-.manifesto-screen.bg-ink .manifesto-screen.bg-ink @media (max-width: 900px) {
-  }
-
-.manifesto-screen.bg-ink .manifesto-screen.bg-ink /* ===================================
+/* ===================================
    FEATURED EXPEDITION — Depth slab (one chromatic
    moment per index page; reads as deep valley/dusk)
    =================================== */
@@ -1812,8 +1744,6 @@ h2 em,
 }
 
 .featured-photo {
-  background-size: cover;
-  background-position: center;
   min-height: 620px;
   position: relative;
   border-right: 1px solid var(--color-bone);
@@ -1836,7 +1766,7 @@ h2 em,
   z-index: 2;
   border-radius: var(--radius-sm);
   /* Pin reserved — this is literally a "stuck-on" tag */
-  background: var(--color-pin);
+  background: var(--color-pin-deep);
   color: var(--color-snow);
   padding: var(--space-xs) var(--space-md);
   font-family: var(--font-mono);
@@ -1854,7 +1784,7 @@ h2 em,
   gap: var(--space-2xl);
 }
 
-.featured-info .featured-info .featured-info .featured-headline {
+.featured-headline {
   font-family: var(--font-display);
   text-transform: uppercase;
   font-size: clamp(2rem, 4vw, 3.5rem);
@@ -1892,6 +1822,10 @@ h2 em,
   flex-direction: column;
   gap: 4px;
 }
+
+/* The sheet draws the outer edge; drop the cell borders that would double it */
+.spec-row:nth-child(2n) { border-right: 0; }
+.spec-row:nth-last-child(-n+2) { border-bottom: 0; }
 
 .spec-label {
   font-family: var(--font-mono);
@@ -1937,6 +1871,12 @@ h2 em,
   .spec-sheet { grid-template-columns: 1fr 1fr; }
 }
 
+@media (max-width: 415px) {
+  /* Keeps "MAR–OCT" on one line down to 360px */
+  .spec-row { padding: var(--space-md); }
+  .spec-value { font-size: 1.25rem; }
+}
+
 /* ===================================
    METHOD — 4 numbered horizontal steps
    =================================== */
@@ -1947,12 +1887,16 @@ h2 em,
   margin-top: var(--space-2xl);
   border-radius: var(--radius-md);
   overflow: hidden;
+  padding: 0;
 }
 
+/* Left/top hairlines pulled 1px outward: the frame clips the outer ones, so
+   none doubles the frame at any column count (margin also beats base.css li) */
 .method-step {
+  margin: -1px 0 0 -1px;
   padding: var(--space-2xl) var(--space-xl);
-  border-right: var(--border-hairline);
-  border-bottom: var(--border-hairline);
+  border-left: var(--border-hairline);
+  border-top: var(--border-hairline);
   background: var(--color-paper);
   transition: var(--transition-fast);
   display: flex;
@@ -2041,7 +1985,7 @@ h2 em,
   justify-content: center;
 }
 
-.editorial-text .editorial-text h3 {
+.editorial-text h3 {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3.5vw, 3rem);
   text-transform: uppercase;
@@ -2063,8 +2007,6 @@ h2 em,
 }
 
 .editorial-image {
-  background-size: cover;
-  background-position: center;
   min-height: 460px;
   position: relative;
 }
@@ -2117,6 +2059,8 @@ h2 em,
   }
   .editorial-block:nth-child(odd) .editorial-image { order: 1; }
   .editorial-image { min-height: 320px; }
+  /* Single column is wider; 14ch wrapped these to four lines */
+  .editorial-text h3 { max-width: 20ch; }
 }
 
 /* ===================================
@@ -2154,7 +2098,7 @@ h2 em,
   font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2171,7 +2115,7 @@ h2 em,
 }
 
 .dispatch-meta strong {
-  color: var(--color-slope);
+  color: var(--color-slope-text);
   font-weight: var(--font-weight-bold);
 }
 
@@ -2221,10 +2165,10 @@ h2 em,
 /* ===================================
    FIELD MARQUEE (region tape) — variant
    =================================== */
+/* No border-top: the hero right above already ends in the same hairline */
 .region-marquee {
   background: var(--color-bone);
   color: var(--color-ink);
-  border-top: var(--border-hairline);
   border-bottom: var(--border-hairline);
 }
 
@@ -2266,7 +2210,7 @@ h2 em,
   font-size: 0.625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   font-weight: var(--font-weight-bold);
   margin: 0;
 }
@@ -2562,7 +2506,6 @@ h2 em,
   margin-bottom: var(--space-sm);
   max-width: 14ch;
 }
-.departures-heading h2 em { color: var(--color-hazard); }
 
 .departures-heading p {
   color: var(--color-stone);
@@ -2635,31 +2578,16 @@ h2 em,
 
 /* ===================================
    CSS-ONLY REGION FILTER
-   - All filter-input radios and the .hike-list must be siblings under .filter-shell
    =================================== */
 .filter-shell { display: contents; }
 
-.filter-shell .filter-input { display: none; }
-
-/* default — show all when "all" is checked */
-#filter-all:checked ~ .hike-list .filter-item { display: block; }
-
-/* hide all, then reveal the specific region */
-#filter-himalayas:checked ~ .hike-list .filter-item,
-#filter-andes:checked     ~ .hike-list .filter-item,
-#filter-alps:checked      ~ .hike-list .filter-item,
-#filter-rockies:checked   ~ .hike-list .filter-item,
-#filter-africa:checked    ~ .hike-list .filter-item {
+.filter-shell:has(#filter-himalayas:checked) .filter-item:not([data-region="himalayas"]),
+.filter-shell:has(#filter-andes:checked)     .filter-item:not([data-region="andes"]),
+.filter-shell:has(#filter-alps:checked)      .filter-item:not([data-region="alps"]),
+.filter-shell:has(#filter-rockies:checked)   .filter-item:not([data-region="rockies"]),
+.filter-shell:has(#filter-africa:checked)    .filter-item:not([data-region="africa"]) {
   display: none;
 }
-
-#filter-himalayas:checked ~ .hike-list .filter-item[data-region="himalayas"] { display: block; }
-#filter-andes:checked     ~ .hike-list .filter-item[data-region="andes"]     { display: block; }
-#filter-alps:checked      ~ .hike-list .filter-item[data-region="alps"]      { display: block; }
-#filter-rockies:checked   ~ .hike-list .filter-item[data-region="rockies"]   { display: block; }
-#filter-africa:checked    ~ .hike-list .filter-item[data-region="africa"]    { display: block; }
-
-/* Same logic for any other .filter-item containers (e.g. gallery uses category instead) */
 
 /* ORIGIN GRID — 70/30 prose + mono metadata */
 .origin-grid {
@@ -2732,7 +2660,7 @@ h2 em,
   font-size: 0.625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   font-weight: var(--font-weight-bold);
 }
 
@@ -2771,10 +2699,13 @@ h2 em,
   grid-template-columns: 110px 1fr auto;
   gap: var(--space-2xl);
   align-items: start;
+  margin: 0; /* base.css li margin left a gap the hover fill couldn't reach */
   padding: var(--space-2xl) var(--space-md);
   border-bottom: var(--border-hairline);
   transition: var(--transition-fast);
 }
+
+.commitment:last-child { border-bottom: none; }
 
 .commitment:hover {
   background: var(--color-ink);
@@ -2823,7 +2754,7 @@ h2 em,
   font-size: 0.625rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   border: 1px solid var(--color-ink);
   border-radius: var(--radius-sm);
   padding: 4px 8px;
@@ -2849,14 +2780,17 @@ h2 em,
   margin: var(--space-2xl) 0;
   border-radius: var(--radius-md);
   overflow: hidden;
+  padding: 0;
 }
 
 .timeline-horizontal.cols-3 { grid-template-columns: repeat(3, 1fr); }
 
+/* Same hairline technique as .method-step */
 .timeline-horizontal-item {
+  margin: -1px 0 0 -1px;
   padding: var(--space-xl);
-  border-right: var(--border-hairline);
-  border-bottom: var(--border-hairline);
+  border-left: var(--border-hairline);
+  border-top: var(--border-hairline);
   background: var(--color-paper);
   position: relative;
   transition: var(--transition-fast);
@@ -2912,74 +2846,15 @@ h2 em,
   .timeline-horizontal,
   .timeline-horizontal.cols-3 { grid-template-columns: repeat(3, 1fr); }
 }
+/* About's five years leave the last 3-column row one short: no neighbour draws the
+   empty slot's top or left line, so the cells beside it do (inside, on the shared pixel) */
+@media (min-width: 701px) and (max-width: 1000px) {
+  .timeline-horizontal > :nth-child(3n):nth-last-child(3) { border-bottom: var(--border-hairline); }
+  .timeline-horizontal > :last-child:not(:nth-child(3n)) { border-right: var(--border-hairline); }
+}
 @media (max-width: 700px) {
   .timeline-horizontal,
   .timeline-horizontal.cols-3 { grid-template-columns: 1fr; }
-}
-
-/* PRESS / PARTNER strip */
-.logos-strip {
-  /* Slope warm decorative seams */
-  border-top: 4px solid var(--color-slope);
-  border-bottom: 4px solid var(--color-slope);
-  padding: 0;
-  background: var(--color-snow);
-  margin-top: var(--space-3xl);
-}
-
-.logos-strip-heading {
-  padding: var(--space-lg) var(--space-xl);
-  border-bottom: var(--border-hairline);
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-md);
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-stone-dark);
-  font-weight: var(--font-weight-bold);
-}
-
-.logos-strip-heading strong {
-  color: var(--color-slope);
-}
-
-.logos-strip-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-}
-
-.logos-strip-grid > div {
-  padding: var(--space-xl) var(--space-md);
-  border-right: var(--border-hairline);
-  font-family: var(--font-display);
-  font-size: clamp(0.875rem, 1.4vw, 1.25rem);
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  color: var(--color-ink);
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80px;
-  transition: var(--transition-fast);
-  background: var(--color-bone);
-}
-
-.logos-strip-grid > div:last-child { border-right: none; }
-
-.logos-strip-grid > div:hover {
-  background: var(--color-ink);
-  color: var(--color-bone);
-}
-
-@media (max-width: 800px) {
-  .logos-strip-grid { grid-template-columns: repeat(2, 1fr); }
-  .logos-strip-grid > div:nth-child(2n) { border-right: none; }
-  .logos-strip-grid > div { border-bottom: var(--border-hairline); }
 }
 
 /* GIANT STAT — sustainability oversized number slab */
@@ -3018,7 +2893,7 @@ h2 em,
   font-size: 0.75rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   font-weight: var(--font-weight-bold);
   border-bottom: 1px solid currentColor;
   padding-bottom: var(--space-sm);
@@ -3074,7 +2949,7 @@ h2 em,
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-pin);
+  color: var(--color-pin-deep);
   transform: rotate(8deg);
   display: flex;
   flex-direction: column;
@@ -3105,7 +2980,7 @@ h2 em,
   font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   margin-bottom: var(--space-lg);
   border-bottom: 1px solid var(--color-ink);
   padding-bottom: var(--space-md);
@@ -3113,7 +2988,7 @@ h2 em,
 }
 
 .pledge-meta strong {
-  color: var(--color-slope);
+  color: var(--color-slope-text);
   display: block;
   margin-bottom: 4px;
 }
@@ -3161,7 +3036,7 @@ h2 em,
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.12em;
   /* Slope decorative numeric markers */
-  color: var(--color-slope);
+  color: var(--color-slope-text);
   align-self: start;
   padding-top: 2px;
 }
@@ -3197,7 +3072,7 @@ h2 em,
   font-size: 0.6875rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   font-weight: var(--font-weight-bold);
   margin-top: var(--space-xs);
 }
@@ -3254,14 +3129,13 @@ h2 em,
 }
 
 /* Focus state — Pin outline beats the static Ridge ring (a11y). */
-.gallery-mosaic .gallery-item:focus-visible {
+.gallery-mosaic .gallery-item:has(:focus-visible) {
   outline: 3px solid var(--color-pin);
   outline-offset: -3px;
 }
 
 .gallery-mosaic .gallery-item.span-2 { grid-column: span 2; }
 .gallery-mosaic .gallery-item.row-2  { grid-row: span 2; }
-.gallery-mosaic .gallery-item.hero   { grid-column: span 2; grid-row: span 2; }
 
 .gallery-mosaic .gallery-caption {
   padding: var(--space-md);
@@ -3292,37 +3166,29 @@ h2 em,
 
 @media (max-width: 1100px) {
   .gallery-mosaic { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 200px; }
-  .gallery-mosaic .gallery-item.hero { grid-column: span 2; grid-row: span 2; }
 }
 @media (max-width: 700px) {
   .gallery-mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
   .gallery-mosaic .gallery-item.span-2 { grid-column: span 2; }
   .gallery-mosaic .gallery-item.row-2  { grid-row: span 2; }
-  .gallery-mosaic .gallery-item.hero   { grid-column: span 2; grid-row: span 2; }
 }
 @media (max-width: 460px) {
   .gallery-mosaic { grid-template-columns: 1fr; grid-auto-rows: 240px; }
   .gallery-mosaic .gallery-item.span-2,
-  .gallery-mosaic .gallery-item.row-2,
-  .gallery-mosaic .gallery-item.hero { grid-column: span 1; grid-row: span 1; }
+  .gallery-mosaic .gallery-item.row-2 { grid-column: span 1; grid-row: span 1; }
 }
 
 /* GALLERY CSS-only category filter */
 .gallery-shell { display: contents; }
-.gallery-shell .filter-input { display: none; }
 
-#cat-all:checked        ~ .gallery-mosaic .filter-item { display: block; }
-#cat-landscapes:checked ~ .gallery-mosaic .filter-item,
-#cat-culture:checked    ~ .gallery-mosaic .filter-item,
-#cat-guides:checked     ~ .gallery-mosaic .filter-item,
-#cat-wildlife:checked   ~ .gallery-mosaic .filter-item {
+/* Only hides: setting display on the shown tiles would undo .gallery-item's flex,
+   which keeps the caption down on the dark end of the gradient */
+.gallery-shell:has(#cat-landscapes:checked) .filter-item:not([data-category="landscapes"]),
+.gallery-shell:has(#cat-culture:checked)    .filter-item:not([data-category="culture"]),
+.gallery-shell:has(#cat-trail:checked)      .filter-item:not([data-category="trail"]),
+.gallery-shell:has(#cat-wildlife:checked)   .filter-item:not([data-category="wildlife"]) {
   display: none;
 }
-
-#cat-landscapes:checked ~ .gallery-mosaic .filter-item[data-category="landscapes"] { display: block; }
-#cat-culture:checked    ~ .gallery-mosaic .filter-item[data-category="culture"]    { display: block; }
-#cat-guides:checked     ~ .gallery-mosaic .filter-item[data-category="guides"]     { display: block; }
-#cat-wildlife:checked   ~ .gallery-mosaic .filter-item[data-category="wildlife"]   { display: block; }
 
 /* ===================================
    CONTACT — location SVG topo + meta
@@ -3370,7 +3236,7 @@ h2 em,
   bottom: var(--space-md);
   left: var(--space-md);
   z-index: 2;
-  background: var(--color-pin);
+  background: var(--color-pin-deep);
   color: var(--color-snow);
   padding: var(--space-xs) var(--space-md);
   font-family: var(--font-mono);
@@ -3414,7 +3280,7 @@ h2 em,
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   margin: 0;
 }
 
@@ -3447,7 +3313,7 @@ h2 em,
   font-size: 0.625rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   font-weight: var(--font-weight-bold);
   align-self: center;
 }
@@ -3458,10 +3324,19 @@ h2 em,
   margin: 0;
   color: var(--color-ink);
   line-height: 1.4;
+  /* The email address pushed contact 9px wider than phones up to 398px */
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+address a,
+.location-meta .value a {
+  display: inline-block;
+  padding-block: 3px;
 }
 
 @media (max-width: 900px) {
-  .location-grid { grid-template-columns: 1fr; }
+  .location-grid { grid-template-columns: minmax(0, 1fr); }
   .location-figure-stack {
     border-right: none;
     border-bottom: var(--border-hairline);
@@ -3470,11 +3345,6 @@ h2 em,
     aspect-ratio: 1.4 / 1;
   }
   .location-info { padding: var(--space-2xl) var(--space-xl); }
-}
-
-@keyframes markerPulse {
-  0%, 100% { opacity: 0.25; r: 36; }
-  50%      { opacity: 0.05; r: 56; }
 }
 
 .h-num {
@@ -3567,4 +3437,94 @@ h2 em,
   color: var(--color-slope);
   opacity: 0.7;
 }
+
+/* ===================================
+   404 — Ink slab, contour rings around a lost Pin
+   =================================== */
+.not-found {
+  background: var(--color-ink);
+  color: var(--color-snow);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.not-found-contours {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.not-found-contours ellipse {
+  fill: none;
+  stroke: var(--color-ridge);
+  stroke-opacity: 0.3;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.not-found-contours .pin-ring {
+  fill: none;
+  stroke: var(--color-pin);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.not-found-contours .pin-core { fill: var(--color-pin); }
+
+/* 72px clears the fixed header, which sits over the top of the slab */
+.not-found .container {
+  position: relative;
+  width: 100%;
+  padding-block: calc(72px + var(--space-4xl)) var(--space-4xl);
+}
+
+.not-found-ref {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+  margin-bottom: var(--space-md);
+}
+
+.not-found h1 { color: var(--color-snow); }
+
+.not-found h1 .h-num,
+.not-found h1 em { color: var(--color-ridge); }
+
+.not-found-lede {
+  color: var(--color-snow);
+  font-size: 1.125rem;
+  max-width: 50ch;
+  margin-bottom: var(--space-2xl);
+}
+
+.not-found-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-xl);
+  border-top: 1px solid rgba(232, 228, 221, 0.18);
+  padding-top: var(--space-lg);
+}
+
+.not-found-links a {
+  color: var(--color-snow);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.not-found-links a span {
+  color: var(--color-stone);
+  margin-right: 0.5em;
+}
+
+.not-found-links a:hover,
+.not-found-links a:focus-visible { color: var(--color-action-on-dark); }
 

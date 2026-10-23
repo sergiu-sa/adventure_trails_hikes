@@ -53,7 +53,8 @@
 @media (max-width: 768px) {
   .mobile-menu-btn { display: flex !important; }
 
-  nav {
+  /* Header menu only; the footer nav must stay visible */
+  header nav {
     display: none;
     width: 100vw;
     margin: 0;
@@ -73,14 +74,13 @@
     padding: 0;
   }
 
-  .mobile-menu-toggle:checked ~ .header-container nav,
-  .header-container .mobile-menu-toggle:checked ~ nav {
+  .mobile-menu-btn[aria-expanded="true"] + nav {
     display: block !important;
     max-height: 60vh;
     opacity: 1;
   }
 
-  nav ul {
+  header nav ul {
     flex-direction: column;
     width: 100%;
     padding: 0;
@@ -88,16 +88,17 @@
     gap: 0;
   }
 
-  nav li {
+  header nav li {
     width: 100%;
     text-align: left;
     border: none;
     border-bottom: 1px solid rgba(232, 228, 221, 0.18);
     margin: 0;
   }
-  nav li:last-child { border-bottom: none; }
+  header nav li:last-child { border-bottom: none; }
 
-  nav a {
+  header nav a {
+    display: block;
     font-family: var(--font-mono);
     font-size: 0.875rem;
     letter-spacing: 0.12em;
@@ -108,8 +109,8 @@
     padding: var(--space-md) var(--space-lg);
   }
 
-  nav a:focus,
-  nav a:hover {
+  header nav a:focus,
+  header nav a:hover {
     background: var(--color-forest);
     color: var(--color-snow);
     border-left: 4px solid var(--color-snow);
@@ -117,7 +118,7 @@
 
   /* Active row reads as "you are here" via gold rule + bold gold text;
      no Forest fill, which would overpower neighbouring rows */
-  nav a.active {
+  header nav a.active {
     background: transparent;
     color: var(--color-ridge);
     border-left: 4px solid var(--color-ridge);
@@ -127,9 +128,7 @@
   .container { padding: 0 var(--space-md); }
 
   .card-grid,
-  .gallery-grid,
   .achievements-grid,
-  .sustainability-features,
   .footer-content {
     grid-template-columns: 1fr !important;
     gap: var(--space-lg);
@@ -138,16 +137,14 @@
   /* Tiled grids: drop parent borders + radius so each child
      stands alone with its own full hairline frame on mobile */
   .card-grid,
-  .achievements-grid,
-  .sustainability-features {
+  .achievements-grid {
     border: none;
     border-radius: 0;
     overflow: visible;
   }
 
   .card-grid > .card,
-  .achievements-grid > .achievement,
-  .sustainability-features > .feature {
+  .achievements-grid > .achievement {
     border: var(--border-hairline);
     border-radius: var(--radius-md);
   }
@@ -163,12 +160,10 @@
     border-radius: var(--radius-sm);
   }
 
-  /* Newsletter form column layout — convert button left-stripe to
-     top-stripe; drop button radius so it sits flush in the wrapper */
+  /* Newsletter form column layout — convert button left-stripe to top-stripe */
   .newsletter-form .cta-button {
     border-left: none;
     border-top: 2px solid var(--color-bone);
-    border-radius: 0;
   }
 
   /* Filter tabs become individual chips on mobile (the bordered group
@@ -192,17 +187,16 @@
   .page-header {
     min-height: 60vh;
     padding: var(--space-2xl) 0 var(--space-xl);
-    background-attachment: scroll;
   }
 
   .hero-actions { flex-direction: column; gap: var(--space-md); }
   .hero-stats   { grid-template-columns: 1fr 1fr; gap: var(--space-md); }
 
-  .footer-content { text-align: center; }
-  .social-links   { justify-content: center; }
+  /* One left edge for every footer column, on the container gutter */
+  .footer-section { padding-left: 0; padding-right: 0; }
+  /* Wrap the copyright before it reaches the back-to-top button */
+  .footer-bottom p { padding-right: calc(44px + var(--space-lg)); }
 
-  .timeline { margin-left: var(--space-lg); }
-  .timeline::before { left: 0; }
   .timeline-item {
     left: var(--space-xl) !important;
     width: calc(100% - var(--space-xl)) !important;
@@ -239,7 +233,7 @@
    =================================== */
 @media (min-width: 769px) {
   .mobile-menu-btn { display: none !important; }
-  nav {
+  header nav {
     display: block !important;
     position: static;
     width: auto;
@@ -250,7 +244,8 @@
     padding: 0;
     transition: none;
   }
-  nav ul { flex-direction: row; gap: var(--space-xs); }
+  header nav ul { flex-direction: row; gap: var(--space-xs); }
+  header nav li:first-child a { border-left: none; }
 }
 
 /* ===================================
@@ -264,9 +259,8 @@
   }
   .logo { font-size: 1rem; gap: var(--space-xs); }
 
-  main  { padding-top: 90px; }
-  .hero { padding-top: 90px; min-height: 60vh; }
-  .hero h1 { font-size: 1.5rem; margin-bottom: var(--space-md); }
+  .hero { min-height: 60vh; }
+  .hero h1 { font-size: 3rem; margin-bottom: var(--space-md); }
 
   .contact-form { padding: var(--space-lg); }
   .faq-question { padding: var(--space-md); }
@@ -283,20 +277,12 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .hero,
-  .page-header { background-attachment: scroll; }
 }
 
 /* ===================================
    High contrast
    =================================== */
 @media (prefers-contrast: high) {
-  :root {
-    --primary-600: #000000;
-    --accent-600: #ff4500;
-    --neutral-900: #000000;
-    --neutral-100: #ffffff;
-  }
   .required {
     color: #ff0000;
     font-weight: 900;
@@ -319,6 +305,8 @@
   .mobile-menu-btn,
   .scroll-indicator,
   .newsletter-section,
+  .hero-photo,
+  .hero-map,
   .page-loader { display: none !important; }
 
   body {
@@ -340,12 +328,6 @@
     text-shadow: none;
     background: none;
     -webkit-text-fill-color: initial;
-  }
-
-  .faq-toggle:checked + .faq-question + .faq-answer {
-    max-height: none;
-    opacity: 1;
-    page-break-inside: avoid;
   }
 
   .contact-form { border: 1px solid #ccc; }

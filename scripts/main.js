@@ -1,6 +1,30 @@
 (function() {
   'use strict';
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function scrollBehavior() {
+    return reduceMotion.matches ? 'auto' : 'smooth';
+  }
+
+  // Runs callback as the first-visit intro curtain starts to lift (at once if there is none)
+  function whenIntroLifts(callback) {
+    const loader = document.querySelector('.page-loader');
+    const intro = loader && loader.getAnimations
+      ? loader.getAnimations().find(function(a) { return a.animationName === 'loader-out'; })
+      : null;
+    // progress stays null until the fade's start delay has passed
+    if (!intro || intro.effect.getComputedTiming().progress !== null) {
+      callback();
+      return;
+    }
+    loader.addEventListener('animationstart', function onStart(e) {
+      if (e.target !== loader) return;
+      loader.removeEventListener('animationstart', onStart);
+      callback();
+    });
+  }
+
   function initScrollIndicator() {
     const scrollIndicator = document.querySelector('.scroll-indicator');
     if (!scrollIndicator) return;
@@ -10,7 +34,7 @@
       if (hero) {
         const nextSection = hero.nextElementSibling;
         if (nextSection) {
-          nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          nextSection.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
         }
       }
     });
@@ -50,18 +74,17 @@
     });
 
     backToTopBtn.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: scrollBehavior() });
     });
   }
 
   function initLightbox() {
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
     if (galleryItems.length === 0) return;
 
-    const lightbox = document.createElement('div');
+    // showModal() moves focus in, keeps it there, makes the page inert and closes on Escape
+    const lightbox = document.createElement('dialog');
     lightbox.className = 'lightbox';
-    lightbox.setAttribute('role', 'dialog');
-    lightbox.setAttribute('aria-modal', 'true');
     lightbox.setAttribute('aria-label', 'Image lightbox');
     lightbox.innerHTML = `
       <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
@@ -88,80 +111,54 @@
     const prevBtn = lightbox.querySelector('.lightbox-prev');
     const nextBtn = lightbox.querySelector('.lightbox-next');
 
-    let currentIndex = 0;
-    const images = [];
+    let current = galleryItems[0];
 
-    galleryItems.forEach((item, index) => {
-      const style = item.getAttribute('style');
-      const urlMatch = style.match(/url\(['"]?([^'"]+)['"]?\)/);
-      const caption = item.querySelector('.gallery-caption')?.textContent || '';
+    function show(item) {
+      const photo = item.querySelector('img');
+      current = item;
+      lightboxImage.src = photo.src;
+      lightboxImage.alt = photo.alt;
+      lightboxCaption.innerHTML = item.querySelector('.gallery-caption').innerHTML;
+    }
 
-      if (urlMatch) {
-        images.push({ src: urlMatch[1], caption: caption });
-      }
+    // Steps through the tiles the category filter left visible, not all 18
+    function step(by) {
+      // getClientRects, not checkVisibility(), which Safari only has from 17.4
+      const visible = galleryItems.filter(function(item) { return item.getClientRects().length > 0; });
+      const index = visible.indexOf(current);
+      show(visible[(index + by + visible.length) % visible.length]);
+    }
 
+    // On the whole tile, not just its button, so a click on the caption opens it too
+    galleryItems.forEach(function(item) {
       item.addEventListener('click', function() {
-        currentIndex = index;
-        openLightbox();
-      });
-
-      item.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          currentIndex = index;
-          openLightbox();
-        }
+        show(item);
+        lightbox.showModal();
       });
     });
 
-    function openLightbox() {
-      updateLightboxImage();
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      closeBtn.focus();
-    }
-
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-      galleryItems[currentIndex].focus();
-    }
-
-    function updateLightboxImage() {
-      if (images[currentIndex]) {
-        lightboxImage.src = images[currentIndex].src;
-        lightboxImage.alt = images[currentIndex].caption;
-        lightboxCaption.textContent = images[currentIndex].caption;
-      }
-    }
-
-    function nextImage() {
-      currentIndex = (currentIndex + 1) % images.length;
-      updateLightboxImage();
-    }
-
-    function prevImage() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      updateLightboxImage();
-    }
-
-    closeBtn.addEventListener('click', closeLightbox);
-    nextBtn.addEventListener('click', nextImage);
-    prevBtn.addEventListener('click', prevImage);
+    closeBtn.addEventListener('click', function() { lightbox.close(); });
+    nextBtn.addEventListener('click', function() { step(1); });
+    prevBtn.addEventListener('click', function() { step(-1); });
 
     lightbox.addEventListener('click', function(e) {
-      if (e.target === lightbox) closeLightbox();
+      if (e.target === lightbox) lightbox.close();
     });
 
-    document.addEventListener('keydown', function(e) {
-      if (!lightbox.classList.contains('active')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
+    lightbox.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight') step(1);
+      if (e.key === 'ArrowLeft') step(-1);
+    });
+
+    // Fires for Escape too. Lands on the photo last shown, which may not be the one opened
+    lightbox.addEventListener('close', function() {
+      current.querySelector('.gallery-open').focus();
     });
   }
 
   function initScrollAnimations() {
+    if (reduceMotion.matches) return;
+
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
 
     const observer = new IntersectionObserver(function(entries) {
@@ -198,7 +195,9 @@
             header.classList.remove('scrolled');
           }
 
-          if (currentScroll > lastScroll && currentScroll > 200) {
+          // The open mobile menu hangs off the header, so hiding it would carry the menu away too
+          const menuOpen = header.querySelector('.mobile-menu-btn[aria-expanded="true"]');
+          if (currentScroll > lastScroll && currentScroll > 200 && !menuOpen) {
             header.classList.add('header-hidden');
           } else {
             header.classList.remove('header-hidden');
@@ -213,25 +212,67 @@
   }
 
   function initMobileMenu() {
-    const mobileToggle = document.getElementById('mobile-menu-toggle');
-    const navLinks = document.querySelectorAll('nav a');
+    const toggle = document.querySelector('.mobile-menu-btn');
+    const nav = toggle && document.getElementById(toggle.getAttribute('aria-controls'));
+    if (!nav) return;
 
-    if (!mobileToggle) return;
+    function isOpen() {
+      return toggle.getAttribute('aria-expanded') === 'true';
+    }
 
-    navLinks.forEach(function(link) {
+    function setOpen(open) {
+      toggle.setAttribute('aria-expanded', String(open));
+    }
+
+    toggle.addEventListener('click', function() {
+      setOpen(!isOpen());
+    });
+
+    nav.querySelectorAll('a').forEach(function(link) {
       link.addEventListener('click', function() {
-        mobileToggle.checked = false;
+        setOpen(false);
       });
     });
 
+    // Tabbing past the last link would otherwise put focus on content hidden under the open menu
+    toggle.closest('header').addEventListener('focusout', function(e) {
+      if (isOpen() && !e.currentTarget.contains(e.relatedTarget)) setOpen(false);
+    });
+
+    // Above the utilities.css breakpoint the button is hidden; a menu left open there (Safari
+    // never focuses a tapped button, so focusout can't catch it) would pin the header in initHeaderScroll
+    window.matchMedia('(max-width: 768px)').addEventListener('change', function() {
+      setOpen(false);
+    });
+
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && mobileToggle.checked) {
-        mobileToggle.checked = false;
+      if (e.key === 'Escape' && isOpen()) {
+        setOpen(false);
+        toggle.focus();
       }
     });
   }
 
+  function initYear() {
+    document.querySelectorAll('[data-year]').forEach(function(el) {
+      el.textContent = new Date().getFullYear();
+    });
+  }
+
+  function initMarqueeToggle() {
+    const marquee = document.querySelector('.marquee');
+    const toggle = marquee && marquee.querySelector('.marquee-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', function() {
+      const paused = marquee.classList.toggle('is-paused');
+      toggle.querySelector('.marquee-toggle-label').textContent = paused ? 'Play' : 'Pause';
+    });
+  }
+
   function initCounterAnimation() {
+    if (reduceMotion.matches) return;
+
     const stats = document.querySelectorAll('.hero-stat-number, .achievement-number');
 
     const observer = new IntersectionObserver(function(entries) {
@@ -243,8 +284,11 @@
       });
     }, { threshold: 0.5 });
 
-    stats.forEach(function(stat) {
-      observer.observe(stat);
+    // Count up where the visitor can see it, not under the intro curtain
+    whenIntroLifts(function() {
+      stats.forEach(function(stat) {
+        observer.observe(stat);
+      });
     });
   }
 
@@ -262,8 +306,9 @@
     const start = 0;
     const startTime = performance.now();
 
-    function updateCounter(currentTime) {
-      const elapsed = currentTime - startTime;
+    // performance.now(), not the rAF timestamp: that one can predate startTime and go negative
+    function updateCounter() {
+      const elapsed = performance.now() - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
       const current = start + (value - start) * easeOutQuart;
@@ -292,6 +337,25 @@
     requestAnimationFrame(updateCounter);
   }
 
+  // Hero coordinates tick up from zero like a GPS fix settling. Zero-padded to
+  // the final length so the line never changes width while it counts
+  function initReadout() {
+    const values = document.querySelectorAll('.hero-readout data');
+    if (values.length === 0 || reduceMotion.matches) return;
+
+    whenIntroLifts(function() {
+      const start = performance.now();
+      requestAnimationFrame(function tick() {
+        const progress = Math.min((performance.now() - start) / 1500, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        values.forEach(function(el) {
+          el.textContent = (el.value * eased).toFixed(4).padStart(el.value.length, '0');
+        });
+        if (progress < 1) requestAnimationFrame(tick);
+      });
+    });
+  }
+
   function initFormValidation() {
     const forms = document.querySelectorAll('form');
 
@@ -310,7 +374,9 @@
         });
       });
 
+      // Every form on the site is a demo, so nothing is ever posted
       form.addEventListener('submit', function(e) {
+        e.preventDefault();
         let isValid = true;
 
         inputs.forEach(function(input) {
@@ -320,10 +386,19 @@
         });
 
         if (!isValid) {
-          e.preventDefault();
           const firstInvalid = form.querySelector('.invalid');
           if (firstInvalid) firstInvalid.focus();
+          return;
         }
+
+        // Fields stay filled: clearing them would read as "sent". The wording alternates so
+        // every submit changes the text, which role="status" needs to announce it again
+        const note = form.parentElement.querySelector('.form-note');
+        if (!note) return;
+        note.classList.add('is-sent');
+        note.textContent = note.textContent.startsWith('Not sent')
+          ? 'Still not sent · this form is a demo'
+          : 'Not sent · this form is a demo';
       });
     });
   }
@@ -366,20 +441,22 @@
   }
 
   function initParallax() {
-    const hero = document.querySelector('.hero, .page-header');
-    if (!hero) return;
-    if (window.innerWidth < 768) return;
+    const photo = document.querySelector('.hero-photo');
+    if (!photo) return;
+    if (window.innerWidth < 768 || reduceMotion.matches) return;
 
     let ticking = false;
 
+    // layout.css turns this into the capped 0.3x drift
+    function update() {
+      photo.style.setProperty('--scroll', window.scrollY);
+      ticking = false;
+    }
+    update();
+
     window.addEventListener('scroll', function() {
       if (!ticking) {
-        window.requestAnimationFrame(function() {
-          const scrolled = window.scrollY;
-          const rate = scrolled * 0.3;
-          hero.style.backgroundPositionY = `calc(50% + ${rate}px)`;
-          ticking = false;
-        });
+        window.requestAnimationFrame(update);
         ticking = true;
       }
     });
@@ -388,10 +465,8 @@
   function initProgressIndicator() {
     const progressBar = document.createElement('div');
     progressBar.className = 'page-progress';
-    progressBar.setAttribute('role', 'progressbar');
-    progressBar.setAttribute('aria-label', 'Page scroll progress');
-    progressBar.setAttribute('aria-valuemin', '0');
-    progressBar.setAttribute('aria-valuemax', '100');
+    // Decorative: screen readers already report scroll position
+    progressBar.setAttribute('aria-hidden', 'true');
     document.body.appendChild(progressBar);
 
     let ticking = false;
@@ -403,7 +478,6 @@
           const docHeight = document.documentElement.scrollHeight - window.innerHeight;
           const progress = (scrollTop / docHeight) * 100;
           progressBar.style.width = progress + '%';
-          progressBar.setAttribute('aria-valuenow', Math.round(progress));
           ticking = false;
         });
         ticking = true;
@@ -411,70 +485,7 @@
     });
   }
 
-  function initReadingTime() {
-    const mainContent = document.querySelector('main');
-    if (!mainContent) return;
 
-    const text = mainContent.textContent || '';
-    const wordCount = text.trim().split(/\s+/).length;
-    const readingTime = Math.ceil(wordCount / 200);
-
-    if (readingTime < 2) return;
-
-    const readingIndicator = document.createElement('div');
-    readingIndicator.className = 'reading-time';
-    readingIndicator.innerHTML = `
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-        <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <span>${readingTime} min read</span>
-    `;
-
-    const pageHeader = document.querySelector('.page-header .container');
-    if (pageHeader) {
-      pageHeader.appendChild(readingIndicator);
-    }
-  }
-
-  function initPageTransitions() {
-    // Loader is visible by default (CSS). Wait for window.load so all
-    // images + fonts have actually arrived, then add a small min-delay
-    // so the loader is briefly visible even on cached fast loads.
-    const MIN_LOADER_MS = 400;
-    const startedAt = performance.now();
-
-    function dismissLoader() {
-      const elapsed = performance.now() - startedAt;
-      const remaining = Math.max(0, MIN_LOADER_MS - elapsed);
-      setTimeout(function () {
-        document.body.classList.add('page-loaded');
-      }, remaining);
-    }
-
-    if (document.readyState === 'complete') {
-      dismissLoader();
-    } else {
-      window.addEventListener('load', dismissLoader);
-    }
-
-    // Internal-link transitions — re-show the loader, then navigate
-    const internalLinks = document.querySelectorAll('a[href$=".html"]:not([target="_blank"])');
-    internalLinks.forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (e.ctrlKey || e.metaKey || e.shiftKey) return;
-
-        e.preventDefault();
-        document.body.classList.remove('page-loaded');
-        document.body.classList.add('page-transitioning');
-
-        setTimeout(function() {
-          window.location.href = href;
-        }, 350);
-      });
-    });
-  }
 
   function initCardActions() {
     const cards = document.querySelectorAll('.card');
@@ -492,27 +503,18 @@
     });
   }
 
-  function initKeyboardShortcuts() {
-    document.addEventListener('keydown', function(e) {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
-      if (e.key === 'h' && !e.ctrlKey && !e.metaKey) {
-        window.location.href = 'index.html';
+  // Hikes rows only show their photo on hover/focus, so it isn't fetched until then
+  function initHikePhotos() {
+    document.querySelectorAll('.hike-row-bg[data-photo]').forEach(function(bg) {
+      const row = bg.closest('.hike-row');
+      function load() {
+        bg.style.backgroundImage = `url('${bg.dataset.photo}')`;
       }
-
-      if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
-        const searchInput = document.querySelector('input[type="search"], input[name="search"]');
-        if (searchInput) {
-          e.preventDefault();
-          searchInput.focus();
-        }
-      }
-
-      if (e.key === 't' && !e.ctrlKey && !e.metaKey) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+      row.addEventListener('pointerenter', load, { once: true });
+      row.addEventListener('focusin', load, { once: true });
     });
   }
+
 
   function init() {
     initScrollIndicator();
@@ -521,14 +523,15 @@
     initScrollAnimations();
     initHeaderScroll();
     initMobileMenu();
+    initYear();
+    initMarqueeToggle();
     initCounterAnimation();
+    initReadout();
     initFormValidation();
     initParallax();
     initProgressIndicator();
-    initReadingTime();
-    initPageTransitions();
     initCardActions();
-    initKeyboardShortcuts();
+    initHikePhotos();
   }
 
   if (document.readyState === 'loading') {

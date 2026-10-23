@@ -3,6 +3,29 @@
    Aesthetic: Expedition Brutalism
    =================================== */
 
+/* Self-hosted Latin subsets from Google Fonts; licences sit beside them in
+   /fonts. Geist and JetBrains Mono are variable: one file covers all weights. */
+@font-face {
+  font-family: "Archivo Black";
+  src: url("../fonts/archivo-black-v23-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("../fonts/geist-v5-latin.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../fonts/jetbrains-mono-v24-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
 /* Reset */
 *,
 *::before,
@@ -13,7 +36,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
   background: var(--color-bone);
 }
@@ -24,7 +46,6 @@ body {
   color: var(--color-ink);
   background-color: var(--color-bone);
   overflow-x: hidden;
-  scroll-padding-top: 100px;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -41,6 +62,9 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
   margin-bottom: var(--space-lg);
 }
+
+/* Long single words ("SUSTAINABILITY") may break rather than push the page sideways */
+h1, h2 { overflow-wrap: break-word; }
 
 h1 {
   font-size: clamp(2.75rem, 9vw, 8rem);
@@ -137,15 +161,6 @@ address a:focus {
   color: var(--color-hazard);
 }
 
-/* Mono utility — anywhere we mark technical data */
-.mono,
-.meta {
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
 /* Accessibility */
 .skip-link {
   position: absolute;
@@ -167,6 +182,8 @@ address a:focus {
 
 .skip-link:focus {
   top: 6px;
+  /* a:focus would otherwise paint it Forest on Ink (2.3:1) */
+  color: var(--color-bone);
   /* Pin reserved for max-signal a11y indicators */
   outline: 2px solid var(--color-pin);
   outline-offset: 2px;
@@ -187,16 +204,24 @@ address a:focus {
 /* Focus — Pin reserved for a11y signal regardless of theme rebalance */
 *:focus { outline: none; }
 
+/* --focus-ring switches to Snow on Forest, Depth and Pin slabs,
+   where a Pin ring falls below 3:1 (set in components.css) */
 *:focus-visible {
-  outline: 2px solid var(--color-pin);
+  outline: 2px solid var(--focus-ring, var(--color-pin));
   outline-offset: 2px;
+}
+
+/* Shift+Tab scrolls up, which slides the fixed header (74px) back over whatever just
+   took focus at the top edge; 120px also keeps a form field's label in view */
+:focus {
+  scroll-margin-top: 120px;
 }
 
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--color-pin);
+  outline: 2px solid var(--focus-ring, var(--color-pin));
   outline-offset: 2px;
   box-shadow: none;
 }

@@ -40,7 +40,7 @@
 .section-subtitle {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  color: var(--color-stone-dark);
+  color: var(--color-slope-text);
   margin: 0;
   font-weight: var(--font-weight-medium);
   letter-spacing: 0.08em;
@@ -125,10 +125,20 @@ header.header-hidden {
 }
 
 .logo:hover {
-  color: var(--color-hazard);
   transform: none;
   text-decoration: none;
 }
+
+/* Hover draws the topo stripe under the wordmark */
+.logo span {
+  background: var(--gradient-topo-stripe) no-repeat 0 100% / 0 3px;
+  padding-bottom: 4px;
+  margin-bottom: -4px;
+  transition: background-size var(--transition-slow);
+}
+
+.logo:hover span,
+.logo:focus-visible span { background-size: 100% 3px; }
 
 .logo-icon-mask {
   width: 32px;
@@ -141,14 +151,12 @@ header.header-hidden {
   transition: var(--transition-fast);
 }
 
-.logo:hover .logo-icon-mask {
-  background-color: var(--color-hazard);
-  transform: none;
+.logo:hover .logo-icon-mask,
+.logo:focus-visible .logo-icon-mask {
+  transform: rotate(-12deg);
 }
 
 /* Mobile menu button */
-.mobile-menu-toggle { display: none; }
-
 .mobile-menu-btn {
   display: none;
   flex-direction: column;
@@ -184,18 +192,19 @@ header.header-hidden {
   transform-origin: center;
 }
 
-.mobile-menu-toggle:checked ~ .header-container .mobile-menu-btn .hamburger-line:nth-child(1) {
+.mobile-menu-btn[aria-expanded="true"] .hamburger-line:nth-child(1) {
   transform: translateY(6px) rotate(45deg);
 }
-.mobile-menu-toggle:checked ~ .header-container .mobile-menu-btn .hamburger-line:nth-child(2) {
+.mobile-menu-btn[aria-expanded="true"] .hamburger-line:nth-child(2) {
   opacity: 0;
 }
-.mobile-menu-toggle:checked ~ .header-container .mobile-menu-btn .hamburger-line:nth-child(3) {
+.mobile-menu-btn[aria-expanded="true"] .hamburger-line:nth-child(3) {
   transform: translateY(-6px) rotate(-45deg);
 }
 
-/* Navigation — mono uppercase, hard rectangular hover */
-nav ul {
+/* Navigation — mono uppercase, hard rectangular hover.
+   Scoped to the header so the footer nav keeps its own layout. */
+header nav ul {
   display: flex;
   list-style: none;
   gap: 0;
@@ -204,9 +213,9 @@ nav ul {
   padding: 0;
 }
 
-nav li { margin: 0; }
+header nav li { margin: 0; }
 
-nav a {
+header nav a {
   color: var(--color-ink);
   text-decoration: none;
   font-family: var(--font-mono);
@@ -221,13 +230,11 @@ nav a {
   border-left: 1px solid var(--color-ink);
 }
 
-nav li:first-child a { border-left: none; }
+header nav a::before { content: none; }
 
-nav a::before { content: none; }
-
-nav a:hover,
-nav a:focus,
-nav a.active {
+header nav a:hover,
+header nav a:focus,
+header nav a.active {
   color: var(--color-bone);
   background: var(--color-ink);
   font-weight: var(--font-weight-bold);
@@ -235,7 +242,7 @@ nav a.active {
   text-decoration: none;
 }
 
-nav a.active {
+header nav a.active {
   /* Forest active state — calm trail green, not red alarm */
   background: var(--color-forest);
   color: var(--color-snow);
@@ -250,19 +257,48 @@ nav a.active {
   text-align: left;
   padding: 0;
   position: relative;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  min-height: 100vh;
+  --hero-h: 100vh;
+  min-height: var(--hero-h);
   display: flex;
   align-items: flex-end;
   overflow: hidden;
+  /* overflow alone doesn't clip the position: fixed .hero-photo on desktop */
+  clip-path: inset(0);
   margin-top: 0;
-  border-bottom: var(--border-hairline);
 }
 
 .page-header {
-  min-height: 70vh;
+  --hero-h: 70vh;
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Desktop: the photo stays put while the page scrolls over it, and main.js
+   feeds --scroll so it also drifts down 0.3x. It starts 30% of the header's
+   height above the viewport, and the drift stops there, so its top edge
+   never shows. Clamped at 0 because Safari's top bounce scrolls negative. */
+@media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+  .hero-photo {
+    position: fixed;
+    top: calc(var(--hero-h) * -0.3);
+    transform: translateY(clamp(0px, var(--scroll, 0) * 0.3px, var(--hero-h) * 0.3));
+  }
+
+  /* Centres tall photos on the viewport as before; min() pins short ones
+     to the top of the box, where centring would leave a gap for the drift */
+  .hero-photo img {
+    object-position: 50% min(0px, calc(50% + var(--hero-h) * 0.15));
+  }
 }
 
 .hero::before,
@@ -270,15 +306,34 @@ nav a.active {
   content: "";
   position: absolute;
   inset: 0;
-  /* Top: light Ink wash. Bottom: Forest deep moss — the photo
-     descends into the trees. */
-  background: linear-gradient(
-    180deg,
-    rgba(20, 17, 11, 0.15) 0%,
-    rgba(20, 17, 11, 0.42) 45%,
-    rgba(62, 84, 50, 0.72) 78%,
-    rgba(62, 84, 50, 0.92) 100%
-  );
+  /* The bottom hairline lives here, not on the header: clip-path makes the header a
+     stacking context, so the fixed desktop photo (z-index -1) painted over its border */
+  border-bottom: var(--border-hairline);
+  /* Ink wash behind the text on the left, pin side left brighter. Top to
+     bottom, light Ink into Forest deep moss: the photo descends into the trees. */
+  background:
+    linear-gradient(90deg, rgba(20, 17, 11, 0.5) 0%, rgba(20, 17, 11, 0.36) 55%, rgba(20, 17, 11, 0) 85%),
+    linear-gradient(
+      180deg,
+      rgba(20, 17, 11, 0.25) 0%,
+      rgba(20, 17, 11, 0.55) 38%,
+      rgba(62, 84, 50, 0.85) 68%,
+      rgba(62, 84, 50, 0.94) 100%
+    );
+}
+
+/* Phones: the text runs the full width and starts near the top */
+@media (max-width: 768px) {
+  .hero::before,
+  .page-header::before {
+    background: linear-gradient(
+      180deg,
+      rgba(20, 17, 11, 0.6) 0%,
+      rgba(20, 17, 11, 0.68) 40%,
+      rgba(62, 84, 50, 0.88) 75%,
+      rgba(62, 84, 50, 0.95) 100%
+    );
+  }
 }
 
 /* Grain overlay on hero photography */
@@ -304,20 +359,21 @@ nav a.active {
   animation: fadeInUp 0.6s ease-out;
 }
 
+/* .hero-content carries the gutter, so the home hero lines up with the logo and inner heroes */
+.hero > .container { padding-left: 0; padding-right: 0; }
+
 .hero h1,
 .page-header h1 {
   color: var(--color-bone);
-  text-shadow: none;
+  /* Dark halo so the Ridge numeral and accent words hold up over bright photo areas */
+  text-shadow: 0 1px 2px rgba(20, 17, 11, 0.45), 0 2px 24px rgba(20, 17, 11, 0.6);
   margin-bottom: var(--space-lg);
-  background: none;
-  -webkit-text-fill-color: var(--color-bone);
-  background-clip: border-box;
-  -webkit-background-clip: border-box;
   max-width: 18ch;
 }
 
+/* Below 445px the floor scales with the screen so "WILDERNESS." fits whole down to 320px */
 .page-header h1 {
-  font-size: clamp(3rem, 8vw, 7rem);
+  font-size: clamp(min(3rem, 10.8vw), 8vw, 7rem);
 }
 
 .hero p,
@@ -340,6 +396,98 @@ nav a.active {
   letter-spacing: 0.1em;
   color: var(--color-bone);
   opacity: 0.85;
+}
+
+.page-header .hero-chip {
+  width: fit-content;
+  margin-top: var(--space-md);
+  padding: 4px 8px;
+  border: 1px solid var(--color-bone);
+  border-radius: var(--radius-md);
+  font-size: 0.6875rem;
+  opacity: 1;
+}
+
+/* Coordinates of the page's own point, under the hero text. main.js ticks
+   the <data> values up from zero */
+.hero .hero-readout,
+.page-header .hero-readout {
+  margin: var(--space-sm) 0 0;
+  max-width: none;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+.hero-readout .pin-dot {
+  display: inline-block;
+  vertical-align: 0.1em;
+  margin-right: var(--space-xs);
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-pin);
+}
+
+/* Same viewport spot on every page, so the page cross-fade leaves the rings
+   still: it blends with plus-lighter, and identical rings add back to full */
+.hero-map {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-contours {
+  position: absolute;
+  left: 76%;
+  /* 40vw wins on portrait screens and lifts the pin above the headline */
+  top: min(55vh, 40vw);
+  width: 1200px;
+  translate: -50% -50%;
+  /* Lines fade out away from the pin, so none cross the small text */
+  mask-image: radial-gradient(closest-side, #000 35%, transparent);
+  -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent);
+}
+
+.hero-contours path {
+  fill: none;
+  stroke: var(--color-ridge);
+  stroke-width: 1;
+  opacity: 0.45;
+}
+
+/* Every fifth line heavier: the index contour of a topographic map */
+.hero-contours .index {
+  stroke-width: 1.75;
+  opacity: 0.7;
+}
+
+.hero-pin-halo { fill: var(--color-pin); opacity: 0.3; }
+.hero-pin      { fill: var(--color-pin); }
+.hero-pin-dot  { fill: var(--color-snow); }
+
+/* Phones: the text fills the hero, so the pin takes the gap under the header */
+@media (max-width: 768px) {
+  .hero-contours {
+    left: calc(100% - 40px);
+    top: 92px;
+    width: 760px;
+  }
+}
+
+/* First page of a visit only (html.intro), so later pages arrive with the
+   layer already drawn. Rings draw from the pin outward as the intro lifts */
+html.intro .hero-contours path {
+  stroke-dasharray: 1;
+  animation: contour-draw 1.6s cubic-bezier(0.3, 0.6, 0.3, 1) calc(0.3s + var(--i) * 0.08s) backwards;
+}
+
+@keyframes contour-draw {
+  from { stroke-dashoffset: 1; }
 }
 
 /* Hero CTAs */
@@ -387,11 +535,6 @@ nav a.active {
   color: var(--color-snow);
 }
 
-.hero-stat:hover .hero-stat-number,
-.hero-stat:hover .hero-stat-label {
-  color: var(--color-ink);
-}
-
 .hero-stat-number {
   display: block;
   font-family: var(--font-display);
@@ -421,9 +564,18 @@ nav a.active {
   bottom: var(--space-lg);
   left: 50%;
   transform: translateX(-50%);
-  animation: bounce 2.4s infinite;
+  /* Two bounces, then rest — no endless idle motion */
+  animation: bounce 2.4s 2;
   cursor: pointer;
   z-index: 3;
+  /* 40px hit area around the 18px arrow; translateX(-50%) keeps it centred */
+  padding: 11px;
+  margin: -11px 0;
+}
+
+.scroll-indicator:hover .scroll-arrow,
+.scroll-indicator:focus-visible .scroll-arrow {
+  border-color: var(--color-ridge);
 }
 
 .scroll-arrow {
@@ -442,7 +594,7 @@ footer {
   background: var(--color-ink);
   color: var(--color-snow);
   padding: calc(var(--space-4xl) + 4px) 0 var(--space-lg);
-  margin-top: var(--space-5xl);
+  margin-top: 0;
   position: relative;
   overflow: hidden;
   border-top: none;
@@ -465,7 +617,7 @@ footer::after { content: none; }
 
 .footer-content {
   display: grid;
-  grid-template-columns: 1.5fr repeat(3, 1fr);
+  grid-template-columns: 1.5fr repeat(2, 1fr);
   gap: 0;
   margin-bottom: var(--space-2xl);
   position: relative;
@@ -483,7 +635,7 @@ footer::after { content: none; }
   padding-right: var(--space-2xl);
 }
 
-.footer-section h3 {
+.footer-section h2 {
   color: var(--color-bone);
   margin-bottom: var(--space-md);
   font-family: var(--font-mono);
@@ -496,9 +648,9 @@ footer::after { content: none; }
   border-bottom: none;
 }
 
-.footer-section h3::after { content: none; }
+.footer-section h2::after { content: none; }
 
-.footer-section:first-child h3 {
+.footer-section:first-child h2 {
   font-family: var(--font-display);
   font-size: 1.5rem;
   letter-spacing: -0.02em;
@@ -516,6 +668,7 @@ footer::after { content: none; }
 .footer-section nav {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 0;
 }
 
@@ -536,77 +689,16 @@ footer::after { content: none; }
 
 .footer-section a::before { content: none; }
 
+/* Ridge on Ink (7.44:1); Forest here was 2.26:1 and vanished */
 .footer-section a:hover,
 .footer-section a:focus {
-  color: var(--color-hazard);
+  color: var(--color-action-on-dark);
   transform: none;
-  border-bottom-color: var(--color-hazard);
+  border-bottom-color: var(--color-action-on-dark);
 }
 
 .footer-section a:hover::before,
 .footer-section a:focus::before { content: none; }
-
-/* Social links — square outline, invert on hover */
-.social-links {
-  display: flex;
-  gap: var(--space-sm);
-  margin-top: var(--space-lg);
-}
-
-.social-links a {
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border: 1px solid var(--color-bone);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-fast);
-  margin-bottom: 0;
-  padding: 0;
-  color: var(--color-bone);
-}
-
-.social-links a::before { display: none; }
-
-.social-links a:hover,
-.social-links a:focus {
-  background: var(--color-hazard);
-  border-color: var(--color-hazard);
-  color: var(--color-ink);
-  transform: none;
-  box-shadow: none;
-}
-
-/* Cert badges — uppercase mono, hard rectangular */
-.certification-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
-  margin-top: var(--space-sm);
-}
-
-.cert-badge {
-  background: transparent;
-  color: var(--color-bone);
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--radius-sm);
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border: 1px solid var(--color-bone);
-  transition: var(--transition-fast);
-}
-
-.cert-badge:hover {
-  background: var(--color-hazard);
-  border-color: var(--color-hazard);
-  color: var(--color-ink);
-  transform: none;
-}
 
 .footer-bottom {
   text-align: left;
@@ -627,6 +719,8 @@ footer::after { content: none; }
   font-size: 0.75rem;
 }
 
+.footer-bottom p + p { margin-top: var(--space-xs); }
+
 /* Footer responsive */
 @media (max-width: 1024px) {
   .footer-content {
@@ -643,26 +737,6 @@ footer::after { content: none; }
     border-top: none;
     text-align: left;
   }
-  .footer-section:first-child h3::after { display: none; }
-  .social-links { justify-content: flex-start; }
+  .footer-section:first-child h2::after { display: none; }
 }
 
-/* Hero stats — sustainability variant */
-.hero-stats.sustainability-impact-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  max-width: 1100px;
-}
-
-@media (max-width: 900px) {
-  .hero-stats.sustainability-impact-stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .hero-stats.sustainability-impact-stats {
-    grid-template-columns: 1fr;
-  }
-}

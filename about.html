@@ -5,21 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Origin, mission, and method of Adventure Trails Hikes — founded 2015 in Boulder, Colorado. Carbon-negative since 2021, B-Corp certified."
+      content="Origin, mission, and method of Adventure Trails Hikes, founded 2015 in Boulder, Colorado. Carbon-negative since 2021, audited annually."
     />
 
     <!-- SEO -->
     <meta property="og:title" content="About | Adventure Trails Hikes" />
     <meta property="og:description" content="The founding story, six commitments, and timeline behind Adventure Trails Hikes." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://adventuretrails.com/about.html" />
-    <meta property="og:image" content="https://adventuretrails.com/images/about.jpg" />
+    <meta property="og:url" content="https://adventuretrailshikes.netlify.app/about.html" />
+    <meta property="og:image" content="https://adventuretrailshikes.netlify.app/images/about.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://adventuretrailshikes.netlify.app/about.html" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 
     <title>About | Adventure Trails Hikes</title>
 
-    <link rel="stylesheet" href="./styles/main.css" />
-      <!-- No-JS fallback: loader stays hidden so content is visible -->
-    <noscript><style>.page-loader{display:none!important}</style></noscript>
+    <!-- First page of a visit only: plays the "Plotting route" intro (styles/components.css) -->
+    <script>
+      try {
+        if (!sessionStorage.getItem('at-intro') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          sessionStorage.setItem('at-intro', '1');
+          document.documentElement.classList.add('intro');
+        }
+      } catch (e) {}
+    </script>
+    <link rel="preload" href="./fonts/archivo-black-v23-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/layout.css" />
+    <link rel="stylesheet" href="./styles/components.css" />
+    <link rel="stylesheet" href="./styles/utilities.css" />
   </head>
   <body>
     <!-- ============================================
@@ -43,18 +59,17 @@
     <a href="#main" class="skip-link">Skip to main content</a>
 
     <header role="banner">
-      <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-toggle" />
       <div class="header-container">
-        <a href="index.html" class="logo" aria-label="Adventure Trails Hikes — return to homepage">
+        <a href="index.html" class="logo" aria-label="Adventure Trails Hikes, return to homepage">
           <div class="logo-icon-mask" aria-hidden="true"></div>
           <span>Adventure Trails</span>
         </a>
-        <label for="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <button type="button" class="mobile-menu-btn" aria-expanded="false" aria-controls="main-nav" aria-label="Menu">
           <span class="hamburger-line" aria-hidden="true"></span>
           <span class="hamburger-line" aria-hidden="true"></span>
           <span class="hamburger-line" aria-hidden="true"></span>
-        </label>
-        <nav role="navigation" aria-label="Main navigation">
+        </button>
+        <nav id="main-nav" role="navigation" aria-label="Main navigation">
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html" class="active" aria-current="page">About</a></li>
@@ -74,12 +89,35 @@
            ============================================ -->
       <section
         class="page-header"
-        style="background-image: url('./images/about.jpg')"
         aria-labelledby="page-heading"
       >
+        <picture class="hero-photo">
+          <source type="image/avif" srcset="./images/opt/about-640.avif 640w, ./images/opt/about-1024.avif 1024w, ./images/opt/about-1280.avif 1280w" sizes="100vw" />
+          <source type="image/webp" srcset="./images/opt/about-640.webp 640w, ./images/opt/about-1024.webp 1024w, ./images/opt/about-1280.webp 1280w" sizes="100vw" />
+          <img src="./images/about.jpg" alt="" width="1280" height="720" fetchpriority="high" />
+        </picture>
+        <div class="hero-map" aria-hidden="true">
+          <svg class="hero-contours" viewBox="-600 -600 1200 1200">
+            <path pathLength="1" style="--i:1" d="M17 -1Q19 4 17 9Q15 15 12 19Q9 24 4 27Q-1 30 -7 30Q-13 30 -19 28Q-24 26 -28 21Q-31 16 -31 10Q-31 4 -30 -1Q-28 -6 -25 -11Q-22 -15 -18 -19Q-13 -24 -7 -24Q-0 -24 4 -20Q9 -16 12 -11Q15 -7 17 -1Z"/>
+            <path pathLength="1" style="--i:2" d="M42 -4Q46 9 41 22Q37 35 29 46Q21 57 10 65Q-2 73 -17 74Q-31 74 -45 68Q-59 62 -68 50Q-76 38 -75 23Q-74 9 -70 -3Q-66 -15 -60 -26Q-54 -38 -43 -49Q-32 -60 -17 -60Q-1 -61 11 -50Q22 -39 30 -28Q37 -17 42 -4Z"/>
+            <path pathLength="1" style="--i:3" d="M70 -7Q77 15 69 36Q61 57 48 76Q36 95 17 110Q-3 124 -28 124Q-53 124 -76 115Q-100 106 -113 84Q-127 63 -124 39Q-122 15 -116 -5Q-110 -24 -101 -45Q-92 -66 -74 -86Q-55 -106 -28 -105Q-1 -103 17 -84Q35 -64 49 -46Q63 -29 70 -7Z"/>
+            <path pathLength="1" style="--i:4" d="M101 -11Q111 21 98 51Q86 82 70 110Q54 138 25 159Q-3 180 -40 181Q-76 181 -111 168Q-146 155 -163 122Q-181 89 -176 55Q-172 21 -164 -7Q-156 -35 -145 -66Q-134 -98 -108 -129Q-81 -160 -41 -155Q-1 -150 25 -120Q50 -91 71 -67Q92 -42 101 -11Z"/>
+            <path class="index" pathLength="1" style="--i:5" d="M135 -15Q146 28 129 67Q112 107 93 146Q74 186 35 214Q-4 241 -53 242Q-102 243 -149 225Q-196 208 -216 162Q-237 116 -229 72Q-222 28 -214 -9Q-206 -46 -194 -91Q-182 -135 -146 -178Q-109 -222 -55 -210Q-1 -197 31 -158Q64 -118 94 -88Q124 -57 135 -15Z"/>
+            <path pathLength="1" style="--i:6" d="M169 -20Q180 34 160 84Q140 133 118 185Q96 237 46 272Q-4 307 -66 308Q-129 310 -189 287Q-249 264 -271 204Q-293 144 -283 89Q-273 34 -266 -12Q-259 -59 -247 -118Q-235 -178 -188 -235Q-140 -291 -71 -268Q-2 -245 38 -196Q78 -146 118 -110Q158 -74 169 -20Z"/>
+            <path pathLength="1" style="--i:7" d="M205 -25Q214 41 192 101Q169 161 145 227Q121 293 59 334Q-3 376 -81 379Q-158 383 -231 353Q-305 323 -326 247Q-347 170 -336 106Q-325 41 -320 -15Q-315 -72 -305 -150Q-295 -228 -234 -297Q-173 -367 -88 -328Q-4 -290 45 -233Q93 -176 144 -133Q195 -91 205 -25Z"/>
+            <path pathLength="1" style="--i:8" d="M242 -31Q249 49 226 120Q204 192 176 272Q148 353 72 399Q-4 445 -96 452Q-188 458 -273 419Q-359 381 -381 289Q-402 197 -392 123Q-382 49 -380 -20Q-379 -89 -369 -186Q-359 -283 -282 -360Q-205 -437 -106 -384Q-7 -331 52 -270Q111 -208 173 -159Q235 -110 242 -31Z"/>
+            <path pathLength="1" style="--i:9" d="M280 -37Q284 56 263 140Q242 225 209 320Q177 414 86 466Q-4 517 -111 527Q-219 536 -316 486Q-413 437 -435 330Q-457 223 -450 140Q-442 56 -446 -26Q-449 -108 -438 -226Q-427 -343 -332 -423Q-237 -503 -124 -437Q-12 -370 59 -307Q130 -245 203 -187Q276 -129 280 -37Z"/>
+            <path class="index" pathLength="1" style="--i:10" d="M318 -43Q319 63 301 162Q284 260 245 369Q206 478 101 535Q-4 591 -127 604Q-251 617 -358 554Q-466 492 -489 371Q-512 250 -509 157Q-506 63 -516 -33Q-525 -130 -513 -269Q-500 -408 -384 -487Q-268 -566 -142 -487Q-17 -409 68 -346Q152 -284 235 -216Q317 -149 318 -43Z"/>
+            <circle class="hero-pin-halo" r="14" />
+            <circle class="hero-pin" r="6" />
+            <circle class="hero-pin-dot" r="2" />
+          </svg>
+        </div>
         <div class="container">
           <h1 id="page-heading"><span class="h-num">02 /</span> Where culture meets <em>wilderness.</em></h1>
           <p>Guiding responsible expeditions since 2015</p>
+          <p class="hero-chip">Boulder, CO · 9 routes · 200+ guides</p>
+          <p class="hero-readout"><span class="pin-dot" aria-hidden="true"></span>Boulder base · <data value="40.0150">40.0150</data>°&nbsp;N · <data value="105.2705">105.2705</data>°&nbsp;W</p>
         </div>
       </section>
 
@@ -99,16 +137,16 @@
                 We started Adventure Trails Hikes after one trek through Nepal made us question every other operator we'd booked with.
               </p>
               <p>
-                In 2014, Maria Rodriguez and David Chen finished a 21-day Annapurna circuit. Maria was an environmental scientist; David ran an early-stage tech consultancy. They'd been on a dozen guided hikes between them. None of them had felt like this one — co-led by a Sherpa family, four meals a day cooked on a wood stove, every village stop a real exchange instead of a photo op.
+                In 2014, Maria Rodriguez and David Chen finished a 21-day Annapurna circuit. Maria was an environmental scientist; David ran an early-stage tech consultancy. They'd been on a dozen guided hikes between them. None of them had felt like this one: co-led by a Sherpa family, four meals a day cooked on a wood stove, every village stop a real exchange instead of a photo op.
               </p>
               <p>
                 The flight home, they sketched out an operator that wouldn't do any of the things their previous trips had done: no extractive pricing that funneled money out of the region, no cultural performance for tourists, no carbon offsets bought after-the-fact as decoration. The pitch was built around three things their Nepal guide, Pemba Sherpa, had said over and over: <em>intention, respect, and leaving less than you take</em>.
               </p>
               <p>
-                Adventure Trails Hikes opened in Boulder, Colorado in March 2015 with three local guides — Pemba being the first — and a single route. Eleven years on we operate nine routes across six regions, partner with two hundred local guides, and keep at least 75% of revenue inside the regions where the trekking happens. We've been B-Corp certified since 2017 and carbon-negative since 2021.
+                Adventure Trails Hikes opened in Boulder, Colorado in March 2015 with three local guides, Pemba being the first, and a single route. Eleven years on we operate nine routes across six regions, partner with two hundred local guides, and keep at least 75% of revenue inside the regions where the trekking happens. We've been carbon-negative since 2021.
               </p>
               <p>
-                None of those numbers are the point. The point is that the route briefing still gets written by the guide who lives at the trailhead — not in Boulder.
+                None of those numbers are the point. The point is that the route briefing still gets written by the guide who lives at the trailhead, not in Boulder.
               </p>
             </div>
 
@@ -141,10 +179,6 @@
                 <div>
                   <dt>Carbon Status</dt>
                   <dd>Negative</dd>
-                </div>
-                <div>
-                  <dt>Certifications</dt>
-                  <dd>B-Corp · UIAGM · LNT · Fair Trade</dd>
                 </div>
               </dl>
             </aside>
@@ -183,7 +217,7 @@
               <span class="commitment-num" aria-hidden="true">03</span>
               <div class="commitment-body">
                 <h3>Cultural Hosts, Not Performers</h3>
-                <p>We don't book cultural performances. Communities host us, on terms they set, in their own language. If a host family decides this season is the wrong season — pregnancy, harvest, grief — we reroute or refund. The trip is not the priority.</p>
+                <p>We don't book cultural performances. Communities host us, on terms they set, in their own language. If a host family decides this season is the wrong one, whether for pregnancy, harvest or grief, we reroute or refund. The trip is not the priority.</p>
               </div>
               <span class="commitment-tag">Host-Led</span>
             </li>
@@ -199,7 +233,7 @@
               <span class="commitment-num" aria-hidden="true">05</span>
               <div class="commitment-body">
                 <h3>Zero Landfill, Including Ours</h3>
-                <p>Every kit on every trip is reusable, repairable, or compostable. Our shared gear library has saved 14 tonnes of landfill since 2018. We publish what fails and how — failure transparency is not optional, it's load-bearing.</p>
+                <p>Every kit on every trip is reusable, repairable, or compostable. Our shared gear library has saved 14 tonnes of landfill since 2018. We publish what fails and how. Failure transparency is not optional, it's load-bearing.</p>
               </div>
               <span class="commitment-tag">Zero Waste</span>
             </li>
@@ -207,9 +241,9 @@
               <span class="commitment-num" aria-hidden="true">06</span>
               <div class="commitment-body">
                 <h3>Safety Above Schedule</h3>
-                <p>UIAGM-certified mountain guide on every route. Wilderness medicine, satellite communication, evacuation insurance — all baseline, no upsell. If conditions are wrong, we turn around. We've cancelled four expeditions for weather and refunded every guest in full.</p>
+                <p>Certified mountain guide on every route. Wilderness medicine, satellite communication, evacuation insurance: all baseline, no upsell. If conditions are wrong, we turn around. We've cancelled four expeditions for weather and refunded every guest in full.</p>
               </div>
-              <span class="commitment-tag">UIAGM Certified</span>
+              <span class="commitment-tag">Certified Guides</span>
             </li>
           </ol>
         </div>
@@ -229,27 +263,27 @@
             <li class="timeline-horizontal-item" role="listitem">
               <span class="timeline-h-year">2015</span>
               <h3>Doors Open</h3>
-              <p>Founded in Boulder by Maria & David after the Annapurna trek. Three guides, one route — Annapurna Circuit.</p>
+              <p>Founded in Boulder by Maria & David after the Annapurna trek. Three guides, one route: the Annapurna Circuit.</p>
             </li>
             <li class="timeline-horizontal-item" role="listitem">
               <span class="timeline-h-year">2017</span>
               <h3>First International</h3>
-              <p>Peru and Morocco programs added. B-Corp certification achieved. Indigenous-community partnership model documented.</p>
+              <p>Peru and Morocco programs added. Indigenous-community partnership model documented.</p>
             </li>
             <li class="timeline-horizontal-item" role="listitem">
               <span class="timeline-h-year">2019</span>
-              <h3>Carbon-Negative First</h3>
-              <p>First hiking operator to verifiably hit carbon-negative status. Community Water Project Initiative launched in Atlas region.</p>
+              <h3>Carbon Neutral</h3>
+              <p>Audited carbon-neutral for the first time. Community Water Project Initiative launched in Atlas region.</p>
             </li>
             <li class="timeline-horizontal-item" role="listitem">
               <span class="timeline-h-year">2021</span>
-              <h3>Digital Programs</h3>
-              <p>Virtual cultural workshops launched. Year-round connection to host communities; alumni network passes one thousand members.</p>
+              <h3>Carbon Negative</h3>
+              <p>Audited carbon-negative at a 150% offset. Virtual cultural workshops launched; alumni network passes one thousand members.</p>
             </li>
             <li class="timeline-horizontal-item" role="listitem">
               <span class="timeline-h-year">2023</span>
-              <h3>Recognised</h3>
-              <p>National Geographic "Best Sustainable Tour Operator." 25 countries, 200+ local guide partners, nine active routes.</p>
+              <h3>Nine Routes</h3>
+              <p>25 countries, 200+ local guide partners, nine active routes.</p>
             </li>
           </ol>
         </div>
@@ -322,12 +356,8 @@
 
           <div class="card-grid">
             <article class="card">
-              <div
-                class="card-image"
-                style="background-image: url('./images/maria_ro.jpg')"
-                role="img"
-                aria-label="Portrait of Maria Rodriguez, Co-Founder & CEO."
-              >
+              <div class="card-image">
+                <img src="./images/maria_ro.jpg" alt="Portrait of Maria Rodriguez" width="1500" height="1000" loading="lazy" />
                 <span>Maria Rodriguez</span>
               </div>
               <div class="card-content">
@@ -342,12 +372,8 @@
             </article>
 
             <article class="card">
-              <div
-                class="card-image"
-                style="background-image: url('./images/david_chen.jpg')"
-                role="img"
-                aria-label="Portrait of David Chen, Co-Founder & CTO."
-              >
+              <div class="card-image">
+                <img src="./images/david_chen.jpg" alt="Portrait of David Chen" width="1121" height="775" loading="lazy" />
                 <span>David Chen</span>
               </div>
               <div class="card-content">
@@ -362,12 +388,8 @@
             </article>
 
             <article class="card">
-              <div
-                class="card-image"
-                style="background-image: url('./images/aisha_pa.jpg')"
-                role="img"
-                aria-label="Portrait of Aisha Patel, Cultural Programs Director."
-              >
+              <div class="card-image">
+                <img src="./images/aisha_pa.jpg" alt="Portrait of Aisha Patel" width="640" height="427" loading="lazy" />
                 <span>Aisha Patel</span>
               </div>
               <div class="card-content">
@@ -384,30 +406,11 @@
         </div>
       </section>
 
-      <!-- ============================================
-           PRESS / ACCOLADES
-           ============================================ -->
-      <section aria-labelledby="press-heading">
-        <h2 id="press-heading" class="sr-only">Press &amp; Accolades</h2>
-        <div class="logos-strip">
-          <div class="logos-strip-heading">
-            <strong>Featured In</strong>
-            <span>Selected coverage · 2018 — present</span>
-          </div>
-          <div class="logos-strip-grid">
-            <div>National Geographic</div>
-            <div>Outside</div>
-            <div>Sidetracked</div>
-            <div>Adventure Journal</div>
-            <div>Patagonia Provisions</div>
-          </div>
-        </div>
-      </section>
 
       <!-- ============================================
            NEWSLETTER — closing CTA
            ============================================ -->
-      <section class="newsletter-section" aria-labelledby="newsletter-heading">
+      <section class="newsletter-section section-spacing" aria-labelledby="newsletter-heading">
         <div class="container">
           <div class="newsletter-content">
             <h2 id="newsletter-heading"><span class="h-num">06 /</span> Want the long-form <em>version?</em></h2>
@@ -417,6 +420,7 @@
               <input type="email" id="newsletter-email" name="email" placeholder="your@email.com" required />
               <button type="submit" class="cta-button primary"><span>Subscribe</span></button>
             </form>
+            <small class="form-note" role="status">Demo form · nothing is sent</small>
           </div>
         </div>
       </section>
@@ -425,22 +429,11 @@
     <footer role="contentinfo">
       <div class="container footer-content">
         <div class="footer-section">
-          <h3>Adventure Trails Hikes</h3>
+          <h2>Adventure Trails Hikes</h2>
           <p>Extreme expeditions, cultural immersion, sustainable values. Field-tested since 2015.</p>
-          <div class="social-links">
-            <a href="#" aria-label="Follow us on Facebook">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="#" aria-label="Follow us on Instagram">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.620 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.596-3.205-1.539l.643-.643c.588.735 1.48 1.206 2.562 1.206c1.789 0 3.24-1.451 3.24-3.24s-1.451-3.24-3.24-3.24c-1.082 0-1.974.471-2.562 1.206l-.643-.643c.757-.943 1.908-1.539 3.205-1.539c2.297 0 4.157 1.86 4.157 4.157s-1.86 4.157-4.157 4.157z"/></svg>
-            </a>
-            <a href="#" aria-label="Follow us on Twitter">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-            </a>
-          </div>
         </div>
         <div class="footer-section">
-          <h3>Quick Links</h3>
+          <h2>Quick Links</h2>
           <nav aria-label="Footer navigation">
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
@@ -451,25 +444,17 @@
           </nav>
         </div>
         <div class="footer-section">
-          <h3>Contact Info</h3>
+          <h2>Contact Info</h2>
           <address>
             <p>Email: <a href="mailto:hello@adventuretrails.com">hello@adventuretrails.com</a></p>
-            <p>Phone: <a href="tel:+1555ADVENTURE">+1 (555) ADVENTURE</a></p>
+            <p>Phone: <a href="tel:+13035550142">+1 (303) 555-0142</a></p>
             <p>Address: 123 Mountain View Blvd<br />Boulder, CO 80301</p>
           </address>
         </div>
-        <div class="footer-section">
-          <h3>Certifications</h3>
-          <div class="certification-badges">
-            <span class="cert-badge">B-Corp</span>
-            <span class="cert-badge">UIAGM</span>
-            <span class="cert-badge">Leave No Trace</span>
-            <span class="cert-badge">Fair Trade</span>
-          </div>
-        </div>
       </div>
       <div class="footer-bottom container">
-        <p>&copy; 2025 Adventure Trails Hikes — All rights reserved.</p>
+        <p>&copy; 2015–<span data-year>2026</span> Adventure Trails Hikes · Boulder, CO</p>
+        <p>A fictional company, built as a Noroff student project.</p>
       </div>
     </footer>
 

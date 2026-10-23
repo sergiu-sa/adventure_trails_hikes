@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <!-- Netlify serves this page for any missing path, so every URL here is root-absolute -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <title>Off the Map | Adventure Trails Hikes</title>
+
+    <link rel="preload" href="/fonts/archivo-black-v23-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/styles/variables.css" />
+    <link rel="stylesheet" href="/styles/base.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+    <link rel="stylesheet" href="/styles/components.css" />
+    <link rel="stylesheet" href="/styles/utilities.css" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+      <div class="header-container">
+        <a href="/index.html" class="logo" aria-label="Adventure Trails Hikes, return to homepage">
+          <div class="logo-icon-mask" aria-hidden="true"></div>
+          <span>Adventure Trails</span>
+        </a>
+        <button type="button" class="mobile-menu-btn" aria-expanded="false" aria-controls="main-nav" aria-label="Menu">
+          <span class="hamburger-line" aria-hidden="true"></span>
+          <span class="hamburger-line" aria-hidden="true"></span>
+          <span class="hamburger-line" aria-hidden="true"></span>
+        </button>
+        <nav id="main-nav" role="navigation" aria-label="Main navigation">
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/hikes.html">Hikes</a></li>
+            <li><a href="/sustainability.html">Sustainability</a></li>
+            <li><a href="/gallery.html">Gallery</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" role="main">
+      <section class="not-found" aria-labelledby="not-found-heading">
+        <svg class="not-found-contours" viewBox="0 0 1200 700" preserveAspectRatio="xMaxYMin slice" aria-hidden="true">
+          <ellipse cx="1100" cy="100" rx="120" ry="90" />
+          <ellipse cx="1100" cy="100" rx="260" ry="195" />
+          <ellipse cx="1100" cy="100" rx="420" ry="315" />
+          <ellipse cx="1100" cy="100" rx="600" ry="450" />
+          <ellipse cx="1100" cy="100" rx="800" ry="600" />
+          <circle class="pin-ring" cx="1100" cy="100" r="12" />
+          <circle class="pin-core" cx="1100" cy="100" r="5" />
+        </svg>
+        <div class="container">
+          <p class="not-found-ref">Error 404 · Grid ref. unknown</p>
+          <h1 id="not-found-heading"><span class="h-num">404 /</span> Off the <em>map.</em></h1>
+          <p class="not-found-lede">
+            This trail isn't on any of our sheets. It may have been rerouted,
+            retired for the season, or never surveyed. The ridge is still out
+            there; this page isn't.
+          </p>
+          <div class="hero-actions">
+            <a href="/index.html" class="cta-button primary"><span>Return to base camp</span></a>
+            <a href="/hikes.html" class="cta-button secondary"><span>Browse expeditions</span></a>
+          </div>
+          <nav class="not-found-links" aria-label="Other pages">
+            <a href="/about.html"><span>02</span>Field log</a>
+            <a href="/hikes.html"><span>03</span>Expeditions</a>
+            <a href="/sustainability.html"><span>04</span>The ledger</a>
+            <a href="/gallery.html"><span>05</span>Frames</a>
+            <a href="/contact.html"><span>06</span>Field station</a>
+          </nav>
+        </div>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <div class="container footer-content">
+        <div class="footer-section">
+          <h2>Adventure Trails Hikes</h2>
+          <p>Extreme expeditions, cultural immersion, sustainable values. Field-tested since 2015.</p>
+        </div>
+        <div class="footer-section">
+          <h2>Quick Links</h2>
+          <nav aria-label="Footer navigation">
+            <a href="/index.html">Home</a>
+            <a href="/about.html">About</a>
+            <a href="/hikes.html">Hikes</a>
+            <a href="/sustainability.html">Sustainability</a>
+            <a href="/gallery.html">Gallery</a>
+            <a href="/contact.html">Contact</a>
+          </nav>
+        </div>
+        <div class="footer-section">
+          <h2>Contact Info</h2>
+          <address>
+            <p>Email: <a href="mailto:hello@adventuretrails.com">hello@adventuretrails.com</a></p>
+            <p>Phone: <a href="tel:+13035550142">+1 (303) 555-0142</a></p>
+            <p>Address: 123 Mountain View Blvd<br />Boulder, CO 80301</p>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom container">
+        <p>&copy; 2015–<span data-year>2026</span> Adventure Trails Hikes · Boulder, CO</p>
+        <p>A fictional company, built as a Noroff student project.</p>
+      </div>
+    </footer>
+
+    <script src="/scripts/main.js" defer></script>
+  </body>
+</html>

@@ -8,7 +8,7 @@ Live: <https://adventuretrailshikes.netlify.app/>
 
 ## Project Overview
 
-This project demonstrates semantic HTML, modular CSS architecture, accessibility best practices, SEO, and responsive layouts. The original brief was HTML + CSS only; the resit version adds vanilla JavaScript for the page loader, page transitions, gallery lightbox, scroll progress, lazy-load, and CSS-only filter logic.
+This project demonstrates semantic HTML, modular CSS architecture, accessibility best practices, SEO, and responsive layouts. The original brief was HTML + CSS only; the resit version adds vanilla JavaScript for the first-visit intro, gallery lightbox, scroll progress, lazy-load, and CSS-only filter logic.
 
 ## Folder Structure
 
@@ -20,17 +20,25 @@ This project demonstrates semantic HTML, modular CSS architecture, accessibility
 ├── sustainability.html
 ├── gallery.html
 ├── contact.html
+├── 404.html            # "Off the map"; Netlify serves it for any missing path
 ├── README.md
+├── favicon.svg
+├── favicon.ico         # 32px fallback for browsers without SVG favicons
+├── apple-touch-icon.png
+├── robots.txt
+├── sitemap.xml
+├── _headers            # Netlify cache headers
+├── fonts/              # self-hosted woff2 files + their OFL licences
 ├── images/
+│   └── opt/            # resized AVIF/WebP hero photos
 ├── scripts/
 │   └── main.js
-└── styles/
+└── styles/             # linked from each page in this order
     ├── variables.css
     ├── base.css
     ├── layout.css
     ├── components.css
-    ├── utilities.css
-    └── main.css
+    └── utilities.css
 ```
 
 ## Features
@@ -38,19 +46,25 @@ This project demonstrates semantic HTML, modular CSS architecture, accessibility
 - Fully responsive (mobile, tablet, desktop)
 - Modular CSS — design tokens, base, layout, components, utilities
 - Semantic HTML5 + accessibility (skip link, focus rings, ARIA roles, prefers-reduced-motion)
-- SEO: Open Graph meta, alt attributes, headings hierarchy
-- Page loader with cartographic radar-pulse motif (visible on every page until window.load)
-- Smooth page transitions between internal links
-- Cross-page filtering on hikes (region) and gallery (category) — pure CSS via `:checked ~` sibling selectors
+- Mobile menu is a real `<button aria-expanded>`; Escape closes it and returns focus to the button. Without JavaScript the footer links still reach every page
+- SEO: Open Graph and Twitter card meta, canonical URLs, sitemap, robots.txt, alt attributes, headings hierarchy
+- Speed: self-hosted fonts with the heading font preloaded, stylesheets linked directly (no `@import` chain), hero photos as `<picture>` with AVIF/WebP and `fetchpriority="high"`, `loading="lazy"` below the first screen, hikes hover photos fetched on first hover
+- First-visit intro with a cartographic radar-pulse motif (about 0.6 s, once per browser session, timed in CSS so it never blocks the page)
+- Cross-fade between pages with the browser's built-in View Transitions (no library; other browsers navigate normally)
+- Contour heroes: a red pin at each page's own point (the featured Sacred Valley route, the Boulder base, Kala Patthar, Thorong La, Field Station 042), topographic contour lines around it and a mono coordinate readout that ticks up on arrival. The contour layer sits in the same spot on every page, so it holds still while the photo cross-fades, and it draws only on the first page of a visit
+- Reduced motion respected: no intro, page fades, smooth scrolling, counters, coordinate ticking, contour drawing, parallax or scroll reveals
+- Cross-page filtering on hikes (region) and gallery (category) — pure CSS: each tab is a native radio (arrow keys switch the filter) read with `:has(:checked)`
+- Contact FAQ is native `<details>`/`<summary>`, so Enter and Space open it without JavaScript
 - Real Google Maps embed on contact, with brand-coloured Pin sticker overlay
-- Lightbox gallery, page progress indicator, lazy-load, copy-to-clipboard, toast notifications
+- Lightbox gallery (a native `<dialog>`; each photo is a real button), page progress indicator, lazy-load
 - Form validation with hazard-Pin error states reserved for accessibility signal
+- The forms are demos: the company is fictional, so a valid submit sends nothing and a "Not sent · this form is a demo" stamp says so
 
 ## Tech Stack
 
 - HTML5
 - Custom CSS with CSS variables, modular files
-- Vanilla JavaScript (page loader, transitions, lightbox, scroll/UX enhancements)
+- Vanilla JavaScript (first-visit intro, lightbox, scroll/UX enhancements)
 - No frameworks, no build step
 
 ---
@@ -79,6 +93,8 @@ The palette is used as a **functional cartographic system**, not as decoration. 
 - **Body**: [Geist](https://fonts.google.com/specimen/Geist) — clean, characterful sans-serif (replaces Inter, which felt generic)
 - **Meta / data**: [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) — used uppercase tracked for spec sheets, coordinates, time stamps, calendar months, technical labels
 
+All three are served from `fonts/` (Latin subset, woff2, SIL Open Font Licence) rather than from Google's servers, which saves two cross-origin connections before the first heading can paint.
+
 Headlines on every page (and major sections) are numbered with a `01 /` prefix integrated into the display family — the number is part of the type, not a separate meta-label above it (Direction C in the design log).
 
 ### Layout & Architecture
@@ -88,8 +104,19 @@ Headlines on every page (and major sections) are numbered with a `01 /` prefix i
 - Tiled grid containers with rounded outer corners + `overflow: hidden` (regions bar, achievements grid, sustainability features, commitments list, method grid, timeline, giant-stat ledger, spec sheet, departures calendar)
 - Isolated card grids with `gap` between cards (cards/dispatch/testimonials) — each card stands alone with full hairline frame + radius
 - Asymmetric 70/30 splits (origin prose + metadata column on About; editorial blocks on home)
-- Photo-led heroes with grain overlay + Forest dusk gradient at the bottom
-- Cartographic page loader: concentric contour rings (one per palette colour) pulsing outward from a Pin marker, brand wordmark in Ridge gold, "Plotting route…" status in mono
+- Photo-led heroes with grain overlay, an Ink wash behind the text and a Forest dusk gradient at the bottom
+- Cartographic first-visit intro: concentric contour rings (one per palette colour) pulsing outward from a Pin marker, brand wordmark in Ridge gold, "Plotting route…" status in mono
+
+### Hero images
+
+The heroes load from `images/opt/`, made from the originals in `images/` at 640, 1024 and 1600 px wide, plus the original's own width (never wider). On macOS:
+
+```sh
+sips -s format avif -s formatOptions 40 --resampleWidth 1024 images/about.jpg --out images/opt/about-1024.avif
+cwebp -q 60 -m 6 -resize 1024 0 images/about.jpg -o images/opt/about-1024.webp
+```
+
+If a file comes out larger than its JPEG (`hero-home-1000.webp` did), lower the quality. Keep AVIF width and height even (use `-z <height> <width>` to round): `sips` tiles large AVIFs, and Chrome decodes a tiled AVIF with an odd height but never paints it (`hikes_1-2048.avif` at 2048×1365 showed no photo). Images are cached for a week (`_headers`), so a replaced photo can take that long to reach returning visitors.
 
 ---
 
