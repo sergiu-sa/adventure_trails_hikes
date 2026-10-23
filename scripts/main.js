@@ -170,7 +170,7 @@
       });
     }, observerOptions);
 
-    const animateElements = document.querySelectorAll('.card, .testimonial, .achievement, .feature, .timeline-item, .gallery-item, .faq-item');
+    const animateElements = document.querySelectorAll('.card, .testimonial, .achievement, .gallery-item, .faq-item');
     animateElements.forEach(function(el) {
       el.classList.add('animate-on-scroll');
       observer.observe(el);
@@ -251,6 +251,17 @@
         toggle.focus();
       }
     });
+  }
+
+  // Pairs with .pointer-nav in base.css
+  function initPointerNav() {
+    const root = document.documentElement;
+    document.addEventListener('pointerdown', function() {
+      root.classList.add('pointer-nav');
+    }, true);
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Tab') root.classList.remove('pointer-nav');
+    }, true);
   }
 
   function initYear() {
@@ -523,6 +534,7 @@
     initScrollAnimations();
     initHeaderScroll();
     initMobileMenu();
+    initPointerNav();
     initYear();
     initMarqueeToggle();
     initCounterAnimation();

@@ -36,12 +36,6 @@
 .testimonial:nth-child(2) { animation-delay: 0.4s; }
 .testimonial:nth-child(3) { animation-delay: 0.6s; }
 
-.timeline-item:nth-child(1) { animation-delay: 0.1s; }
-.timeline-item:nth-child(2) { animation-delay: 0.2s; }
-.timeline-item:nth-child(3) { animation-delay: 0.3s; }
-.timeline-item:nth-child(4) { animation-delay: 0.4s; }
-.timeline-item:nth-child(5) { animation-delay: 0.5s; }
-
 .achievement:nth-child(1) { animation-delay: 0.1s; }
 .achievement:nth-child(2) { animation-delay: 0.2s; }
 .achievement:nth-child(3) { animation-delay: 0.3s; }
@@ -196,15 +190,6 @@
   .footer-section { padding-left: 0; padding-right: 0; }
   /* Wrap the copyright before it reaches the back-to-top button */
   .footer-bottom p { padding-right: calc(44px + var(--space-lg)); }
-
-  .timeline-item {
-    left: var(--space-xl) !important;
-    width: calc(100% - var(--space-xl)) !important;
-    text-align: left !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  .timeline-item::before { left: -9px !important; }
 
   .contact-form { padding: var(--space-xl); }
 
