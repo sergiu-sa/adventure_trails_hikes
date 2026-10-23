@@ -331,7 +331,6 @@
    FORMS — underline-only inputs
    =================================== */
 .contact-form {
-  max-width: 760px;
   margin: var(--space-2xl) 0;
   background: var(--color-paper);
   padding: var(--space-3xl);
@@ -1012,7 +1011,6 @@ legend {
    FAQ — ink-on-bone, sharp, no rounded
    =================================== */
 .faq-container {
-  max-width: 900px;
   margin: var(--space-2xl) 0;
 }
 

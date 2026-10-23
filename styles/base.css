@@ -40,10 +40,6 @@ html {
   background: var(--color-bone);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; }
-}
-
 body {
   font-family: var(--font-body);
   line-height: 1.55;
