@@ -56,8 +56,9 @@ This project demonstrates semantic HTML, modular CSS architecture, accessibility
 - Cross-page filtering on hikes (region) and gallery (category) — pure CSS: each tab is a native radio (arrow keys switch the filter) read with `:has(:checked)`
 - Contact FAQ is native `<details>`/`<summary>`, so Enter and Space open it without JavaScript
 - Real Google Maps embed on contact, with brand-coloured Pin sticker overlay
-- Lightbox gallery, page progress indicator, lazy-load, copy-to-clipboard, toast notifications
+- Lightbox gallery (a native `<dialog>`; each photo is a real button), page progress indicator, lazy-load
 - Form validation with hazard-Pin error states reserved for accessibility signal
+- The forms are demos: the company is fictional, so a valid submit sends nothing and a "Not sent · this form is a demo" stamp says so
 
 ## Tech Stack
 
