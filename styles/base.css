@@ -161,15 +161,6 @@ address a:focus {
   color: var(--color-hazard);
 }
 
-/* Mono utility — anywhere we mark technical data */
-.mono,
-.meta {
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
 /* Accessibility */
 .skip-link {
   position: absolute;

@@ -128,9 +128,7 @@
   .container { padding: 0 var(--space-md); }
 
   .card-grid,
-  .gallery-grid,
   .achievements-grid,
-  .sustainability-features,
   .footer-content {
     grid-template-columns: 1fr !important;
     gap: var(--space-lg);
@@ -139,16 +137,14 @@
   /* Tiled grids: drop parent borders + radius so each child
      stands alone with its own full hairline frame on mobile */
   .card-grid,
-  .achievements-grid,
-  .sustainability-features {
+  .achievements-grid {
     border: none;
     border-radius: 0;
     overflow: visible;
   }
 
   .card-grid > .card,
-  .achievements-grid > .achievement,
-  .sustainability-features > .feature {
+  .achievements-grid > .achievement {
     border: var(--border-hairline);
     border-radius: var(--radius-md);
   }
@@ -201,8 +197,6 @@
   /* Wrap the copyright before it reaches the back-to-top button */
   .footer-bottom p { padding-right: calc(44px + var(--space-lg)); }
 
-  .timeline { margin-left: var(--space-lg); }
-  .timeline::before { left: 0; }
   .timeline-item {
     left: var(--space-xl) !important;
     width: calc(100% - var(--space-xl)) !important;
@@ -289,12 +283,6 @@
    High contrast
    =================================== */
 @media (prefers-contrast: high) {
-  :root {
-    --primary-600: #000000;
-    --accent-600: #ff4500;
-    --neutral-900: #000000;
-    --neutral-100: #ffffff;
-  }
   .required {
     color: #ff0000;
     font-weight: 900;
