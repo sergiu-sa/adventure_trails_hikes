@@ -101,7 +101,7 @@ Headlines on every page (and major sections) are numbered with a `01 /` prefix i
 
 - Sharp full-bleed slabs (hero, manifesto, featured expedition, footer, marquee, departures strip)
 - Hairline 1px Ink borders for everything else
-- Tiled grid containers with rounded outer corners + `overflow: hidden` (regions bar, achievements grid, sustainability features, commitments list, method grid, timeline, giant-stat ledger, spec sheet, departures calendar)
+- Tiled grid containers with rounded outer corners + `overflow: hidden` (regions bar, achievements grid, commitments list, method grid, timeline, giant-stat ledger, spec sheet, departures calendar)
 - Isolated card grids with `gap` between cards (cards/dispatch/testimonials) — each card stands alone with full hairline frame + radius
 - Asymmetric 70/30 splits (origin prose + metadata column on About; editorial blocks on home)
 - Photo-led heroes with grain overlay, an Ink wash behind the text and a Forest dusk gradient at the bottom
