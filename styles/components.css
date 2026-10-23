@@ -757,47 +757,6 @@ legend {
 .testimonials-section .testimonial-author p { color: var(--color-snow-deep); }
 
 /* ===================================
-   TIMELINE — horizontal-leaning, hairline
-   =================================== */
-
-.timeline-item {
-  position: relative;
-  margin-bottom: var(--space-3xl);
-  width: 50%;
-  animation: fadeInUp 0.6s ease-out both;
-}
-
-.timeline-item:nth-child(odd) {
-  left: 0;
-  padding-right: var(--space-2xl);
-  text-align: right;
-}
-
-.timeline-item:nth-child(even) {
-  left: 50%;
-  padding-left: var(--space-2xl);
-}
-
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  top: 18px;
-  width: 12px;
-  height: 12px;
-  background: var(--color-hazard);
-  border: 2px solid var(--color-ink);
-  border-radius: var(--radius-full);
-  box-shadow: none;
-}
-
-.timeline-item:nth-child(even)::before {
-  background: var(--color-ink);
-}
-
-.timeline-item:nth-child(odd)::before { right: -8px; }
-.timeline-item:nth-child(even)::before { left: -8px; }
-
-/* ===================================
    GALLERY — zero-gap mosaic prep
    =================================== */
 
@@ -991,7 +950,7 @@ legend {
 }
 
 /* ===================================
-   ACHIEVEMENTS / FEATURES grids
+   ACHIEVEMENTS grid
    =================================== */
 .achievements-grid {
   display: grid;
@@ -1006,8 +965,7 @@ legend {
   overflow: hidden;
 }
 
-.achievement,
-.feature {
+.achievement {
   text-align: left;
   padding: var(--space-xl);
   background: var(--color-paper);
@@ -1026,13 +984,11 @@ legend {
   box-shadow: none;
 }
 
-.achievement::before,
-.feature::before {
+.achievement::before {
   content: none;
 }
 
-.achievement:hover,
-.feature:hover {
+.achievement:hover {
   transform: none;
   box-shadow: none;
   background: var(--color-ink);
@@ -1042,8 +998,6 @@ legend {
 
 .achievement:hover .achievement-number,
 .achievement:hover .achievement-label { color: var(--color-bone); }
-.feature:hover h3,
-.feature:hover p { color: var(--color-bone); }
 
 .achievement-icon {
   width: 40px;
@@ -1084,20 +1038,6 @@ legend {
   font-size: 0.6875rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-}
-
-.feature h3 {
-  color: var(--color-ink);
-  margin-bottom: var(--space-sm);
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  font-size: 1.125rem;
-}
-
-.feature p {
-  color: var(--color-ink);
-  font-size: 0.9375rem;
-  line-height: 1.55;
 }
 
 /* ===================================

@@ -217,6 +217,12 @@ address a:focus {
   scroll-margin-top: 120px;
 }
 
+/* main.js sets html.pointer-nav on a click or tap and clears it on Tab, so the margin
+   above never scrolls the page under the pointer (a select, a label, the lightbox closing) */
+.pointer-nav :focus {
+  scroll-margin-top: 0;
+}
+
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
